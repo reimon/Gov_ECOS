@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Governança de TI — Preparação para Auditoria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4EFE6;
+    --paper-2: #ECE5D7;
+    --ink: #161B2E;
+    --ink-soft: #2C3450;
+    --muted: #6B6960;
+    --rule: #C8C0AE;
+    --rule-soft: #DDD5C2;
+    --accent: #B8492C;
+    --accent-2: #8A6A2A;
+    --green: #3F6B47;
+    --highlight: #F7E7B8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184, 73, 44, 0.04), transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(138, 106, 42, 0.05), transparent 50%);
+    min-height: 100vh;
+    padding: 48px 32px 80px;
+  }
+  .wrap { max-width: 1320px; margin: 0 auto; }
+
+  /* Masthead */
+  .masthead {
+    border-top: 4px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 18px 0 14px;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .masthead .edition { color: var(--accent); font-weight: 600; }
+
+  .title-block {
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: end;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(38px, 4.4vw, 62px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 144;
+  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .deck {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+  .deck strong { font-style: normal; font-weight: 500; color: var(--ink); }
+
+  /* Methodology / nota */
+  .methodology {
+    background: var(--paper-2);
+    border-left: 3px solid var(--accent);
+    padding: 16px 22px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .methodology strong {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .methodology b { color: var(--ink); }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    margin-bottom: 30px;
+  }
+  .stat { padding: 18px 22px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .stat .value {
+    font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400;
+    line-height: 1; color: var(--ink);
+  }
+  .stat .value .unit { font-size: 14px; color: var(--muted); margin-left: 4px; }
+  .stat .value.crit { color: var(--accent); }
+  .stat .sub { font-size: 12px; color: var(--muted); margin-top: 5px; font-style: italic; }
+
+  /* Nav pills */
+  .nav {
+    display: flex; gap: 0; border: 1px solid var(--ink);
+    margin-bottom: 34px; width: fit-content; flex-wrap: wrap;
+  }
+  .nav button {
+    padding: 9px 20px; font-size: 12.5px; background: transparent; border: none;
+    border-right: 1px solid var(--rule); cursor: pointer;
+    font-family: 'Manrope', sans-serif; color: var(--ink); letter-spacing: 0.02em;
+    transition: all 0.15s; display: flex; align-items: baseline; gap: 8px;
+  }
+  .nav button:last-child { border-right: none; }
+  .nav button:hover { background: var(--paper-2); }
+  .nav button.active { background: var(--ink); color: var(--paper); }
+  .nav button .n {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; opacity: 0.6;
+  }
+
+  /* Views */
+  .view { display: none; animation: fade 0.3s ease; }
+  .view.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .section-kicker {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: 30px;
+    line-height: 1; letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .section-lead {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+    font-size: 16px; color: var(--ink-soft); margin-bottom: 26px; max-width: 720px;
+  }
+
+  /* Diagnostic cards */
+  .diag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border-top: 2px solid var(--ink); }
+  .diag {
+    border-bottom: 1px solid var(--rule); padding: 20px 24px 22px;
+    border-right: 1px solid var(--rule);
+  }
+  .diag:nth-child(2n) { border-right: none; }
+  .diag-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+  .diag-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+    border: 1px solid var(--rule); padding: 2px 7px; flex-shrink: 0;
+  }
+  .diag-name {
+    font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500;
+    line-height: 1.15; flex: 1;
+  }
+  .diag-block { margin-top: 12px; }
+  .diag-block .tag-line {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+  }
+  .diag-block.now .tag-line { color: var(--accent); }
+  .diag-block.itil .tag-line { color: var(--green); }
+  .diag-block p { font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+  .diag-block.now p { color: var(--ink); }
+  .arrow-down { color: var(--rule); font-size: 14px; text-align: center; margin: 6px 0 2px; }
+  .itil-ref {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.06em; color: var(--green); border: 1px solid var(--green);
+    padding: 2px 6px; margin-top: 8px;
+  }
+
+  /* Severity tag */
+  .sev {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border: 1px solid;
+    white-space: nowrap;
+  }
+  .sev.critica { color: var(--accent); border-color: var(--accent); background: rgba(184,73,44,0.08); font-weight: 600; }
+  .sev.alta { color: var(--accent-2); border-color: var(--accent-2); }
+  .sev.media { color: var(--ink-soft); border-color: var(--ink-soft); }
+  .sev.baixa { color: var(--muted); border-color: var(--muted); }
+
+  /* Backlog clusters */
+  .cluster { margin-bottom: 34px; border-top: 2px solid var(--ink); }
+  .cluster-head {
+    display: flex; align-items: baseline; gap: 14px; padding: 12px 0 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cluster-head .c-num {
+    font-family: 'Fraunces', serif; font-size: 26px; color: var(--accent); line-height: 1;
+  }
+  .cluster-head .c-name { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500; }
+  .cluster-head .c-sub { font-size: 12px; color: var(--muted); font-style: italic; margin-left: auto; }
+
+  .task {
+    display: grid; grid-template-columns: 42px 1fr 90px; gap: 16px; align-items: start;
+    padding: 14px 4px; border-bottom: 1px solid var(--rule-soft);
+  }
+  .task:hover { background: var(--paper-2); }
+  .task .t-id {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted);
+    padding-top: 2px;
+  }
+  .task .t-name { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+  .task .t-owner {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted);
+    letter-spacing: 0.06em; margin-top: 3px; text-transform: uppercase;
+  }
+  .task .t-conn { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .conn {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.04em;
+    padding: 2px 6px; border: 1px solid var(--rule); color: var(--muted);
+  }
+  .conn.enables { color: var(--green); border-color: rgba(63,107,71,0.5); }
+  .conn.depends { color: var(--accent); border-color: rgba(184,73,44,0.4); }
+  .task .t-sev { text-align: right; }
+
+  /* Critical trails */
+  .trails { border: 1px solid var(--rule); background: var(--paper-2); padding: 20px 24px; margin-bottom: 34px; }
+  .trails h3 {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+  }
+  .trail { margin-bottom: 12px; font-size: 13px; color: var(--ink-soft); }
+  .trail:last-child { margin-bottom: 0; }
+  .trail b { color: var(--ink); font-family: 'Fraunces', serif; font-weight: 500; font-style: italic; }
+  .trail .flow { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink); }
+  .trail .flow .ar { color: var(--accent); }
+
+  /* Phase plan */
+  .phase { border-top: 2px solid var(--ink); margin-bottom: 30px; }
+  .phase-head {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: baseline;
+    padding: 14px 0 16px; border-bottom: 1px solid var(--rule);
+  }
+  .phase-head .p-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--paper); background: var(--ink);
+    padding: 5px 10px; align-self: center;
+  }
+  .phase.f0 .p-tag { background: var(--accent); }
+  .phase-head .p-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; }
+  .phase-head .p-window {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .phase-body { padding: 18px 0 6px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; }
+  .phase-obj { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; }
+  .phase-obj .goal {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--ink);
+    margin-bottom: 10px; display: block;
+  }
+  .milestone {
+    margin-top: 14px; border-left: 3px solid var(--green); padding: 8px 0 8px 14px;
+    font-size: 12.5px;
+  }
+  .milestone .m-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green); display: block; margin-bottom: 3px;
+  }
+  .phase-items { }
+  .phase-items .pi-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+  }
+  .pi {
+    display: flex; gap: 10px; align-items: baseline; padding: 6px 0;
+    border-bottom: 1px dotted var(--rule-soft); font-size: 13px;
+  }
+  .pi .pi-id { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); flex-shrink: 0; min-width: 22px; }
+  .pi .pi-sev { margin-left: auto; }
+
+  /* Footer */
+  footer {
+    margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--ink);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  footer .disclaimer {
+    font-family: 'Fraunces', serif; font-style: italic; text-transform: none;
+    letter-spacing: 0; font-size: 12px; color: var(--ink-soft); max-width: 560px; line-height: 1.5;
+  }
+
+  @media (max-width: 860px) {
+    body { padding: 28px 18px 60px; }
+    .title-block { grid-template-columns: 1fr; gap: 18px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .diag-grid { grid-template-columns: 1fr; }
+    .diag:nth-child(2n) { border-right: 1px solid var(--rule); }
+    .phase-body { grid-template-columns: 1fr; gap: 18px; }
+    .task { grid-template-columns: 34px 1fr; }
+    .task .t-sev { grid-column: 2; text-align: left; margin-top: 4px; }
+  }
+
+  @media print {
+    body { padding: 0; background: #fff; }
+    .nav { display: none; }
+    .view { display: block !important; page-break-before: always; }
+    .view:first-of-type { page-break-before: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <span>Governança de TI · Indústria de Cosméticos</span>
+    <span class="edition">Vol. I · Preparação Auditoria · 2026</span>
+    <span id="mh-count">28 Ações · 4 Frentes</span>
+  </div>
+
+  <div class="title-block">
+    <h1>Plano de Governança <em>de TI</em></h1>
+    <div class="deck">
+      Do estado atual reativo à TI sob governança: o diagnóstico das dores operacionais, o tratamento de cada uma à luz do <strong>ITIL</strong>, e o roteiro de execução com prazo na <strong>auditoria interna de 13/07/2026</strong>.
+    </div>
+  </div>
+
+  <div class="methodology">
+    <strong>Nota · Escopo</strong>
+    Este documento consolida as dores levantadas em campo com a equipe de TI (Marcone e liderança) e as mapeia para as práticas do <b>ITIL 4</b>. O horizonte de execução é a <b>auditoria interna de governança de 13/07/2026</b>, conduzida por auditor de perfil adversarial. Itens marcados como <b>Crítica</b> protegem a continuidade da operação fabril e a posição jurídica da TI — devem ser tratados antes de qualquer outro. As três páginas a seguir (Diagnóstico, Backlog &amp; Conexões, Plano de Ação) são navegáveis pelas abas abaixo. Cada item do backlog ganhará, em seguida, um plano detalhado próprio.
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Total de Ações</div>
+      <div class="value">28</div>
+      <div class="sub">distribuídas em 4 frentes</div>
+    </div>
+    <div class="stat">
+      <div class="label">Ações Críticas</div>
+      <div class="value crit">04</div>
+      <div class="sub">blindagem imediata</div>
+    </div>
+    <div class="stat">
+      <div class="label">Frentes ITIL</div>
+      <div class="value">04</div>
+      <div class="sub">ativos · processos · segurança · cultura</div>
+    </div>
+    <div class="stat">
+      <div class="label">Dias para a Auditoria</div>
+      <div class="value crit"><span id="days-left">—</span></div>
+      <div class="sub">alvo: 13/07/2026</div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <button class="active" data-view="diag"><span class="n">01</span> Diagnóstico</button>
+    <button data-view="backlog"><span class="n">02</span> Backlog &amp; Conexões</button>
+    <button data-view="plano"><span class="n">03</span> Plano de Ação</button>
+  </nav>
+
+  <!-- ===================== VIEW 1 — DIAGNÓSTICO ===================== -->
+  <section class="view active" id="view-diag">
+    <div class="section-kicker">Página 01 · Estado Atual × Tratamento ITIL</div>
+    <h2 class="section-title">Diagnóstico</h2>
+    <p class="section-lead">Para cada dor real do ambiente, a prática do ITIL que a resolve e o que muda na operação. Leia de cima para baixo: a dor de hoje, a seta, o tratamento.</p>
+
+    <div class="diag-grid">
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">01</span>
+          <span class="diag-name">Inventário disperso e provisório</span>
+          <span class="sev critica">Crítica</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Inventário em planilha provisória no Google Drive, sem código definitivo, sem etiquetagem física. Máquinas movem-se sem rastreio.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>CMDB único alimentado por varredura (Acronis) e conciliado a contratos/valores (Spalla). Cada ativo com código definitivo, dono, local e status.</p>
+        <span class="itil-ref">ITAM · SACM</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">02</span>
+          <span class="diag-name">Licenças irregulares (Windows / Office)</span>
+          <span class="sev critica">Crítica</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Exposição de compliance imediata. Sistemas em uso sem homologação formal — risco direto na auditoria.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>Gestão de ativos de software regulariza as licenças e homologa todo sistema ativo antes da auditoria externa. Compliance como prioridade zero.</p>
+        <span class="itil-ref">SAM · Homologação</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">03</span>
+          <span class="diag-name">Contingência inoperante + servidor negado</span>
+          <span class="sev critica">Crítica</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Servidor antigo de backup com controladora de energia queimada. Se o servidor novo parar, a fábrica fica até 30 dias parada. Compra do novo negada por orçamento.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>Formalizar o risco em planilha à diretoria (Edson), cotar de imediato a manutenção da controladora e emitir Termo de Assunção de Risco se o investimento for recusado.</p>
+        <span class="itil-ref">ITSCM · Gestão de Riscos</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">04</span>
+          <span class="diag-name">Chamados "passam direto" (bypass)</span>
+          <span class="sev alta">Alta</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Acionamentos chegam fora da central — sem registro, triagem, histórico ou métrica. Priorização informal e injusta.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>Service Desk como ponto único de contato. Todo acionamento passa pelo 1º nível, gerando registro, priorização e indicadores.</p>
+        <span class="itil-ref">Incidentes · Requisições</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">05</span>
+          <span class="diag-name">Ausência de SLA</span>
+          <span class="sev alta">Alta</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Sem acordo de nível de serviço: não há resposta padronizada por criticidade nem expectativa clara para o negócio.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>SLAs de resposta e resolução por criticidade publicados — parada na linha de produção de cosméticos classificada como P1.</p>
+        <span class="itil-ref">SLM</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">06</span>
+          <span class="diag-name">Onboarding / Offboarding sem fluxo</span>
+          <span class="sev alta">Alta</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>RH não aciona a TI a tempo; demissões sem revogação imediata de acesso e recolhimento de ativos; perda de celular sem processo definido.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>Fluxos RH↔TI: provisionamento antecipado na entrada; revogação imediata e recolhimento de hardware na saída, mitigando vazamento de dados.</p>
+        <span class="itil-ref">Requisições · Gestão de Acesso</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">07</span>
+          <span class="diag-name">Shadow IT</span>
+          <span class="sev alta">Alta</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Software e hardware instalados à revelia da TI. Ferramenta de descoberta automática (Milvus) negada — mapeamento terá de ser manual.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>Item desconhecido em rede entra em quarentena/isolamento até homologação tardia justificada. Mapeamento "braçal" com os gestores-chave enquanto não há automação.</p>
+        <span class="itil-ref">SACM · Segurança</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">08</span>
+          <span class="diag-name">Sem Política de Segurança (PSI)</span>
+          <span class="sev alta">Alta</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Sem regras de uso, DLP ou resposta a incidentes. USB inconsistente entre unidades, remotos em Wi-Fi público, e o Spalla via API exposto a quem acessa de fora.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>PSI institucionaliza uso de ativos, DLP e resposta a incidentes. Dela derivam termo de equipamentos, regras de Wi-Fi, controle de USB, DNS e acesso restrito à API.</p>
+        <span class="itil-ref">Gestão de Segurança da Informação</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">09</span>
+          <span class="diag-name">Aquisições sem crivo técnico</span>
+          <span class="sev media">Média</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Compras de TI passam por Spalla/Suprimentos sem avaliação de compatibilidade, segurança ou custo pela área técnica.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>Processo de aquisição homologada: todo software/hardware passa pelo crivo da TI antes da compra. Alimenta o controle de Shadow IT.</p>
+        <span class="itil-ref">Requisições · Mudança</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">10</span>
+          <span class="diag-name">Expansão sem governança</span>
+          <span class="sev media">Média</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>Novas operações (Vitória, Vila Velha) sem catálogo de infraestrutura padrão — conectividade, equipamentos e suporte definidos caso a caso.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>Catálogo de serviços padroniza infra das filiais: conectividade, dimensionamento de suporte (local ou remoto), equipamentos e segurança.</p>
+        <span class="itil-ref">Catálogo de Serviços</span></div>
+      </div>
+
+      <div class="diag">
+        <div class="diag-head">
+          <span class="diag-num">11</span>
+          <span class="diag-name">Cultura reativa · "TI sempre recebe NÃO"</span>
+          <span class="sev media">Média</span>
+        </div>
+        <div class="diag-block now"><div class="tag-line">● Hoje</div><p>TI percebida como custo e obstáculo; equipe sem pensamento sistêmico; liderança de área pouco engajada com as regras.</p></div>
+        <div class="arrow-down">↓</div>
+        <div class="diag-block itil"><div class="tag-line">● ITIL</div><p>Gestão de mudança organizacional: Kedymma e Fábio como donos do projeto, reuniões presenciais com gestores e disseminação dos fluxos. A cultura muda quando a liderança compra a ideia.</p>
+        <span class="itil-ref">Mudança Organizacional</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== VIEW 2 — BACKLOG & CONEXÕES ===================== -->
+  <section class="view" id="view-backlog">
+    <div class="section-kicker">Página 02 · 28 Ações e suas dependências</div>
+    <h2 class="section-title">Backlog &amp; Conexões</h2>
+    <p class="section-lead">As ações agrupadas por frente. As etiquetas mostram o que cada item <span style="color:var(--green)">habilita</span> e de que ele <span style="color:var(--accent)">depende</span> — é o mapa de quem precisa vir antes de quem.</p>
+
+    <div class="trails">
+      <h3>Trilhas Críticas — a ordem que não pode ser quebrada</h3>
+      <div class="trail"><b>Inventário</b> &nbsp;<span class="flow">#01 <span class="ar">→</span> #02 <span class="ar">→</span> #03 · #04 · #05 · #24</span> &nbsp;— sem o código definitivo, etiquetagem, homologação, licenças e mapa de Shadow IT travam.</div>
+      <div class="trail"><b>Continuidade</b> &nbsp;<span class="flow">#07 <span class="ar">→</span> #08 &nbsp;|&nbsp; #06 <span class="ar">→</span> #09</span> &nbsp;— formalizar o risco do servidor antes de cotar manutenção e assinar o termo.</div>
+      <div class="trail"><b>Segurança</b> &nbsp;<span class="flow">#17 <span class="ar">→</span> #15 · #16 · #20 · #21 · #22 · #25</span> &nbsp;— a PSI é a mãe; tudo de segurança nasce dela.</div>
+      <div class="trail"><b>Operação &amp; Cultura</b> &nbsp;<span class="flow">#13 <span class="ar">→</span> #12 &nbsp;|&nbsp; #23 <span class="ar">→</span> #24 · #28</span> &nbsp;— SLA antes de cortar o bypass; gestores formalizados antes de cobrar área e mapear.</div>
+    </div>
+
+    <!-- Cluster 1 -->
+    <div class="cluster">
+      <div class="cluster-head">
+        <span class="c-num">01</span>
+        <span class="c-name">Ativos &amp; Conformidade</span>
+        <span class="c-sub">9 ações · base da auditoria</span>
+      </div>
+      <div class="task"><span class="t-id">#01</span><div><div class="t-name">Unificar inventário de HW/SW — Acronis (varredura) + Spalla (contratos)</div><div class="t-owner">Marcone · Software</div><div class="t-conn"><span class="conn enables">habilita → #02 #04</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#02</span><div><div class="t-name">Converter inventário provisório (Drive) em código definitivo</div><div class="t-owner">Marcone · antes de ir a Vitória</div><div class="t-conn"><span class="conn depends">depende ← #01</span><span class="conn enables">habilita → #03 #04 #05 #24</span></div></div><div class="t-sev"><span class="sev critica">Crítica</span></div></div>
+      <div class="task"><span class="t-id">#03</span><div><div class="t-name">Implantar ciclo de vida + etiquetagem física (alumínio)</div><div class="t-owner">Marcone</div><div class="t-conn"><span class="conn depends">depende ← #02</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+      <div class="task"><span class="t-id">#04</span><div><div class="t-name">Homologar todos os sistemas ativos</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn depends">depende ← #02</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#05</span><div><div class="t-name">Regularizar licenças Windows / Office (compliance interno)</div><div class="t-owner">TI · prioridade zero</div><div class="t-conn"><span class="conn depends">depende ← #02</span></div></div><div class="t-sev"><span class="sev critica">Crítica</span></div></div>
+      <div class="task"><span class="t-id">#06</span><div><div class="t-name">Mapear risco do servidor novo (Matriz de Impacto) e definir quem decide</div><div class="t-owner">TI · Diretoria</div><div class="t-conn"><span class="conn enables">habilita → #09</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#07</span><div><div class="t-name">Formalizar risco do servidor antigo (controladora queimada) em planilha p/ Edson</div><div class="t-owner">TI → Diretoria</div><div class="t-conn"><span class="conn enables">habilita → #08 #09</span></div></div><div class="t-sev"><span class="sev critica">Crítica</span></div></div>
+      <div class="task"><span class="t-id">#08</span><div><div class="t-name">Cotar manutenção especializada da controladora de energia</div><div class="t-owner">TI · Suprimentos</div><div class="t-conn"><span class="conn depends">depende ← #07</span></div></div><div class="t-sev"><span class="sev critica">Crítica</span></div></div>
+      <div class="task"><span class="t-id">#09</span><div><div class="t-name">Emitir Termo de Assunção de Risco (se investimento recusado)</div><div class="t-owner">TI · Jurídico</div><div class="t-conn"><span class="conn depends">depende ← #06 #07</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+    </div>
+
+    <!-- Cluster 2 -->
+    <div class="cluster">
+      <div class="cluster-head">
+        <span class="c-num">02</span>
+        <span class="c-name">Processos &amp; Operação</span>
+        <span class="c-sub">7 ações · fluxos de ponta a ponta</span>
+      </div>
+      <div class="task"><span class="t-id">#10</span><div><div class="t-name">Desenhar fluxo de Onboarding (RH aciona TI com antecedência)</div><div class="t-owner">TI · RH</div><div class="t-conn"><span class="conn depends">depende ← #17 #25</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+      <div class="task"><span class="t-id">#11</span><div><div class="t-name">Desenhar fluxo de Offboarding (revogação imediata + recolhimento de ativos)</div><div class="t-owner">TI · RH</div><div class="t-conn"><span class="conn depends">depende ← #17</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#12</span><div><div class="t-name">Acabar com o "bypass" — tudo passa pelo 1º nível</div><div class="t-owner">TI · alinhar Daniel &amp; Kedymma</div><div class="t-conn"><span class="conn depends">depende ← #13</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+      <div class="task"><span class="t-id">#13</span><div><div class="t-name">Definir e publicar SLAs por criticidade (produção parada = P1)</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn enables">habilita → #12</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#14</span><div><div class="t-name">Desenhar catálogo de infra padrão p/ filiais (Vitória, Vila Velha)</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn enables">relac → #16 #22</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+      <div class="task"><span class="t-id">#15</span><div><div class="t-name">Definir acesso restrito p/ migração Comercial → Spalla via API (home office)</div><div class="t-owner">TI · Segurança</div><div class="t-conn"><span class="conn depends">depende ← #17</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#16</span><div><div class="t-name">Procedimento de varredura/monitoramento de mídias em Vitória (USB aberta)</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn depends">depende ← #17</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+    </div>
+
+    <!-- Cluster 3 -->
+    <div class="cluster">
+      <div class="cluster-head">
+        <span class="c-num">03</span>
+        <span class="c-name">Segurança da Informação &amp; Shadow IT</span>
+        <span class="c-sub">6 ações · controle soberano do ambiente</span>
+      </div>
+      <div class="task"><span class="t-id">#17</span><div><div class="t-name">Escrever a Política de Segurança da Informação (PSI) + DLP</div><div class="t-owner">Marcone</div><div class="t-conn"><span class="conn enables">habilita → #10 #11 #15 #16 #20 #21 #22 #25</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#18</span><div><div class="t-name">Criar processo de aquisição homologada (crivo da TI antes da compra)</div><div class="t-owner">TI · Suprimentos</div><div class="t-conn"><span class="conn enables">relac → #19</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+      <div class="task"><span class="t-id">#19</span><div><div class="t-name">Definir tratamento de Shadow IT (isolamento/quarentena em rede)</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn depends">depende ← #24</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+      <div class="task"><span class="t-id">#20</span><div><div class="t-name">Validar Termo de Responsabilidade de Equipamentos com o Jurídico</div><div class="t-owner">TI · Jurídico</div><div class="t-conn"><span class="conn depends">depende ← #17</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#21</span><div><div class="t-name">Procedimento p/ Wi-Fi público (usar internet do celular corporativo)</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn depends">depende ← #17</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+      <div class="task"><span class="t-id">#22</span><div><div class="t-name">Aplicar bloqueio DNS em Vitória (risco primeiro, exceção via chamado)</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn depends">depende ← #17</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+    </div>
+
+    <!-- Cluster 4 -->
+    <div class="cluster">
+      <div class="cluster-head">
+        <span class="c-num">04</span>
+        <span class="c-name">Mudança Cultural &amp; Comunicação</span>
+        <span class="c-sub">6 ações · adesão da liderança</span>
+      </div>
+      <div class="task"><span class="t-id">#23</span><div><div class="t-name">Formalizar Kedymma e Fábio como gestores do projeto/contrato</div><div class="t-owner">Diretoria</div><div class="t-conn"><span class="conn enables">habilita → #24 #28</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#24</span><div><div class="t-name">Mapeamento "braçal" de Shadow IT (Marcone liga p/ Marlon, Miguel, Manu, Jéssica)</div><div class="t-owner">Marcone</div><div class="t-conn"><span class="conn depends">depende ← #02 #23</span><span class="conn enables">habilita → #19</span></div></div><div class="t-sev"><span class="sev alta">Alta</span></div></div>
+      <div class="task"><span class="t-id">#25</span><div><div class="t-name">Gravar vídeo básico de PSI p/ onboarding remoto (dia 1)</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn depends">depende ← #17</span><span class="conn enables">habilita → #10</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+      <div class="task"><span class="t-id">#26</span><div><div class="t-name">Treinar equipe de TI em pensamento sistêmico</div><div class="t-owner">Liderança TI</div></div><div class="t-sev"><span class="sev baixa">Baixa</span></div></div>
+      <div class="task"><span class="t-id">#27</span><div><div class="t-name">Distribuir fluxos/procedimentos digitalmente a todos os usuários</div><div class="t-owner">TI</div><div class="t-conn"><span class="conn depends">depende ← #10 #11 #12 #13</span></div></div><div class="t-sev"><span class="sev baixa">Baixa</span></div></div>
+      <div class="task"><span class="t-id">#28</span><div><div class="t-name">Reuniões presenciais com gestores de área p/ apresentar a nova TI</div><div class="t-owner">Kedymma · Fábio · Reimon</div><div class="t-conn"><span class="conn depends">depende ← #23</span></div></div><div class="t-sev"><span class="sev media">Média</span></div></div>
+    </div>
+  </section>
+
+  <!-- ===================== VIEW 3 — PLANO DE AÇÃO ===================== -->
+  <section class="view" id="view-plano">
+    <div class="section-kicker">Página 03 · Roadmap até 13/07/2026</div>
+    <h2 class="section-title">Plano de Ação</h2>
+    <p class="section-lead">Quatro fases respeitando as trilhas críticas: primeiro blindar a operação e a TI, depois construir a base documental, então operação e segurança, e por fim expansão e cultura.</p>
+
+    <div class="phase f0">
+      <div class="phase-head">
+        <span class="p-tag">Fase 0</span>
+        <span class="p-title">Blindagem Imediata</span>
+        <span class="p-window">Junho · semanas 1–2</span>
+      </div>
+      <div class="phase-body">
+        <div class="phase-obj">
+          <span class="goal">"Se algo quebrar amanhã, a operação não para e a TI não fica exposta."</span>
+          Tratar o risco de continuidade e o compliance antes de qualquer melhoria de processo. Estes itens não esperam a auditoria — eles existem para evitar um incidente catastrófico ou uma responsabilização indevida da TI.
+          <div class="milestone"><span class="m-label">Marco</span> Risco do servidor formalizado e cotado · licenças regularizadas · inventário definitivo pronto.</div>
+        </div>
+        <div class="phase-items">
+          <div class="pi-label">Itens desta fase</div>
+          <div class="pi"><span class="pi-id">#07</span> Formalizar risco do servidor antigo p/ Edson <span class="pi-sev"><span class="sev critica">Crítica</span></span></div>
+          <div class="pi"><span class="pi-id">#08</span> Cotar manutenção da controladora <span class="pi-sev"><span class="sev critica">Crítica</span></span></div>
+          <div class="pi"><span class="pi-id">#05</span> Regularizar licenças Windows/Office <span class="pi-sev"><span class="sev critica">Crítica</span></span></div>
+          <div class="pi"><span class="pi-id">#02</span> Inventário em código definitivo <span class="pi-sev"><span class="sev critica">Crítica</span></span></div>
+          <div class="pi"><span class="pi-id">#01</span> Unificar inventário HW/SW <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#06</span> Matriz de impacto do servidor novo <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <span class="p-tag">Fase 1</span>
+        <span class="p-title">Fundação Documental</span>
+        <span class="p-window">Junho · semanas 2–4</span>
+      </div>
+      <div class="phase-body">
+        <div class="phase-obj">
+          <span class="goal">"Escrever as regras antes de cobrar por elas."</span>
+          A PSI e os SLAs são a base de quase tudo que vem depois. Sem política publicada, não há como exigir comportamento nem sustentar uma punição. Esta fase produz os documentos que a auditoria vai querer ver.
+          <div class="milestone"><span class="m-label">Marco</span> PSI, SLAs, fluxos de admissão/desligamento e termos jurídicos publicados e homologados.</div>
+        </div>
+        <div class="phase-items">
+          <div class="pi-label">Itens desta fase</div>
+          <div class="pi"><span class="pi-id">#17</span> Escrever PSI + DLP <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#13</span> Definir e publicar SLAs <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#11</span> Fluxo de Offboarding <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#10</span> Fluxo de Onboarding <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#20</span> Termo de equipamentos (Jurídico) <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#09</span> Termo de Assunção de Risco <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#04</span> Homologar sistemas ativos <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <span class="p-tag">Fase 2</span>
+        <span class="p-title">Operação &amp; Segurança</span>
+        <span class="p-window">Início de Julho</span>
+      </div>
+      <div class="phase-body">
+        <div class="phase-obj">
+          <span class="goal">"Colocar a regra em prática no dia a dia."</span>
+          Com os documentos prontos, ativam-se os controles operacionais: Service Desk sem bypass, Shadow IT sob quarentena, endpoints e acessos externos protegidos. É aqui que a governança vira rotina.
+          <div class="milestone"><span class="m-label">Marco</span> Bypass eliminado · Shadow IT mapeado e controlado · endpoints e API protegidos.</div>
+        </div>
+        <div class="phase-items">
+          <div class="pi-label">Itens desta fase</div>
+          <div class="pi"><span class="pi-id">#24</span> Mapeamento braçal de Shadow IT <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#15</span> Acesso restrito Spalla API <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#12</span> Acabar com o bypass <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#18</span> Aquisição homologada <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#19</span> Tratamento de Shadow IT (quarentena) <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#16</span> Varredura de mídias (Vitória) <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#22</span> Bloqueio DNS em Vitória <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#21</span> Procedimento Wi-Fi público <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#03</span> Ciclo de vida + etiquetagem <span class="pi-sev"><span class="sev media">Média</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <span class="p-tag">Fase 3</span>
+        <span class="p-title">Expansão &amp; Cultura</span>
+        <span class="p-window">Julho · até dia 13</span>
+      </div>
+      <div class="phase-body">
+        <div class="phase-obj">
+          <span class="goal">"Levar a governança às filiais e à cabeça das pessoas."</span>
+          Fechamento: estender o padrão às novas operações, engajar a liderança e gerar as evidências de conscientização que o auditor vai procurar. A cultura é o item mais difícil — e o que sustenta tudo depois da auditoria.
+          <div class="milestone"><span class="m-label">Marco</span> Governança estendida às filiais · liderança engajada · evidências de comunicação e treinamento registradas.</div>
+        </div>
+        <div class="phase-items">
+          <div class="pi-label">Itens desta fase</div>
+          <div class="pi"><span class="pi-id">#23</span> Formalizar Kedymma/Fábio como gestores <span class="pi-sev"><span class="sev alta">Alta</span></span></div>
+          <div class="pi"><span class="pi-id">#28</span> Reuniões presenciais com gestores <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#14</span> Catálogo de infra das filiais <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#25</span> Vídeo de PSI p/ onboarding remoto <span class="pi-sev"><span class="sev media">Média</span></span></div>
+          <div class="pi"><span class="pi-id">#27</span> Distribuir fluxos digitalmente <span class="pi-sev"><span class="sev baixa">Baixa</span></span></div>
+          <div class="pi"><span class="pi-id">#26</span> Treinar TI em pensamento sistêmico <span class="pi-sev"><span class="sev baixa">Baixa</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Plano de Governança de TI · Indústria de Cosméticos · 2026</span>
+    <span class="disclaimer">Documento de trabalho interno. Próximo passo: detalhar um plano individual por item do backlog (escopo, responsável, entregável, evidência para auditoria).</span>
+    <span>Base: ITIL 4</span>
+  </footer>
+
+</div>
+
+<script>
+  // Navegação entre páginas
+  const buttons = document.querySelectorAll('.nav button');
+  const views = document.querySelectorAll('.view');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      views.forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('view-' + btn.dataset.view).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Contagem regressiva até a auditoria
+  const target = new Date('2026-07-13T00:00:00');
+  const today = new Date();
+  const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+  document.getElementById('days-left').textContent = diff > 0 ? diff : 0;
+</script>
+</body>
+</html>
