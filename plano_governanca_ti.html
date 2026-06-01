@@ -330,6 +330,168 @@
     .view { display: block !important; page-break-before: always; }
     .view:first-of-type { page-break-before: avoid; }
   }
+
+  /* ====== ITIL PAGE ====== */
+
+  /* Intro: texto + timeline */
+  .itil-lead-block {
+    display: grid; grid-template-columns: 1.25fr 1fr; gap: 52px;
+    margin-bottom: 42px; padding-bottom: 38px; border-bottom: 1px solid var(--rule);
+  }
+  .itil-body-text { font-size: 14px; line-height: 1.72; color: var(--ink-soft); }
+  .itil-body-text p { margin-bottom: 14px; }
+  .itil-body-text p:last-child { margin-bottom: 0; }
+  .itil-body-text strong { color: var(--ink); }
+
+  .itil-timeline { border-left: 2px solid var(--rule); padding-left: 22px; }
+  .itil-ev { margin-bottom: 20px; position: relative; }
+  .itil-ev:last-child { margin-bottom: 0; }
+  .itil-ev::before {
+    content: ''; position: absolute; left: -28px; top: 5px;
+    width: 8px; height: 8px; border: 2px solid var(--accent); background: var(--paper);
+    border-radius: 50%;
+  }
+  .itil-ev .ev-year {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--accent); letter-spacing: 0.1em; margin-bottom: 3px;
+  }
+  .itil-ev .ev-label { font-weight: 600; font-size: 13.5px; color: var(--ink); margin-bottom: 4px; }
+  .itil-ev .ev-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* Por que ITIL */
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--rule); margin-bottom: 46px;
+  }
+  .why-card { padding: 20px 22px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .why-card:nth-child(3n) { border-right: none; }
+  .why-card:nth-child(4), .why-card:nth-child(5), .why-card:nth-child(6) { border-bottom: none; }
+  .why-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--accent); letter-spacing: 0.1em; margin-bottom: 8px;
+  }
+  .why-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; margin-bottom: 8px; line-height: 1.2; }
+  .why-body { font-size: 12.5px; color: var(--ink-soft); line-height: 1.58; }
+
+  /* SVS */
+  .svs-wrap { margin-bottom: 46px; }
+  .svs-outer {
+    border: 2px solid var(--ink); padding: 26px; background: var(--paper-2);
+  }
+  .svs-outer-label { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; margin-bottom: 3px; }
+  .svs-outer-desc { font-size: 12px; color: var(--muted); font-style: italic; margin-bottom: 22px; }
+  .svs-components {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px;
+  }
+  .svs-comp { border: 1px solid var(--rule); padding: 14px 16px; background: var(--paper); }
+  .svs-comp.highlight { border-color: var(--accent); background: rgba(184,73,44,0.06); }
+  .svs-comp .sc-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 5px;
+  }
+  .svs-comp.highlight .sc-label { color: var(--accent); }
+  .svs-comp .sc-name { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .svs-comp .sc-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+  .svs-chain-wrap { background: var(--ink); padding: 16px 20px; }
+  .svs-chain-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(244,239,230,0.45); margin-bottom: 6px;
+  }
+  .svs-chain-title { font-size: 13px; font-weight: 600; color: var(--paper); margin-bottom: 12px; }
+  .svs-acts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .svs-act {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.08em;
+    padding: 4px 10px; border: 1px solid rgba(244,239,230,0.3); color: rgba(244,239,230,0.75);
+  }
+
+  /* 7 Princípios */
+  .principles-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border-top: 2px solid var(--ink); margin-bottom: 46px;
+  }
+  .principle {
+    border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule);
+    padding: 22px 24px;
+  }
+  .principle:nth-child(even) { border-right: none; }
+  .principle.full-width { grid-column: 1 / -1; border-right: none; }
+  .pr-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--accent); letter-spacing: 0.1em; margin-bottom: 6px;
+  }
+  .pr-name { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500; line-height: 1.1; margin-bottom: 3px; }
+  .pr-en {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 11px; display: block;
+  }
+  .pr-body { font-size: 13px; color: var(--ink-soft); line-height: 1.58; }
+  .pr-apply {
+    margin-top: 12px; padding: 9px 13px; background: var(--paper-2);
+    border-left: 3px solid var(--green); font-size: 12px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .pr-apply strong {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--green); display: block; margin-bottom: 4px;
+  }
+
+  /* 4 Dimensões */
+  .dim-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border: 2px solid var(--ink); margin-bottom: 46px;
+  }
+  .dim {
+    padding: 24px 26px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  }
+  .dim:nth-child(even) { border-right: none; }
+  .dim:nth-child(3), .dim:nth-child(4) { border-bottom: none; }
+  .dim-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--accent); letter-spacing: 0.1em; margin-bottom: 7px;
+  }
+  .dim-name { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500; margin-bottom: 10px; line-height: 1.1; }
+  .dim-body { font-size: 13px; color: var(--ink-soft); line-height: 1.58; margin-bottom: 14px; }
+  .dim-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .dim-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.05em;
+    padding: 2px 8px; border: 1px solid var(--rule); color: var(--muted);
+  }
+
+  /* Tabela de práticas */
+  .practices-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  .practices-table th {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); padding: 9px 14px;
+    border-bottom: 2px solid var(--ink); text-align: left; font-weight: 400;
+  }
+  .practices-table td {
+    font-size: 13px; padding: 11px 14px; border-bottom: 1px solid var(--rule-soft); vertical-align: top;
+  }
+  .practices-table tr:hover td { background: var(--paper-2); }
+  .practices-table td:first-child {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted);
+    letter-spacing: 0.04em; width: 130px; text-transform: uppercase;
+  }
+  .practices-table td:nth-child(2) { font-weight: 600; color: var(--ink); }
+  .practices-table td:nth-child(3) { color: var(--ink-soft); }
+  .pt-refs { display: flex; flex-wrap: wrap; gap: 4px; }
+  .pt-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; padding: 2px 6px;
+    border: 1px solid var(--rule); color: var(--muted); white-space: nowrap;
+  }
+
+  @media (max-width: 860px) {
+    .itil-lead-block { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-card { border-right: none; }
+    .svs-components { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .principle { border-right: none; }
+    .principle.full-width { grid-column: 1; }
+    .dim-grid { grid-template-columns: 1fr; }
+    .dim { border-right: none; }
+    .dim:nth-child(3) { border-bottom: 1px solid var(--rule); }
+    .practices-table td:first-child { width: 80px; }
+  }
 </style>
 </head>
 <body>
@@ -380,6 +542,7 @@
     <button class="active" data-view="diag"><span class="n">01</span> Diagnóstico</button>
     <button data-view="backlog"><span class="n">02</span> Backlog &amp; Conexões</button>
     <button data-view="plano"><span class="n">03</span> Plano de Ação</button>
+    <button data-view="itil"><span class="n">04</span> O que é o ITIL</button>
   </nav>
 
   <!-- ===================== VIEW 1 — DIAGNÓSTICO ===================== -->
@@ -709,6 +872,337 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ===================== VIEW 4 — ITIL ===================== -->
+  <section class="view" id="view-itil">
+    <div class="section-kicker">Página 04 · O Framework por Trás do Plano</div>
+    <h2 class="section-title">O que é o ITIL</h2>
+    <p class="section-lead">De onde vem, o que propõe e por que foi a escolha certa para governar a TI de uma indústria em crescimento às vésperas de uma auditoria.</p>
+
+    <!-- Intro + Timeline -->
+    <div class="itil-lead-block">
+      <div class="itil-body-text">
+        <p><strong>ITIL</strong> — <em>Information Technology Infrastructure Library</em> — é o framework de gerenciamento de serviços de TI mais adotado no mundo. Nasceu nos anos 1980 no governo britânico como uma coleção de boas práticas para uso interno e, ao longo de quatro décadas, foi refinado pela indústria global até se tornar a linguagem universal de governança de TI.</p>
+        <p>Diferente de uma metodologia prescritiva, o ITIL é um <strong>conjunto de princípios e práticas</strong> que cada organização adapta à sua realidade. Ele não dita "faça exatamente assim" — dita "pense desta forma". Isso o torna igualmente útil para uma startup de 10 pessoas e para um banco com 50 mil funcionários.</p>
+        <p>A versão atual, <strong>ITIL 4</strong> (lançada em 2019), abandonou o modelo de ciclo de vida em cascata do ITIL v3 e abraçou uma visão sistêmica: o <em>Sistema de Valor de Serviço (SVS)</em>. O foco deixou de ser "processos internos" e passou a ser "valor co-criado com o negócio". TI deixa de ser suporte e se torna parceira estratégica.</p>
+        <p>O ITIL 4 também integra nativamente práticas modernas de <strong>Agile, DevOps e Lean</strong> — reconhecendo que governança e agilidade não são opostos, mas complementares quando bem aplicados.</p>
+      </div>
+      <div class="itil-timeline">
+        <div class="itil-ev">
+          <div class="ev-year">1986 — 1995</div>
+          <div class="ev-label">ITIL v1 · Origem Britânica</div>
+          <div class="ev-desc">A CCTA (agência britânica) publica mais de 40 livros. Base governamental, foco em operações e suporte técnico de infraestrutura.</div>
+        </div>
+        <div class="itil-ev">
+          <div class="ev-year">2000 — 2004</div>
+          <div class="ev-label">ITIL v2 · Consolidação Global</div>
+          <div class="ev-desc">Condensado em 7 livros. Foco em Service Support e Service Delivery. Adoção corporativa em escala mundial. Surgem as primeiras certificações profissionais.</div>
+        </div>
+        <div class="itil-ev">
+          <div class="ev-year">2007 — 2011</div>
+          <div class="ev-label">ITIL v3 · Ciclo de Vida</div>
+          <div class="ev-desc">5 livros estruturados em ciclo de vida: Estratégia, Design, Transição, Operação e Melhoria Contínua. Torna-se padrão mundial de facto para gerenciamento de serviços de TI.</div>
+        </div>
+        <div class="itil-ev">
+          <div class="ev-year">2019 — presente</div>
+          <div class="ev-label">ITIL 4 · Sistema de Valor</div>
+          <div class="ev-desc">SVS + 4 Dimensões + 7 Princípios Orientadores + 34 Práticas. Integração nativa com Agile, DevOps e Lean. Co-criação de valor como centro do modelo.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Por que ITIL -->
+    <div class="section-kicker" style="margin-bottom:12px">Por que o ITIL foi escolhido para este projeto</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01 · Razão</div>
+        <div class="why-title">Linguagem que a auditoria reconhece</div>
+        <div class="why-body">Auditores de governança de TI conhecem e esperam o vocabulário do ITIL: CMDB, SLA, Change Management, Incident Management. Documentar o plano com essa linguagem reduz atritos e demonstra maturidade institucional — mesmo quando a prática ainda está sendo implantada.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02 · Razão</div>
+        <div class="why-title">Adaptável sem ferramentas caras</div>
+        <div class="why-body">O ITIL não exige sistemas específicos. Um inventário pode começar no Google Sheets. Um Service Desk pode ser um formulário. A prática antecede a ferramenta. Isso é crítico num ambiente com budget restrito e auditoria em 42 dias.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03 · Razão</div>
+        <div class="why-title">Cobre todas as dores levantadas</div>
+        <div class="why-body">Das 11 dores identificadas em campo — inventário, licenças, contingência, bypass, SLA, onboarding, shadow IT, PSI — todas têm uma prática ITIL mapeada. Não foi necessário misturar frameworks: o ITIL 4 sozinho deu conta do diagnóstico completo.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04 · Razão</div>
+        <div class="why-title">Proteção jurídica pela formalização</div>
+        <div class="why-body">O ITIL incentiva a documentação de decisões, riscos assumidos e políticas publicadas. O Termo de Assunção de Risco (#09) e a PSI (#17) não são burocracia — são evidências que protegem a TI e a empresa caso algo dê errado antes da solução estar pronta.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05 · Razão</div>
+        <div class="why-title">Cultura antes de ferramenta</div>
+        <div class="why-body">A Fase 3 trata mudança cultural porque o ITIL ensina que governança sem adesão da liderança não sobrevive. A reunião com gestores (#28), o vídeo de PSI (#25) e a formalização de Kedymma e Fábio (#23) são práticas de Gestão de Mudança Organizacional do ITIL.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06 · Razão</div>
+        <div class="why-title">Base para crescimento sustentável</div>
+        <div class="why-body">A empresa expande para Vitória e Vila Velha. O catálogo de infra padrão para filiais (#14) e a padronização de processos via ITIL criam a base que permite escalar a operação sem reinventar a roda a cada nova unidade aberta.</div>
+      </div>
+    </div>
+
+    <!-- SVS -->
+    <div class="svs-wrap">
+      <div class="section-kicker" style="margin-bottom:12px">Sistema de Valor de Serviço (SVS) · O coração do ITIL 4</div>
+      <p class="section-lead" style="margin-bottom:18px">O SVS descreve como todos os componentes e atividades de uma organização trabalham juntos para transformar demandas em valor real.</p>
+      <div class="svs-outer">
+        <div class="svs-outer-label">Sistema de Valor de Serviço</div>
+        <div class="svs-outer-desc">Oportunidades e demandas entram, são processadas pelos 5 componentes abaixo e saem como valor para o negócio, para os usuários e para a própria TI.</div>
+        <div class="svs-components">
+          <div class="svs-comp">
+            <div class="sc-label">Componente 01</div>
+            <div class="sc-name">Princípios Orientadores</div>
+            <div class="sc-desc">7 recomendações universais que guiam decisões em qualquer situação, independente de hierarquia ou processo formal.</div>
+          </div>
+          <div class="svs-comp">
+            <div class="sc-label">Componente 02</div>
+            <div class="sc-name">Governança</div>
+            <div class="sc-desc">Como a organização dirige e controla a TI. Inclui políticas, definição de responsabilidades e prestação de contas à liderança.</div>
+          </div>
+          <div class="svs-comp highlight">
+            <div class="sc-label">Componente 03 · Central</div>
+            <div class="sc-name">Cadeia de Valor do Serviço</div>
+            <div class="sc-desc">6 atividades interconectadas que transformam demandas em produtos e serviços entregues. É o motor operacional do SVS.</div>
+          </div>
+          <div class="svs-comp">
+            <div class="sc-label">Componente 04</div>
+            <div class="sc-name">Práticas ITIL</div>
+            <div class="sc-desc">34 conjuntos de recursos organizacionais para realizar trabalho ou atingir objetivos. São as antigas "processos" do ITIL v3, agora mais flexíveis.</div>
+          </div>
+          <div class="svs-comp">
+            <div class="sc-label">Componente 05</div>
+            <div class="sc-name">Melhoria Contínua</div>
+            <div class="sc-desc">Atividade permanente em todos os níveis da organização para elevar a qualidade dos serviços e a eficiência dos processos ao longo do tempo.</div>
+          </div>
+          <div class="svs-comp">
+            <div class="sc-label">Contexto externo</div>
+            <div class="sc-name">Oportunidades &amp; Demandas</div>
+            <div class="sc-desc">O ponto de entrada do SVS. Chamados, projetos, mudanças regulatórias e oportunidades de negócio — tudo passa pelo sistema antes de se tornar valor.</div>
+          </div>
+        </div>
+        <div class="svs-chain-wrap">
+          <div class="svs-chain-label">Cadeia de Valor · 6 Atividades Interconectadas</div>
+          <div class="svs-chain-title">Como cada demanda se transforma em serviço entregue</div>
+          <div class="svs-acts">
+            <span class="svs-act">Planejar</span>
+            <span class="svs-act">Melhorar</span>
+            <span class="svs-act">Engajar</span>
+            <span class="svs-act">Design &amp; Transição</span>
+            <span class="svs-act">Obter / Construir</span>
+            <span class="svs-act">Entregar &amp; Apoiar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 Princípios -->
+    <div class="section-kicker" style="margin-bottom:12px">Os 7 Princípios Orientadores · E como cada um se aplica aqui</div>
+    <p class="section-lead" style="margin-bottom:0">Guias universais que valem em qualquer decisão, projeto ou crise — independente de tamanho, orçamento ou maturidade da organização.</p>
+    <div class="principles-grid">
+      <div class="principle">
+        <div class="pr-num">Princípio 01</div>
+        <div class="pr-name">Foque no Valor</div>
+        <span class="pr-en">Focus on Value</span>
+        <div class="pr-body">Tudo que a TI faz deve, direta ou indiretamente, gerar valor percebido pelo negócio ou por quem usa o serviço. Uma ação sem valor perceptível é desperdício. Desperdício é o maior inimigo de uma TI com budget restrito e múltiplas frentes abertas.</div>
+        <div class="pr-apply"><strong>Neste projeto</strong>O inventário definitivo (#02) não é burocracia — é base para decisões de compra, rastreabilidade contratual e proteção em auditoria. O valor é concreto e mensurável.</div>
+      </div>
+      <div class="principle">
+        <div class="pr-num">Princípio 02</div>
+        <div class="pr-name">Comece Onde Você Está</div>
+        <span class="pr-en">Start Where You Are</span>
+        <div class="pr-body">Não destrua o que funciona para construir do zero. Avalie o estado atual com honestidade, preserve o que tem valor e construa sobre o existente. A auditoria avalia evolução e intenção — não exige perfeição instantânea.</div>
+        <div class="pr-apply"><strong>Neste projeto</strong>O inventário já existe no Drive — convertemos em código definitivo em vez de descartar. O Acronis já roda na rede — usamos sua varredura automática para alimentar o CMDB.</div>
+      </div>
+      <div class="principle">
+        <div class="pr-num">Princípio 03</div>
+        <div class="pr-name">Progrida Iterativamente com Feedback</div>
+        <span class="pr-en">Progress Iteratively with Feedback</span>
+        <div class="pr-body">Divida o trabalho em entregas menores, execute, meça o resultado e ajuste. Evite o planejamento perfeito que nunca sai do papel. Pequenas entregas visíveis valem mais que um plano grandioso inacabado na gaveta.</div>
+        <div class="pr-apply"><strong>Neste projeto</strong>O plano em 4 fases com marcos concretos é esse princípio em ação. A Fase 0 entrega resultados imediatos e visíveis — o auditor verá progresso mesmo que as fases seguintes ainda estejam em execução.</div>
+      </div>
+      <div class="principle">
+        <div class="pr-num">Princípio 04</div>
+        <div class="pr-name">Colabore e Promova Visibilidade</div>
+        <span class="pr-en">Collaborate and Promote Visibility</span>
+        <div class="pr-body">Trabalhe com as partes envolvidas, não apenas para elas. Compartilhe informações, torne o trabalho e os riscos visíveis para quem precisa decidir. Decisões tomadas às escuras são difíceis de defender e ainda mais difíceis de sustentar.</div>
+        <div class="pr-apply"><strong>Neste projeto</strong>Formalizar o risco do servidor para Edson (#07) e emitir o Termo de Assunção de Risco (#09) são atos de visibilidade: a TI não esconde o problema — documenta, compartilha e solicita decisão formal.</div>
+      </div>
+      <div class="principle">
+        <div class="pr-num">Princípio 05</div>
+        <div class="pr-name">Pense e Trabalhe Holisticamente</div>
+        <span class="pr-en">Think and Work Holistically</span>
+        <div class="pr-body">Nenhuma prática existe isoladamente. Mudanças em uma parte do sistema afetam as outras. Entender essas interdependências é o que diferencia um técnico reativo de um profissional de governança que pensa em sistemas.</div>
+        <div class="pr-apply"><strong>Neste projeto</strong>A trilha de dependências #01→#02→#03·#04·#05 é pensamento holístico em ação: sem código definitivo de inventário, nada do que vem depois — homologação, licenças, shadow IT — funciona corretamente.</div>
+      </div>
+      <div class="principle">
+        <div class="pr-num">Princípio 06</div>
+        <div class="pr-name">Mantenha Simples e Prático</div>
+        <span class="pr-en">Keep it Simple and Practical</span>
+        <div class="pr-body">Use o mínimo de passos necessários para alcançar o objetivo. Processos complexos demais simplesmente não são executados. Se uma regra não agrega valor claro, elimine-a. Simplicidade não é falta de rigor — é rigor aplicado com inteligência.</div>
+        <div class="pr-apply"><strong>Neste projeto</strong>O mapeamento "braçal" de shadow IT (#24) — Marcone liga para Marlon, Miguel, Manu e Jéssica — é o processo mais simples possível dado o orçamento negado para a ferramenta de automação Milvus.</div>
+      </div>
+      <div class="principle full-width">
+        <div class="pr-num">Princípio 07</div>
+        <div class="pr-name">Otimize e Automatize</div>
+        <span class="pr-en">Optimize and Automate</span>
+        <div class="pr-body">Primeiro otimize o processo manualmente — depois automatize. Automatizar um processo quebrado apenas produz erros mais rapidamente. A automação libera pessoas para trabalho de maior valor, mas a lógica e o fluxo humano vêm primeiro. Toda automação deve ser justificada por uma necessidade real, não por vontade de usar tecnologia.</div>
+        <div class="pr-apply"><strong>Neste projeto</strong>A varredura automática via Acronis (#01) é automação de um processo já desenhado. O bloqueio DNS em Vitória (#22) é automação de uma regra definida primeiro na PSI (#17). A PSI vem antes do bloqueio — a ordem importa e não pode ser invertida.</div>
+      </div>
+    </div>
+
+    <!-- 4 Dimensões -->
+    <div class="section-kicker" style="margin-bottom:12px">As 4 Dimensões do Serviço · O modelo que garante equilíbrio</div>
+    <p class="section-lead" style="margin-bottom:18px">Todo serviço de TI precisa ser analisado sob estas quatro lentes. Negligenciar qualquer uma garante falhas — mesmo que as outras três estejam perfeitas.</p>
+    <div class="dim-grid">
+      <div class="dim">
+        <div class="dim-num">Dimensão 01</div>
+        <div class="dim-name">Organizações &amp; Pessoas</div>
+        <div class="dim-body">Estrutura organizacional, papéis, responsabilidades, cultura e capacidade das pessoas envolvidas. Uma boa prática que ninguém executa é uma prática morta. A dimensão humana é sempre a mais difícil e, invariavelmente, a mais decisiva para o sucesso ou fracasso de qualquer iniciativa.</div>
+        <div class="dim-tags">
+          <span class="dim-tag">Estrutura e papéis</span>
+          <span class="dim-tag">Responsáveis definidos</span>
+          <span class="dim-tag">Capacitação</span>
+          <span class="dim-tag">Cultura organizacional</span>
+          <span class="dim-tag">Engajamento da liderança</span>
+        </div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimensão 02</div>
+        <div class="dim-name">Informação &amp; Tecnologia</div>
+        <div class="dim-body">Dados, ferramentas, sistemas e tecnologias que suportam os serviços. Inclui a gestão do conhecimento, segurança da informação e a arquitetura dos sistemas que a TI opera e entrega ao negócio. É aqui que inventário, licenças e backups vivem.</div>
+        <div class="dim-tags">
+          <span class="dim-tag">CMDB / Inventário</span>
+          <span class="dim-tag">Sistemas homologados</span>
+          <span class="dim-tag">PSI e DLP</span>
+          <span class="dim-tag">Licenças regulares</span>
+          <span class="dim-tag">Backups e contingência</span>
+        </div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimensão 03</div>
+        <div class="dim-name">Parceiros &amp; Fornecedores</div>
+        <div class="dim-body">Contratos, fornecedores externos, parceiros de outsourcing e cadeias de suprimento que contribuem para a entrega dos serviços. A falha de um fornecedor estratégico pode ser mais danosa que qualquer falha interna — e mais difícil de explicar à auditoria.</div>
+        <div class="dim-tags">
+          <span class="dim-tag">Spalla (ERP)</span>
+          <span class="dim-tag">Acronis</span>
+          <span class="dim-tag">Fornecedor do servidor</span>
+          <span class="dim-tag">Suprimentos</span>
+          <span class="dim-tag">Jurídico</span>
+        </div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimensão 04</div>
+        <div class="dim-name">Fluxos de Valor &amp; Processos</div>
+        <div class="dim-body">Como o trabalho flui desde a demanda até a entrega de valor. Inclui os processos, procedimentos e fluxos de atividades. É aqui que o bypass informal de chamados, o onboarding sem fluxo e as compras sem crivo técnico se tornam riscos auditáveis e concretos.</div>
+        <div class="dim-tags">
+          <span class="dim-tag">Service Desk (ponto único)</span>
+          <span class="dim-tag">Fluxo de Onboarding</span>
+          <span class="dim-tag">Fluxo de Offboarding</span>
+          <span class="dim-tag">Gestão de Mudança</span>
+          <span class="dim-tag">SLAs publicados</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Práticas aplicadas -->
+    <div class="section-kicker" style="margin-bottom:12px">Práticas ITIL 4 aplicadas neste plano · Das 34 disponíveis</div>
+    <p class="section-lead" style="margin-bottom:18px">Cada prática referenciada no backlog e no diagnóstico, com o que resolve e quais itens do plano ela governa.</p>
+    <table class="practices-table">
+      <thead>
+        <tr>
+          <th>Grupo</th>
+          <th>Prática ITIL 4</th>
+          <th>O que resolve neste projeto</th>
+          <th style="text-align:right;padding-right:14px">Itens</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Técnica</td>
+          <td>Gestão de Ativos de TI (ITAM)</td>
+          <td>Inventário unificado, código definitivo, ciclo de vida dos ativos físicos, etiquetagem permanente.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#01</span><span class="pt-tag">#02</span><span class="pt-tag">#03</span></div></td>
+        </tr>
+        <tr>
+          <td>Técnica</td>
+          <td>Ger. de Config. de Serviço (SACM)</td>
+          <td>CMDB como base de rastreabilidade. Shadow IT identificado, isolado e controlado antes da auditoria.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#02</span><span class="pt-tag">#19</span><span class="pt-tag">#24</span></div></td>
+        </tr>
+        <tr>
+          <td>Técnica</td>
+          <td>Gestão de Ativos de Software (SAM)</td>
+          <td>Regularização de licenças Windows e Office. Compliance como prioridade zero antes da auditoria.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#05</span></div></td>
+        </tr>
+        <tr>
+          <td>Serviço</td>
+          <td>Ger. de Continuidade do Serviço (ITSCM)</td>
+          <td>Risco de parada fabril de até 30 dias. Formalização para diretoria, cotação e termo de risco como proteção jurídica.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#06</span><span class="pt-tag">#07</span><span class="pt-tag">#08</span><span class="pt-tag">#09</span></div></td>
+        </tr>
+        <tr>
+          <td>Serviço</td>
+          <td>Gerenciamento de Incidentes</td>
+          <td>Registro, triagem e priorização de todos os acionamentos. Eliminação do canal informal (bypass) que impede rastreio.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#12</span><span class="pt-tag">#13</span></div></td>
+        </tr>
+        <tr>
+          <td>Serviço</td>
+          <td>Gerenciamento de Requisições de Serviço</td>
+          <td>Onboarding, offboarding e aquisições seguem fluxo estruturado com registro e responsável definido.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#10</span><span class="pt-tag">#11</span><span class="pt-tag">#18</span></div></td>
+        </tr>
+        <tr>
+          <td>Serviço</td>
+          <td>Ger. de Nível de Serviço (SLM)</td>
+          <td>SLAs por criticidade publicados e visíveis ao negócio. Parada na linha de produção = P1. Expectativas alinhadas.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#13</span></div></td>
+        </tr>
+        <tr>
+          <td>Serviço</td>
+          <td>Central de Serviços (Service Desk)</td>
+          <td>Ponto único de contato. Todo chamado registrado, priorizado e rastreável — condição mínima para métricas de auditoria.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#12</span><span class="pt-tag">#13</span></div></td>
+        </tr>
+        <tr>
+          <td>Serviço</td>
+          <td>Gestão de Catálogo de Serviços</td>
+          <td>Infraestrutura padrão para filiais (Vitória, Vila Velha) documentada e replicável sem improviso.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#14</span></div></td>
+        </tr>
+        <tr>
+          <td>Geral</td>
+          <td>Gestão de Segurança da Informação</td>
+          <td>PSI, DLP, Termo de Equipamentos, regras de Wi-Fi público, controle de USB, bloqueio DNS e proteção da API externa.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#15</span><span class="pt-tag">#16</span><span class="pt-tag">#17</span><span class="pt-tag">#20</span><span class="pt-tag">#21</span><span class="pt-tag">#22</span></div></td>
+        </tr>
+        <tr>
+          <td>Geral</td>
+          <td>Gestão de Riscos</td>
+          <td>Matriz de impacto, formalização de riscos à diretoria e documentação de proteção jurídica da equipe de TI.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#07</span><span class="pt-tag">#09</span></div></td>
+        </tr>
+        <tr>
+          <td>Geral</td>
+          <td>Gestão de Mudança Organizacional</td>
+          <td>Adesão da liderança, reuniões presenciais com gestores, vídeo de PSI para onboarding e treinamento sistêmico da equipe.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#23</span><span class="pt-tag">#25</span><span class="pt-tag">#26</span><span class="pt-tag">#27</span><span class="pt-tag">#28</span></div></td>
+        </tr>
+        <tr>
+          <td>Geral</td>
+          <td>Gestão de Fornecedores</td>
+          <td>Crivo técnico obrigatório da TI em toda aquisição via Suprimentos ou Spalla antes da aprovação e compra.</td>
+          <td><div class="pt-refs" style="justify-content:flex-end"><span class="pt-tag">#18</span></div></td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <footer>
