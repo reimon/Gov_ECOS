@@ -235,6 +235,17 @@
       .nav button:hover {
         background: var(--paper-2);
       }
+      .nav-catalog-link {
+        padding: 9px 20px; font-size: 12.5px; background: var(--ink);
+        border-left: 1px solid var(--ink); cursor: pointer;
+        font-family: 'Manrope', sans-serif; color: var(--paper); letter-spacing: 0.02em;
+        transition: all 0.15s; display: flex; align-items: baseline; gap: 8px;
+        text-decoration: none; white-space: nowrap;
+      }
+      .nav-catalog-link:hover { background: var(--accent); }
+      .nav-catalog-link .n {
+        font-family: 'JetBrains Mono', monospace; font-size: 10px; opacity: 0.7;
+      }
       .nav button.active {
         background: var(--ink);
         color: var(--paper);
@@ -1510,6 +1521,9 @@
         <button data-view="checklist">
           <span class="n">06</span> Check List ISO
         </button>
+        <a href="catalogo_servicos.html" target="_blank" class="nav-catalog-link">
+          <span class="n">↗</span> Catálogo de Serviços
+        </a>
       </nav>
 
       <!-- ===================== VIEW 1 — DIAGNÓSTICO ===================== -->

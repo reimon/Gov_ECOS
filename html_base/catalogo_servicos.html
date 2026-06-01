@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Serviços de TI — Indústria de Cosméticos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:      #F4EFE6;
+    --paper-2:    #ECE5D7;
+    --paper-3:    #E4DBCA;
+    --ink:        #161B2E;
+    --ink-soft:   #2C3450;
+    --muted:      #6B6960;
+    --rule:       #C8C0AE;
+    --rule-soft:  #DDD5C2;
+    --accent:     #B8492C;
+    --accent-2:   #8A6A2A;
+    --green:      #3F6B47;
+    --blue:       #2A4E7A;
+    --highlight:  #F7E7B8;
+
+    --cat-a: var(--accent);
+    --cat-b: var(--ink);
+    --cat-c: #8B1A1A;
+    --cat-d: var(--accent-2);
+    --cat-e: var(--green);
+    --cat-f: var(--blue);
+    --cat-g: #5C3D1E;
+    --cat-h: #4A3060;
+    --cat-i: var(--muted);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Layout ───────────────────────────────── */
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 32px 80px; }
+
+  /* ── Masthead ─────────────────────────────── */
+  .masthead {
+    border-top: 4px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 18px 0 14px;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 100;
+    padding-top: 14px;
+  }
+  .masthead .edition { color: var(--accent); font-weight: 600; }
+  .back-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    padding: 3px 10px;
+    transition: all 0.15s;
+  }
+  .back-link:hover { background: var(--paper-2); color: var(--ink); }
+
+  /* ── Title block ──────────────────────────── */
+  .title-block {
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: end;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 4vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 144;
+  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .deck {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+  .deck strong { font-style: normal; font-weight: 500; color: var(--ink); }
+
+  /* ── Stats bar ────────────────────────────── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--rule);
+    margin-bottom: 28px;
+  }
+  .stat { padding: 14px 18px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 5px;
+  }
+  .stat .value {
+    font-family: 'Fraunces', serif; font-size: 26px;
+    font-weight: 400; line-height: 1; color: var(--ink);
+  }
+  .stat .sub { font-size: 11px; color: var(--muted); margin-top: 4px; font-style: italic; }
+
+  /* ── SLA reference ────────────────────────── */
+  .sla-box {
+    margin-bottom: 28px;
+    border: 1px solid var(--rule);
+  }
+  .sla-box-head {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .sla-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .sla-tier {
+    padding: 14px 16px;
+    border-right: 1px solid var(--rule);
+  }
+  .sla-tier:last-child { border-right: none; }
+  .sla-tier-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 8px; border: 1px solid; display: inline-block;
+    margin-bottom: 8px;
+  }
+  .p1 { color: #8B1A1A; border-color: #8B1A1A; background: rgba(139,26,26,0.07); font-weight: 600; }
+  .p2 { color: var(--accent); border-color: var(--accent); background: rgba(184,73,44,0.07); }
+  .p3 { color: var(--accent-2); border-color: var(--accent-2); background: rgba(138,106,42,0.07); }
+  .p4 { color: var(--muted); border-color: var(--rule); }
+  .sla-tier-name { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+  .sla-tier-cond { font-size: 11px; color: var(--muted); margin-bottom: 8px; font-style: italic; line-height: 1.4; }
+  .sla-meta { font-size: 11px; color: var(--ink-soft); }
+  .sla-meta span { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--ink); }
+
+  /* ── Como solicitar ───────────────────────── */
+  .how-box {
+    border-left: 3px solid var(--accent);
+    background: var(--paper-2);
+    padding: 14px 20px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.58;
+  }
+  .how-box strong {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); display: block; margin-bottom: 5px;
+  }
+
+  /* ── Category nav ─────────────────────────── */
+  .cat-nav {
+    display: flex; gap: 0; flex-wrap: wrap;
+    border: 1px solid var(--ink);
+    margin-bottom: 36px; width: fit-content;
+  }
+  .cat-nav a {
+    padding: 8px 14px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11.5px;
+    color: var(--ink);
+    text-decoration: none;
+    border-right: 1px solid var(--rule);
+    letter-spacing: 0.01em;
+    display: flex; align-items: baseline; gap: 7px;
+    transition: all 0.15s;
+  }
+  .cat-nav a:last-child { border-right: none; }
+  .cat-nav a:hover { background: var(--paper-2); }
+  .cat-nav a .cn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: var(--muted); opacity: 0.7;
+  }
+
+  /* ── Category section ─────────────────────── */
+  .cat-section {
+    margin-bottom: 52px;
+    scroll-margin-top: 72px;
+  }
+  .cat-header {
+    border-top: 2px solid var(--ink);
+    padding: 14px 0 14px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cat-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em; color: var(--muted);
+    border: 1px solid var(--rule); padding: 2px 7px;
+  }
+  .cat-name {
+    font-family: 'Fraunces', serif;
+    font-size: 24px; font-weight: 500; line-height: 1;
+  }
+  .cat-count {
+    font-size: 12px; color: var(--muted); font-style: italic; margin-left: auto;
+  }
+  .cat-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    flex-shrink: 0; align-self: center;
+  }
+
+  /* ── Service cards grid ───────────────────── */
+  .svc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule-soft);
+    border-left: 1px solid var(--rule-soft);
+  }
+  .svc-card {
+    padding: 20px 22px;
+    border-right: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    position: relative;
+  }
+  .svc-card:hover { background: var(--paper-2); }
+
+  .svc-top {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .svc-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .svc-cat-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px; letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 2px 7px; border: 1px solid; white-space: nowrap;
+  }
+
+  .svc-name {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 500; line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .svc-desc {
+    font-size: 12.5px; color: var(--ink-soft);
+    line-height: 1.58; margin-bottom: 14px;
+  }
+
+  .svc-divider {
+    border: none; border-top: 1px dashed var(--rule-soft);
+    margin-bottom: 12px;
+  }
+
+  .svc-meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px 16px; margin-bottom: 12px;
+  }
+  .svc-meta-item {}
+  .svc-meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); display: block; margin-bottom: 2px;
+  }
+  .svc-meta-val {
+    font-size: 12px; color: var(--ink-soft);
+  }
+  .svc-meta-val strong { color: var(--ink); font-weight: 600; }
+
+  .svc-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; flex-wrap: wrap;
+  }
+  .svc-owner {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .svc-sla-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 7px; border: 1px solid; white-space: nowrap;
+  }
+
+  /* Category color tokens */
+  .c-a { color: var(--cat-a); border-color: var(--cat-a); }
+  .c-b { color: var(--cat-b); border-color: var(--cat-b); }
+  .c-c { color: var(--cat-c); border-color: var(--cat-c); }
+  .c-d { color: var(--cat-d); border-color: var(--cat-d); }
+  .c-e { color: var(--cat-e); border-color: var(--cat-e); }
+  .c-f { color: var(--cat-f); border-color: var(--cat-f); }
+  .c-g { color: var(--cat-g); border-color: var(--cat-g); }
+  .c-h { color: var(--cat-h); border-color: var(--cat-h); }
+  .c-i { color: var(--cat-i); border-color: var(--cat-i); }
+  .dot-a { background: var(--cat-a); }
+  .dot-b { background: var(--cat-b); }
+  .dot-c { background: var(--cat-c); }
+  .dot-d { background: var(--cat-d); }
+  .dot-e { background: var(--cat-e); }
+  .dot-f { background: var(--cat-f); }
+  .dot-g { background: var(--cat-g); }
+  .dot-h { background: var(--cat-h); }
+  .dot-i { background: var(--cat-i); }
+
+  /* ── Footer ───────────────────────────────── */
+  footer {
+    margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--ink);
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 20px; flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  footer .disclaimer {
+    font-family: 'Fraunces', serif; font-style: italic; text-transform: none;
+    letter-spacing: 0; font-size: 12px; color: var(--ink-soft);
+    max-width: 520px; line-height: 1.5;
+  }
+
+  /* ── Responsive ───────────────────────────── */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 18px 60px; }
+    .title-block { grid-template-columns: 1fr; gap: 16px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .sla-grid { grid-template-columns: 1fr 1fr; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .cat-nav { width: 100%; }
+  }
+  @media (max-width: 540px) {
+    .stats { grid-template-columns: 1fr; }
+    .sla-grid { grid-template-columns: 1fr; }
+    .svc-meta-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <span>Catálogo de Serviços · TI · Indústria de Cosméticos</span>
+    <span class="edition">Ver. 1.0 · Base ITIL 4 · 2026</span>
+    <a href="plano_governanca_ti.html" class="back-link">← Plano de Governança</a>
+  </div>
+
+  <div class="title-block">
+    <div>
+      <h1>Catálogo de <em>Serviços de TI</em></h1>
+    </div>
+    <div class="deck">
+      O que a TI entrega, para quem, como solicitar e em quanto tempo. <strong>41 serviços</strong> organizados em 9 categorias, com SLA e responsável definido para cada um.
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Total de Serviços</div>
+      <div class="value">41</div>
+      <div class="sub">em 9 categorias</div>
+    </div>
+    <div class="stat">
+      <div class="label">Categorias</div>
+      <div class="value">9</div>
+      <div class="sub">Suporte a Governança</div>
+    </div>
+    <div class="stat">
+      <div class="label">Tiers de SLA</div>
+      <div class="value">4</div>
+      <div class="sub">P1 · P2 · P3 · P4</div>
+    </div>
+    <div class="stat">
+      <div class="label">Ponto de Contato</div>
+      <div class="value" style="font-size:18px;line-height:1.2">Service<br>Desk</div>
+      <div class="sub">canal único · todos os serviços</div>
+    </div>
+  </div>
+
+  <!-- SLA Reference Table -->
+  <div class="sla-box">
+    <div class="sla-box-head">Tabela de SLA · Acordos de Nível de Serviço por Criticidade</div>
+    <div class="sla-grid">
+      <div class="sla-tier">
+        <div class="sla-tier-label p1">P1 · Crítico</div>
+        <div class="sla-tier-name">Parada Total</div>
+        <div class="sla-tier-cond">Produção parada, servidor fora, segurança comprometida, perda total de acesso ao ERP.</div>
+        <div class="sla-meta">Resposta: <span>15 min</span><br>Resolução: <span>4 h</span></div>
+      </div>
+      <div class="sla-tier">
+        <div class="sla-tier-label p2">P2 · Alta</div>
+        <div class="sla-tier-name">Impacto Severo</div>
+        <div class="sla-tier-cond">Área ou departamento impactado. Degradação severa sem parada total. Sem workaround.</div>
+        <div class="sla-meta">Resposta: <span>1 h</span><br>Resolução: <span>8 h</span></div>
+      </div>
+      <div class="sla-tier">
+        <div class="sla-tier-label p3">P3 · Média</div>
+        <div class="sla-tier-name">Impacto Moderado</div>
+        <div class="sla-tier-cond">Usuário individual impactado. Workaround disponível. Operação parcialmente mantida.</div>
+        <div class="sla-meta">Resposta: <span>4 h</span><br>Resolução: <span>24 h</span></div>
+      </div>
+      <div class="sla-tier">
+        <div class="sla-tier-label p4">P4 · Baixa</div>
+        <div class="sla-tier-name">Requisição / Melhoria</div>
+        <div class="sla-tier-cond">Solicitações de serviço, novos acessos, dúvidas, melhorias e trabalhos planejados.</div>
+        <div class="sla-meta">Resposta: <span>8 h</span><br>Resolução: <span>72 h</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-box">
+    <strong>Como solicitar qualquer serviço</strong>
+    Todo serviço deste catálogo é solicitado pelo <strong>Service Desk</strong> — ponto único de contato da TI. Abra um chamado descrevendo o serviço desejado e o contexto. O Service Desk fará a triagem, atribuirá a prioridade e encaminhará ao responsável correto. Solicitações feitas fora do canal oficial não têm SLA garantido e não geram histórico.
+  </div>
+
+  <!-- Category Nav -->
+  <nav class="cat-nav">
+    <a href="#cat-a"><span class="cn">A</span> Suporte ao Usuário</a>
+    <a href="#cat-b"><span class="cn">B</span> Infraestrutura</a>
+    <a href="#cat-c"><span class="cn">C</span> Segurança</a>
+    <a href="#cat-d"><span class="cn">D</span> Ativos</a>
+    <a href="#cat-e"><span class="cn">E</span> Identidade &amp; Acesso</a>
+    <a href="#cat-f"><span class="cn">F</span> Sistemas</a>
+    <a href="#cat-g"><span class="cn">G</span> Continuidade</a>
+    <a href="#cat-h"><span class="cn">H</span> Comunicação</a>
+    <a href="#cat-i"><span class="cn">I</span> Governança</a>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       A — SUPORTE AO USUÁRIO
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-a">
+    <div class="cat-header">
+      <div class="cat-dot dot-a"></div>
+      <span class="cat-code">CAT-A</span>
+      <span class="cat-name">Suporte ao Usuário</span>
+      <span class="cat-count">5 serviços · atendimento direto ao colaborador</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-001</span><span class="svc-cat-badge c-a">Suporte</span></div>
+        <div class="svc-name">Central de Serviços — Service Desk</div>
+        <div class="svc-desc">Ponto único de contato da TI para registrar, triar e encaminhar todos os chamados da empresa. Todo incidente, requisição ou dúvida deve iniciar aqui — independentemente da unidade (Matriz, Vitória ou Vila Velha). Sem Service Desk não há SLA, histórico nem métrica.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–18h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado, e-mail ou presencialmente</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Canal prioritário</span><span class="svc-meta-val"><strong>Abertura de chamado</strong></span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p1">P1–P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-002</span><span class="svc-cat-badge c-a">Suporte</span></div>
+        <div class="svc-name">Suporte Técnico Remoto</div>
+        <div class="svc-desc">Atendimento remoto para diagnóstico e resolução de problemas em hardware e software. Cobre todas as unidades sem necessidade de deslocamento físico da equipe de TI. Utilizado como primeiro nível de atendimento antes do suporte presencial.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–18h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado no Service Desk</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Unidades</span><span class="svc-meta-val">Matriz · Vitória · Vila Velha</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p2">P2 · P3</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-003</span><span class="svc-cat-badge c-a">Suporte</span></div>
+        <div class="svc-name">Suporte Técnico Presencial</div>
+        <div class="svc-desc">Atendimento in loco para situações que exigem intervenção física — troca de peças, configuração de estação, cabeamento e hardware que não podem ser resolvidos remotamente. Agendado pelo Service Desk após triagem remota.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado no Service Desk</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Pré-requisito</span><span class="svc-meta-val">Triagem remota prévia</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p2">P2 · P3</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-004</span><span class="svc-cat-badge c-a">Suporte</span></div>
+        <div class="svc-name">Reset de Senha e Desbloqueio de Conta</div>
+        <div class="svc-desc">Redefinição de senhas e desbloqueio de contas corporativas (Windows, Office 365, ERP Spalla e sistemas homologados). Atendimento prioritário pois impede o colaborador de trabalhar. Validação de identidade obrigatória antes da execução.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–18h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado ou ligação para TI</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Validação</span><span class="svc-meta-val">Identidade confirmada antes do reset</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p3">P3</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-005</span><span class="svc-cat-badge c-a">Suporte</span></div>
+        <div class="svc-name">Suporte a Impressoras e Periféricos</div>
+        <div class="svc-desc">Configuração, manutenção e resolução de problemas em impressoras, scanners, teclados, mouses e outros periféricos. Inclui instalação de drivers, reposição de suprimentos (toner/cartucho) e encaminhamento para assistência técnica externa quando necessário.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado no Service Desk</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Suprimentos</span><span class="svc-meta-val">Via Suprimentos com crivo TI</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p3">P3 · P4</span></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       B — INFRAESTRUTURA & REDE
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-b">
+    <div class="cat-header">
+      <div class="cat-dot dot-b"></div>
+      <span class="cat-code">CAT-B</span>
+      <span class="cat-name">Infraestrutura &amp; Rede</span>
+      <span class="cat-count">5 serviços · base de tudo que a empresa usa</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-006</span><span class="svc-cat-badge c-b">Infra</span></div>
+        <div class="svc-name">Gestão de Servidores</div>
+        <div class="svc-desc">Operação, monitoramento e manutenção dos servidores físicos e virtuais da empresa. Inclui o servidor de produção (ERP Spalla) e o servidor de backup. Parada do servidor de produção pode paralisar a fábrica por até 30 dias — tratado como P1 imediato.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / 7 dias</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Operação · Diretoria</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado urgente (P1)</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Ferramenta</span><span class="svc-meta-val">Acronis + monitoramento</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p1">P1</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-007</span><span class="svc-cat-badge c-b">Infra</span></div>
+        <div class="svc-name">Gestão de Rede Local (LAN / Wi-Fi)</div>
+        <div class="svc-desc">Administração da rede cabeada e sem fio em todas as unidades. Inclui configuração de switches, pontos de acesso Wi-Fi, segmentação de rede por área e política de uso de Wi-Fi corporativo. Vitória possui configuração específica com bloqueio DNS ativo.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / 7 dias</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado no Service Desk</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Unidades</span><span class="svc-meta-val">Matriz · Vitória · Vila Velha</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p1">P1 · P2</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-008</span><span class="svc-cat-badge c-b">Infra</span></div>
+        <div class="svc-name">Acesso Remoto (VPN)</div>
+        <div class="svc-desc">Acesso seguro à rede corporativa para colaboradores em home office ou filiais. Obrigatório para acesso ao ERP Spalla via API fora das dependências da empresa. Requer autenticação de dois fatores e está sujeito à Política de Segurança da Informação.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / 7 dias</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Colaboradores remotos / filiais</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — aprovação de gestor</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Restrição</span><span class="svc-meta-val">Proibido em Wi-Fi público sem VPN</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p2">P2 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-009</span><span class="svc-cat-badge c-b">Infra</span></div>
+        <div class="svc-name">Gestão de DNS e Firewall</div>
+        <div class="svc-desc">Administração das regras de DNS e firewall para controle de tráfego, bloqueio de sites e proteção do perímetro de rede. Vitória possui bloqueio DNS ativo por padrão — exceções são solicitadas via chamado e avaliadas caso a caso pela TI.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / 7 dias</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Toda a rede corporativa</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — exceções via justificativa</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política base</span><span class="svc-meta-val">PSI — bloqueio por padrão</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p1">P1 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-010</span><span class="svc-cat-badge c-b">Infra</span></div>
+        <div class="svc-name">Monitoramento de Infraestrutura</div>
+        <div class="svc-desc">Monitoramento contínuo de servidores, links de internet, switches e serviços críticos. Alertas automáticos para a equipe de TI em caso de falha ou degradação. Gera os dados que alimentam o relatório mensal de incidentes e indicadores de disponibilidade.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / 7 dias (automático)</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Diretoria (relatórios)</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Serviço contínuo — sem solicitação</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Ferramenta</span><span class="svc-meta-val">Acronis + alertas configurados</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p1">P1</span></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       C — SEGURANÇA DA INFORMAÇÃO
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-c">
+    <div class="cat-header">
+      <div class="cat-dot dot-c"></div>
+      <span class="cat-code">CAT-C</span>
+      <span class="cat-name">Segurança da Informação</span>
+      <span class="cat-count">5 serviços · proteção de dados e ativos digitais</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-011</span><span class="svc-cat-badge c-c">Segurança</span></div>
+        <div class="svc-name">Gestão de Antivírus e Endpoint Protection</div>
+        <div class="svc-desc">Implantação, atualização e monitoramento da proteção em todos os endpoints (notebooks, desktops e servidores). Inclui varreduras programadas, resposta a alertas e remoção de ameaças. Nenhum equipamento sem proteção ativa é homologado para uso na rede corporativa.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / automático</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os dispositivos corporativos</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Serviço contínuo + chamado em alerta</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política base</span><span class="svc-meta-val">PSI · Endpoint obrigatório</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p1">P1 · P2</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-012</span><span class="svc-cat-badge c-c">Segurança</span></div>
+        <div class="svc-name">Prevenção de Perda de Dados (DLP)</div>
+        <div class="svc-desc">Conjunto de controles técnicos e procedimentais para evitar vazamento de dados sensíveis — saída não autorizada por e-mail, USB, nuvem pessoal ou impressão. Definido na PSI e aplicado via ferramentas de controle de endpoints e regras de rede.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / automático</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Toda a empresa</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Exceções via chamado + aprovação</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política base</span><span class="svc-meta-val">PSI + DLP — Marcone (owner)</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p1">P1</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-013</span><span class="svc-cat-badge c-c">Segurança</span></div>
+        <div class="svc-name">Resposta a Incidentes de Segurança</div>
+        <div class="svc-desc">Identificação, contenção, erradicação e recuperação de incidentes de segurança — infecções por malware, acessos não autorizados, vazamento de dados ou comprometimento de credenciais. Requer abertura imediata de chamado P1 e acionamento do responsável de segurança.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / 7 dias</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Toda a empresa</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado urgente P1 imediato</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política base</span><span class="svc-meta-val">PSI — procedimento de resposta</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p1">P1</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-014</span><span class="svc-cat-badge c-c">Segurança</span></div>
+        <div class="svc-name">Controle de Mídias Removíveis (USB)</div>
+        <div class="svc-desc">Gestão do uso de pendrives, HDs externos e qualquer mídia removível na rede corporativa. Em Vitória, a política é de varredura obrigatória antes do uso. Dispositivos não autorizados são bloqueados ou isolados. Exceções requerem aprovação formal da TI via chamado.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Colaboradores com acesso USB</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — autorização prévia</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Regra padrão</span><span class="svc-meta-val">Varredura obrigatória em Vitória</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p2">P2 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-015</span><span class="svc-cat-badge c-c">Segurança</span></div>
+        <div class="svc-name">Identificação e Controle de Shadow IT</div>
+        <div class="svc-desc">Mapeamento e tratamento de softwares, dispositivos e serviços usados sem homologação da TI. Itens desconhecidos na rede entram em quarentena até avaliação. O mapeamento inicial é feito por contato direto com gestores de área — ferramenta automatizada planejada para fase futura.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Gestores de área · TI</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — declaração de ativos</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Regra padrão</span><span class="svc-meta-val">Não homologado = quarentena</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p2">P2 · P3</span></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       D — GESTÃO DE ATIVOS
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-d">
+    <div class="cat-header">
+      <div class="cat-dot dot-d"></div>
+      <span class="cat-code">CAT-D</span>
+      <span class="cat-name">Gestão de Ativos</span>
+      <span class="cat-count">5 serviços · ciclo de vida de hardware e software</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-016</span><span class="svc-cat-badge c-d">Ativos</span></div>
+        <div class="svc-name">Inventário Unificado de HW e SW (CMDB)</div>
+        <div class="svc-desc">Registro centralizado de todos os ativos de TI — equipamentos, softwares, localização, usuário, status e valor contratual. Alimentado por varredura automática via Acronis e conciliado com contratos via Spalla. Base obrigatória para auditoria ISO 9001.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Contínuo (varredura automática)</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Auditoria · Diretoria</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Consulta via chamado ao TI</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Ferramenta</span><span class="svc-meta-val">Acronis + Spalla (conciliação)</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p3">P3 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-017</span><span class="svc-cat-badge c-d">Ativos</span></div>
+        <div class="svc-name">Etiquetagem e Ciclo de Vida de Ativos</div>
+        <div class="svc-desc">Gestão do ciclo de vida físico de cada ativo: aquisição, etiquetagem (alumínio, código único), uso, movimentação, manutenção e descarte. Toda movimentação gera atualização obrigatória no inventário. Status definidos: Em uso · Em manutenção · Reserva · Descarte.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Gestores de área</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado ao registrar movimentação</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política base</span><span class="svc-meta-val">POP de ciclo de vida publicado</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p4">P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-018</span><span class="svc-cat-badge c-d">Ativos</span></div>
+        <div class="svc-name">Gestão de Licenças de Software (SAM)</div>
+        <div class="svc-desc">Controle do uso legal e compliance de todas as licenças de software da empresa — Windows, Office, ERP Spalla e aplicativos homologados. Inclui regularização de licenças irregulares, renovação contratual e auditoria de conformidade antes de cada avaliação externa.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Jurídico · Suprimentos</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — nova licença ou renovação</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Prioridade</span><span class="svc-meta-val">Zero para auditoria ISO 9001</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p3">P3 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-019</span><span class="svc-cat-badge c-d">Ativos</span></div>
+        <div class="svc-name">Descarte e Alienação de Ativos</div>
+        <div class="svc-desc">Processo controlado de descarte de equipamentos obsoletos ou danificados — garantindo eliminação segura de dados, conformidade ambiental (LGPD + legislação de resíduos eletrônicos) e baixa formal no inventário. Descarte não autorizado gera não conformidade em auditoria.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Suprimentos · Jurídico</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — aprovação TI obrigatória</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Pré-requisito</span><span class="svc-meta-val">Baixa no inventário + wipe de dados</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p4">P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-020</span><span class="svc-cat-badge c-d">Ativos</span></div>
+        <div class="svc-name">Gestão de Equipamentos Móveis e Celulares</div>
+        <div class="svc-desc">Controle de celulares corporativos, tablets e notebooks usados fora da empresa. Inclui registro de entrega, Termo de Responsabilidade, política de uso, configuração de segurança e procedimento de perda ou dano. Perda sem processo formalizado é risco de LGPD e patrimônio.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Colaboradores com equipamento móvel</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — via RH no onboarding</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política base</span><span class="svc-meta-val">Termo de Responsabilidade assinado</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · RH</span><span class="svc-sla-badge p3">P3 · P4</span></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       E — IDENTIDADE & ACESSO
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-e">
+    <div class="cat-header">
+      <div class="cat-dot dot-e"></div>
+      <span class="cat-code">CAT-E</span>
+      <span class="cat-name">Identidade &amp; Acesso</span>
+      <span class="cat-count">5 serviços · quem acessa o quê e quando</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-021</span><span class="svc-cat-badge c-e">Acesso</span></div>
+        <div class="svc-name">Provisionamento de Acesso — Onboarding</div>
+        <div class="svc-desc">Criação de contas, configuração de perfis, instalação de softwares e entrega de equipamentos para novos colaboradores. O RH deve acionar a TI com antecedência mínima de 48 horas antes da data de início. Sem acionamento prévio não há SLA de entrega no dia 1.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">RH (solicitante) · Novo colaborador</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">RH via chamado — 48h de antecedência</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Entregável</span><span class="svc-meta-val">Estação + acessos prontos no dia 1</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · RH</span><span class="svc-sla-badge p3">P3</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-022</span><span class="svc-cat-badge c-e">Acesso</span></div>
+        <div class="svc-name">Revogação de Acesso — Offboarding</div>
+        <div class="svc-desc">Bloqueio imediato de todos os acessos e recolhimento de ativos no desligamento de colaboradores. A TI deve ser acionada pelo RH no mesmo dia da demissão — acessos ativos de ex-colaboradores são risco direto de segurança e não conformidade em auditoria.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Imediato ao acionamento</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">RH (solicitante)</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado urgente P2 — mesmo dia</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Entregável</span><span class="svc-meta-val">Acessos bloqueados + ativos recolhidos</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · RH</span><span class="svc-sla-badge p2">P2</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-023</span><span class="svc-cat-badge c-e">Acesso</span></div>
+        <div class="svc-name">Gestão de Perfis e Permissões</div>
+        <div class="svc-desc">Criação, alteração e revisão de perfis de acesso em sistemas e recursos de rede conforme o princípio do menor privilégio. Toda alteração de permissão requer aprovação do gestor direto e é registrada. Revisões periódicas garantem que ex-colaboradores ou mudanças de função sejam atualizados.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Gestores · RH · TI</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado com aprovação do gestor</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Princípio</span><span class="svc-meta-val">Menor privilégio necessário</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p3">P3 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-024</span><span class="svc-cat-badge c-e">Acesso</span></div>
+        <div class="svc-name">Gestão de Acesso ao ERP (Spalla)</div>
+        <div class="svc-desc">Criação, alteração e revogação de acessos ao ERP Spalla, incluindo acesso via API para home office. O acesso externo à API é restrito a perfis autorizados com conexão via VPN obrigatória. Acessos diretos à API sem controle são exposição crítica de dados de negócio.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Usuários do Spalla · Comercial</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado com aprovação do gestor</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Restrição</span><span class="svc-meta-val">API externa: VPN obrigatória</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · Segurança</span><span class="svc-sla-badge p2">P2 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-025</span><span class="svc-cat-badge c-e">Acesso</span></div>
+        <div class="svc-name">Gestão de Credenciais Corporativas</div>
+        <div class="svc-desc">Política e gestão de senhas corporativas: complexidade mínima, prazo de validade, histórico e armazenamento seguro. Proibido o uso de senhas pessoais em sistemas corporativos e o compartilhamento de credenciais entre colaboradores. Auditada periodicamente pela TI.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Contínuo (política)</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado para reset / dúvidas</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política base</span><span class="svc-meta-val">PSI — Capítulo de Senhas</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p3">P3</span></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       F — SISTEMAS & APLICAÇÕES
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-f">
+    <div class="cat-header">
+      <div class="cat-dot dot-f"></div>
+      <span class="cat-code">CAT-F</span>
+      <span class="cat-name">Sistemas &amp; Aplicações</span>
+      <span class="cat-count">5 serviços · software que move o negócio</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-026</span><span class="svc-cat-badge c-f">Sistemas</span></div>
+        <div class="svc-name">Suporte ao ERP Spalla</div>
+        <div class="svc-desc">Atendimento de incidentes, dúvidas e requisições relacionadas ao ERP Spalla — sistema central de gestão da empresa. Problemas que impedem o uso do Spalla são tratados como P1 ou P2 conforme o impacto. A TI atua como primeiro nível; questões de configuração avançada envolvem o fornecedor.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–18h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os usuários do Spalla</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado no Service Desk</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Escalada</span><span class="svc-meta-val">Fornecedor Spalla (N2)</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p1">P1 · P2</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-027</span><span class="svc-cat-badge c-f">Sistemas</span></div>
+        <div class="svc-name">Homologação de Softwares e Aplicativos</div>
+        <div class="svc-desc">Avaliação e aprovação técnica de qualquer software antes da instalação em dispositivos corporativos. Inclui análise de segurança, compatibilidade, licenciamento e aderência à PSI. Software não homologado é Shadow IT — sujeito a remoção imediata. Toda aquisição passa pelo crivo da TI antes da compra.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos · via gestor de área</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado antes da compra</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Regra</span><span class="svc-meta-val">TI aprova → Suprimentos compra</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p4">P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-028</span><span class="svc-cat-badge c-f">Sistemas</span></div>
+        <div class="svc-name">Suporte a Aplicações de Negócio</div>
+        <div class="svc-desc">Atendimento a incidentes e dúvidas sobre aplicações homologadas que não o ERP Spalla — ferramentas de produtividade, planilhas críticas, sistemas de área e integrações internas. A TI atua como facilitador técnico e ponto de contato com fornecedores de software.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Usuários de aplicações homologadas</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado no Service Desk</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Escopo</span><span class="svc-meta-val">Somente softwares homologados</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p2">P2 · P3</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-029</span><span class="svc-cat-badge c-f">Sistemas</span></div>
+        <div class="svc-name">Gestão de Integrações e APIs</div>
+        <div class="svc-desc">Administração das integrações entre sistemas — especialmente a API do Spalla para acesso externo do setor Comercial. Inclui controle de credenciais de API, monitoramento de chamadas, restrições de acesso por IP e revogação em caso de comprometimento. API exposta sem controle é risco crítico.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Comercial · Fornecedores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — aprovação TI obrigatória</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Restrição</span><span class="svc-meta-val">Acesso externo: VPN + perfil autorizado</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · Segurança</span><span class="svc-sla-badge p1">P1 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-030</span><span class="svc-cat-badge c-f">Sistemas</span></div>
+        <div class="svc-name">Gestão de E-mail Corporativo</div>
+        <div class="svc-desc">Administração das contas de e-mail corporativo — criação, configuração, cota, regras anti-spam e arquivamento. Criação de conta é feita no onboarding; encerramento no offboarding com redirecionamento definido pelo gestor. E-mail pessoal não deve ser usado para comunicações corporativas.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h (serviço) · 8h–17h (suporte)</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado · criação via onboarding</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política</span><span class="svc-meta-val">E-mail pessoal proibido para corp.</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p2">P2 · P4</span></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       G — CONTINUIDADE & BACKUP
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-g">
+    <div class="cat-header">
+      <div class="cat-dot dot-g"></div>
+      <span class="cat-code">CAT-G</span>
+      <span class="cat-name">Continuidade &amp; Backup</span>
+      <span class="cat-count">4 serviços · a fábrica não pode parar</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-031</span><span class="svc-cat-badge c-g">Continuidade</span></div>
+        <div class="svc-name">Backup e Recuperação de Dados (Acronis)</div>
+        <div class="svc-desc">Realização de backups automáticos e diários dos dados críticos da empresa via Acronis. Inclui testes periódicos de recuperação para garantir que os dados são de fato recuperáveis. A ausência de backup testado é risco P1 — não basta fazer o backup, é preciso provar que ele funciona.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / automático (Acronis)</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Diretoria (relatórios)</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Recuperação via chamado urgente P1</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Ferramenta</span><span class="svc-meta-val">Acronis — testes mensais</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p1">P1</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-032</span><span class="svc-cat-badge c-g">Continuidade</span></div>
+        <div class="svc-name">Plano de Continuidade de TI (BCP/DRP)</div>
+        <div class="svc-desc">Definição e manutenção do plano de continuidade de negócio e recuperação de desastres para a área de TI. Inclui os procedimentos de failover do servidor de produção, caminhos alternativos de operação e critérios de acionamento. Parada do servidor novo pode imobilizar a fábrica por até 30 dias.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Acionamento 24h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Diretoria · Operação</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Acionamento direto TI / Diretoria</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Risco atual</span><span class="svc-meta-val">Servidor antigo com controladora queimada</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · Diretoria</span><span class="svc-sla-badge p1">P1</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-033</span><span class="svc-cat-badge c-g">Continuidade</span></div>
+        <div class="svc-name">Gestão de Riscos de TI</div>
+        <div class="svc-desc">Identificação, avaliação, tratamento e comunicação dos riscos de TI à diretoria. Inclui a Matriz de Impacto dos riscos de infraestrutura, os Termos de Assunção de Risco para investimentos recusados e o monitoramento contínuo dos riscos abertos. Risco formalizado protege a TI juridicamente.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Revisão mensal</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Diretoria · Jurídico</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">TI formaliza proativamente</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Entregável</span><span class="svc-meta-val">Matriz de risco + Termos assinados</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · Diretoria</span><span class="svc-sla-badge p2">P2 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-034</span><span class="svc-cat-badge c-g">Continuidade</span></div>
+        <div class="svc-name">Monitoramento de Disponibilidade</div>
+        <div class="svc-desc">Acompanhamento em tempo real da disponibilidade dos servidores, links e serviços críticos. Alertas automáticos para a equipe de TI com limiares configurados para CPU, memória, disco e conectividade. Dados de disponibilidade alimentam os indicadores mensais de TI apresentados à diretoria.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h / automático</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Diretoria (relatórios)</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Serviço contínuo — sem solicitação</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Alertas</span><span class="svc-meta-val">Automáticos para equipe TI</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Marcone</span><span class="svc-sla-badge p1">P1</span></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       H — COMUNICAÇÃO & COLABORAÇÃO
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-h">
+    <div class="cat-header">
+      <div class="cat-dot dot-h"></div>
+      <span class="cat-code">CAT-H</span>
+      <span class="cat-name">Comunicação &amp; Colaboração</span>
+      <span class="cat-count">3 serviços · conectar pessoas e unidades</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-035</span><span class="svc-cat-badge c-h">Comunicação</span></div>
+        <div class="svc-name">Comunicação Digital Corporativa</div>
+        <div class="svc-desc">Gestão das ferramentas de comunicação oficiais da empresa — e-mail corporativo, mensageria e canais aprovados pela TI. O uso de aplicativos pessoais (WhatsApp pessoal, e-mail pessoal) para comunicações corporativas ou envio de dados sensíveis é vedado pela PSI e monitorado via DLP.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>24h (ferramentas) · 8h–17h (suporte)</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado para novos canais/acessos</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Política</span><span class="svc-meta-val">PSI — ferramentas aprovadas pela TI</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p2">P2 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-036</span><span class="svc-cat-badge c-h">Comunicação</span></div>
+        <div class="svc-name">Suporte a Videoconferência e Reuniões Remotas</div>
+        <div class="svc-desc">Configuração, suporte e resolução de problemas em ferramentas de videoconferência homologadas para reuniões entre Matriz, Vitória e Vila Velha. Inclui configuração de salas, câmeras e áudio. Ferramentas não homologadas estão sujeitas a bloqueio por DLP e política de Shadow IT.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–18h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado no Service Desk</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Escopo</span><span class="svc-meta-val">Somente ferramentas homologadas</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p3">P3</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-037</span><span class="svc-cat-badge c-h">Comunicação</span></div>
+        <div class="svc-name">Gestão de Celulares e Planos Corporativos</div>
+        <div class="svc-desc">Administração dos aparelhos e planos de dados corporativos — ativação, configuração de segurança (bloqueio remoto, criptografia), controle de uso e procedimento em caso de perda ou roubo. Perda sem BO e acionamento imediato da TI é risco de vazamento de dados e LGPD.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h · urgência 24h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Colaboradores com celular corporativo</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado — perda: acionamento imediato</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Em caso de perda</span><span class="svc-meta-val">BO + TI em até 2 horas</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · RH</span><span class="svc-sla-badge p2">P2 · P4</span></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       I — GOVERNANÇA & GESTÃO
+  ═══════════════════════════════════════════════════════ -->
+  <section class="cat-section" id="cat-i">
+    <div class="cat-header">
+      <div class="cat-dot dot-i"></div>
+      <span class="cat-code">CAT-I</span>
+      <span class="cat-name">Governança &amp; Gestão</span>
+      <span class="cat-count">4 serviços · TI como parceira estratégica</span>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-038</span><span class="svc-cat-badge c-i">Governança</span></div>
+        <div class="svc-name">Relatórios e Indicadores de TI</div>
+        <div class="svc-desc">Produção mensal do relatório de TI com atendimentos realizados, incidentes abertos e fechados, indicadores de SLA cumprido, inventário atualizado e recomendações de melhoria. Apresentado à diretoria como evidência de governança e insumo para decisões de investimento em TI.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Mensal — até dia 10</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Diretoria · Auditoria</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Gerado proativamente pela TI</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Fonte</span><span class="svc-meta-val">Service Desk + CMDB + SLA</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Reimon · TI</span><span class="svc-sla-badge p4">P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-039</span><span class="svc-cat-badge c-i">Governança</span></div>
+        <div class="svc-name">Gestão de Mudanças de TI</div>
+        <div class="svc-desc">Processo de avaliação, aprovação e registro de todas as mudanças significativas no ambiente de TI — novas implementações, atualizações de sistemas, alterações de configuração e mudanças de infraestrutura. Toda mudança não documentada é risco de auditoria e causa raiz de incidentes não explicados.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Seg–Sex 8h–17h</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Gestores de área · Fornecedores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado com descrição da mudança</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Entregável</span><span class="svc-meta-val">RFC aprovado + registro de evidência</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Equipe TI</span><span class="svc-sla-badge p3">P3 · P4</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-040</span><span class="svc-cat-badge c-i">Governança</span></div>
+        <div class="svc-name">Auditorias e Conformidade de TI</div>
+        <div class="svc-desc">Suporte a auditorias internas e externas — organização de evidências, respostas a questionários, acompanhamento de auditores e plano de ação para não conformidades. O plano de governança vigente visa a preparação para a auditoria ISO 9001 de 13/07/2026 conduzida por auditor adversarial.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Conforme calendário de auditoria</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">TI · Diretoria · Auditores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Programado pela Diretoria / TI</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Próxima data</span><span class="svc-meta-val">13/07/2026 — auditoria ISO 9001</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · Reimon · Kedymma</span><span class="svc-sla-badge p2">P2</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top"><span class="svc-id">SVC-041</span><span class="svc-cat-badge c-i">Governança</span></div>
+        <div class="svc-name">Treinamento e Capacitação em TI</div>
+        <div class="svc-desc">Orientação de usuários sobre boas práticas de segurança, uso correto de sistemas homologados e Política de Segurança da Informação. Inclui o vídeo de PSI obrigatório para novos colaboradores, treinamentos presenciais com gestores e capacitação da equipe de TI em pensamento sistêmico.</div>
+        <hr class="svc-divider">
+        <div class="svc-meta-grid">
+          <div class="svc-meta-item"><span class="svc-meta-label">Disponibilidade</span><span class="svc-meta-val"><strong>Conforme cronograma</strong></span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Público-alvo</span><span class="svc-meta-val">Todos os colaboradores</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Como solicitar</span><span class="svc-meta-val">Chamado ou agenda com TI</span></div>
+          <div class="svc-meta-item"><span class="svc-meta-label">Evidência</span><span class="svc-meta-val">Lista de presença + registro formal</span></div>
+        </div>
+        <div class="svc-footer"><span class="svc-owner">Responsável · TI · Liderança</span><span class="svc-sla-badge p4">P4</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>Catálogo de Serviços de TI · Indústria de Cosméticos · 2026</span>
+    <span class="disclaimer">Documento vivo — revisado trimestralmente ou a cada mudança significativa no ambiente de TI. Versão atual: 1.0. Base metodológica: ITIL 4 · Catálogo de Serviços (SLM).</span>
+    <span>41 serviços · 9 categorias</span>
+  </footer>
+
+</div>
+</body>
+</html>
