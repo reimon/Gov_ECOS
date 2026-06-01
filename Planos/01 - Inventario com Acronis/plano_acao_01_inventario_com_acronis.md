@@ -187,11 +187,28 @@ flowchart TD
 
 ## 9) POPs vinculados
 
-- RUN de instalacao do agente: `Entregaveis/RUN-GTI-01_Instalacao_Agente_Acronis.md`
-- POP de novas maquinas: `Entregaveis/POP-GTI-01_Novas_Maquinas_RH_Compras_TI.md`
-- POP de homologacao de compras: `Entregaveis/POP-GTI-01_Homologacao_Compras_e_Fornecedores.md`
-- POP de software nao homologado: `Entregaveis/POP-GTI-01_Software_Nao_Homologado.md`
-- Matriz de entregaveis: `Entregaveis/00_INDICE_Entregaveis.md`
+- RUN de instalacao do agente: [RUN-GTI-01_Instalacao_Agente_Acronis.md](./Entregaveis/RUN-GTI-01_Instalacao_Agente_Acronis.md)
+- POP de novas maquinas: [POP-GTI-01_Novas_Maquinas_RH_Compras_TI.md](./Entregaveis/POP-GTI-01_Novas_Maquinas_RH_Compras_TI.md)
+- POP de homologacao de compras: [POP-GTI-01_Homologacao_Compras_e_Fornecedores.md](./Entregaveis/POP-GTI-01_Homologacao_Compras_e_Fornecedores.md)
+- POP de software nao homologado: [POP-GTI-01_Software_Nao_Homologado.md](./Entregaveis/POP-GTI-01_Software_Nao_Homologado.md)
+- Matriz de entregaveis: [00_INDICE_Entregaveis.md](./Entregaveis/00_INDICE_Entregaveis.md)
+
+## 9.1) Templates e exemplos para implantacao
+
+- Modelo de notificacao: [MODELO-GTI-01_Notificacao_Software_Nao_Homologado.md](./Entregaveis/MODELO-GTI-01_Notificacao_Software_Nao_Homologado.md)
+- Modelo de termo de responsabilidade: [MODELO-GTI-01_Termo_Responsabilidade_Software_Nao_Homologado.md](./Entregaveis/MODELO-GTI-01_Termo_Responsabilidade_Software_Nao_Homologado.md)
+- Exemplo preenchido de notificacao: [EXEMPLO-GTI-01_Notificacao_Software_Nao_Homologado.md](./Entregaveis/EXEMPLO-GTI-01_Notificacao_Software_Nao_Homologado.md)
+- Exemplo preenchido de termo: [EXEMPLO-GTI-01_Termo_Responsabilidade_Software_Nao_Homologado.md](./Entregaveis/EXEMPLO-GTI-01_Termo_Responsabilidade_Software_Nao_Homologado.md)
+
+## 9.2) Entregaveis DOCX para download
+
+- Índice DOCX: [00_INDICE_Entregaveis_DOCX.md](./Entregaveis/00_INDICE_Entregaveis_DOCX.md)
+- RUN oficial: [RUN-GTI-01_Instalacao_Agente_Acronis.docx](./Entregaveis/RUN-GTI-01_Instalacao_Agente_Acronis.docx)
+- POP Novas Máquinas: [POP-GTI-01_Novas_Maquinas_RH_Compras_TI.docx](./Entregaveis/POP-GTI-01_Novas_Maquinas_RH_Compras_TI.docx)
+- POP Homologação Compras: [POP-GTI-01_Homologacao_Compras_e_Fornecedores.docx](./Entregaveis/POP-GTI-01_Homologacao_Compras_e_Fornecedores.docx)
+- POP Software Não Homologado: [POP-GTI-01_Software_Nao_Homologado.docx](./Entregaveis/POP-GTI-01_Software_Nao_Homologado.docx)
+- Plano de implantação por ondas: [PLN-GTI-01_Plano_de_Implantacao_por_Ondas.docx](./Entregaveis/PLN-GTI-01_Plano_de_Implantacao_por_Ondas.docx)
+- Matriz RACI: [RACI-GTI-01_Matriz_RACI.docx](./Entregaveis/RACI-GTI-01_Matriz_RACI.docx)
 
 ## 10) Entregaveis e Evidencias para Auditoria
 

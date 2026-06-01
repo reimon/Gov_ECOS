@@ -138,6 +138,28 @@
         color: var(--ink);
       }
 
+      .quick-access {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 26px;
+      }
+      .quick-access a {
+        border: 1px solid var(--ink);
+        background: var(--paper);
+        color: var(--ink);
+        padding: 8px 12px;
+        text-decoration: none;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .quick-access a:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
       /* Stats */
       .stats {
         display: grid;
@@ -1442,6 +1464,10 @@
         páginas a seguir (Diagnóstico, Backlog &amp; Conexões, Plano de Ação)
         são navegáveis pelas abas abaixo. Cada item do backlog ganhará, em
         seguida, um plano detalhado próprio.
+      </div>
+
+      <div class="quick-access">
+        <a href="projetos_ti.html">Projetos e Entregáveis</a>
       </div>
 
       <div class="stats">

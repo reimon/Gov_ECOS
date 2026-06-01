@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projetos de Governanca de TI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f4efe6;
+        --paper-2: #ece5d7;
+        --paper-3: #e6ddcb;
+        --ink: #161b2e;
+        --ink-soft: #2c3450;
+        --muted: #6b6960;
+        --rule: #c8c0ae;
+        --rule-soft: #d8d0be;
+        --accent: #b8492c;
+        --green: #3f6b47;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Manrope", system-ui, sans-serif;
+        line-height: 1.5;
+        padding: 34px 20px 60px;
+      }
+      .wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+      .mast {
+        border-top: 3px double var(--ink);
+        border-bottom: 1px solid var(--ink);
+        padding: 14px 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-family: "Fraunces", serif;
+        font-weight: 500;
+        font-size: clamp(34px, 5vw, 56px);
+        margin: 24px 0 12px;
+        line-height: 0.98;
+      }
+      .lead {
+        max-width: 980px;
+        color: var(--ink-soft);
+        margin-bottom: 22px;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .btn {
+        text-decoration: none;
+        border: 1px solid var(--ink);
+        padding: 8px 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ink);
+        background: var(--paper);
+      }
+      .btn:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid var(--ink);
+        width: fit-content;
+        margin-bottom: 20px;
+      }
+      .tab-btn {
+        border: none;
+        border-right: 1px solid var(--rule);
+        background: var(--paper);
+        color: var(--ink);
+        padding: 10px 14px;
+        cursor: pointer;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .tab-btn:last-child {
+        border-right: none;
+      }
+      .tab-btn.active {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .plan {
+        display: none;
+        border-top: 2px solid var(--ink);
+        padding-top: 16px;
+      }
+      .plan.active {
+        display: block;
+      }
+
+      .kicker {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .plan h2 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(26px, 3.2vw, 40px);
+        line-height: 1;
+        margin: 0 0 8px;
+      }
+      .sub {
+        color: var(--ink-soft);
+        margin: 0 0 18px;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--rule);
+        margin-bottom: 18px;
+      }
+      .meta {
+        padding: 12px;
+        border-right: 1px solid var(--rule);
+        background: var(--paper-2);
+      }
+      .meta:last-child {
+        border-right: none;
+      }
+      .meta .m-k {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .meta .m-v {
+        font-family: "Fraunces", serif;
+        font-size: 22px;
+        line-height: 1.05;
+      }
+
+      .section-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .card {
+        border: 1px solid var(--rule-soft);
+        background: var(--paper-2);
+        padding: 14px;
+      }
+      .card h3 {
+        margin: 0 0 8px;
+        font-family: "Fraunces", serif;
+        font-size: 24px;
+        line-height: 1;
+      }
+      .tag {
+        display: inline-block;
+        margin-bottom: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .card p {
+        margin: 0 0 10px;
+        color: var(--ink-soft);
+      }
+
+      .list-title {
+        margin: 8px 0 6px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--green);
+      }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      th,
+      td {
+        border: 1px solid var(--rule);
+        padding: 8px;
+        vertical-align: top;
+      }
+      th {
+        background: var(--paper-3);
+        text-align: left;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .wide {
+        grid-column: 1 / -1;
+      }
+      a {
+        color: var(--ink);
+      }
+      .download-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .download-box {
+        border: 1px solid var(--rule-soft);
+        background: var(--paper);
+        padding: 10px 12px;
+      }
+      .download-box h4 {
+        margin: 0 0 6px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      footer {
+        margin-top: 20px;
+        border-top: 1px solid var(--rule);
+        padding-top: 12px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      @media (max-width: 980px) {
+        .meta-grid,
+        .section-grid,
+        .download-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="mast">
+        <span>Governanca de TI</span>
+        <span>Projetos e Entregaveis de Implantacao</span>
+      </div>
+
+      <h1>Portal de Projetos de Governanca</h1>
+      <p class="lead">
+        Esta pagina foi estruturada por abas para detalhar os planos ja
+        aprovados. Cada aba traz o conteudo operacional do plano, a estrutura
+        metodologica (ITIL + DMAIC + 5W2H), criterios de aceite, riscos,
+        indicadores e links diretos para os entregaveis de implantacao.
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="plano_governanca_ti.html"
+          >Voltar para Plano de Governanca</a
+        >
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="p01">
+          Plano #01 - Inventario com Acronis
+        </button>
+        <button class="tab-btn" data-tab="p03">
+          Plano #03 - Ciclo de Vida e Etiquetagem
+        </button>
+      </div>
+
+      <section class="plan active" id="plan-p01">
+        <div class="kicker">Plano de Acao #01</div>
+        <h2>Inventario de HW/SW com Acronis</h2>
+        <p class="sub">
+          Estrutura completa para inventario corporativo, onboarding de ativos,
+          homologacao tecnica com Compras/RH e tratamento de software nao
+          homologado com responsabilizacao formal.
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta">
+            <div class="m-k">Codigo</div>
+            <div class="m-v">#01</div>
+          </div>
+          <div class="meta">
+            <div class="m-k">Frente</div>
+            <div class="m-v">Ativos & Conformidade</div>
+          </div>
+          <div class="meta">
+            <div class="m-k">Prioridade</div>
+            <div class="m-v">Alta</div>
+          </div>
+          <div class="meta">
+            <div class="m-k">Responsavel</div>
+            <div class="m-v">Marcone</div>
+          </div>
+        </div>
+
+        <div class="section-grid">
+          <article class="card">
+            <span class="tag">1) Objetivo</span>
+            <h3>Escopo estrategico do plano</h3>
+            <p>
+              Implantar processo corporativo de inventario com Acronis,
+              garantindo descoberta, cadastro, atualizacao continua e
+              rastreabilidade auditavel em todas as maquinas elegiveis.
+            </p>
+            <p class="list-title">Areas envolvidas</p>
+            <ul>
+              <li>TI (owner tecnico do processo)</li>
+              <li>Compras (execucao de aquisicoes conforme parecer TI)</li>
+              <li>RH (vinculo de setor/usuario)</li>
+              <li>Gestores de area e Financeiro</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">2) ITIL aplicado</span>
+            <h3>Praticas e governanca</h3>
+            <ul>
+              <li>ITAM para ciclo de vida e custo do ativo</li>
+              <li>SACM para consistencia fisico x logico</li>
+              <li>Service Request para novas aquisicoes</li>
+              <li>Supplier Management para homologacao de fornecedores</li>
+              <li>Information Security para baseline de endpoint</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">3) Escopo</span>
+            <h3>Inclui e nao inclui</h3>
+            <p class="list-title">Inclui</p>
+            <ul>
+              <li>Instalacao do agente Acronis em toda base elegivel</li>
+              <li>Descoberta e consolidacao de inventario HW/SW</li>
+              <li>POP de novas maquinas</li>
+              <li>POP de homologacao de compras</li>
+              <li>Integracao operacional RH + Compras + TI</li>
+            </ul>
+            <p class="list-title">Nao inclui</p>
+            <ul>
+              <li>Regularizacao contratual de licencas (#05)</li>
+              <li>Etiquetagem fisica completa e ciclo de vida (#03)</li>
+              <li>Tratamento integral de Shadow IT (#19 e #24)</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">4) DMAIC</span>
+            <h3>Execucao por melhoria continua</h3>
+            <ul>
+              <li>
+                <strong>D - Define:</strong> inventario incompleto e compras sem
+                gate tecnico.
+              </li>
+              <li>
+                <strong>M - Measure:</strong> baseline de cobertura, falhas e
+                tempo de onboarding.
+              </li>
+              <li>
+                <strong>A - Analyze:</strong> causas-raiz operacionais, tecnicas
+                e de processo.
+              </li>
+              <li>
+                <strong>I - Improve:</strong> ondas de deploy, POPs e governanca
+                interareas.
+              </li>
+              <li>
+                <strong>C - Control:</strong> auditoria mensal, painel de
+                indicadores e bloqueio de bypass.
+              </li>
+            </ul>
+          </article>
+
+          <article class="card wide">
+            <span class="tag">5) 5W2H</span>
+            <h3>Matriz de execucao do Plano #01</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Elemento</th>
+                  <th>Definicao do plano</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>What</td>
+                  <td>
+                    Implantar inventario corporativo de HW/SW com Acronis e
+                    fluxo formal RH + Compras + TI.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Why</td>
+                  <td>
+                    Garantir governanca de ativos e conformidade de auditoria.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Where</td>
+                  <td>Todas as unidades e setores com ativos elegiveis.</td>
+                </tr>
+                <tr>
+                  <td>When</td>
+                  <td>Inicio imediato em ondas semanais.</td>
+                </tr>
+                <tr>
+                  <td>Who</td>
+                  <td>TI, Compras, RH e Gestores locais.</td>
+                </tr>
+                <tr>
+                  <td>How</td>
+                  <td>Deploy de agente + POPs + controle por KPI.</td>
+                </tr>
+                <tr>
+                  <td>How much</td>
+                  <td>
+                    Licenciamento Acronis + horas tecnicas e operacionais.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="card">
+            <span class="tag">6) Fluxos</span>
+            <h3>Fluxos operacionais do plano</h3>
+            <ul>
+              <li>Fluxo de implantacao do Acronis por ondas</li>
+              <li>Fluxo de novas maquinas (RH -> Compras -> TI)</li>
+              <li>Fluxo de homologacao de compras com gate tecnico</li>
+            </ul>
+            <p>
+              Para detalhes visuais, utilize o plano markdown completo e os POPs
+              de implantacao vinculados abaixo.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="tag">7) Passos tecnicos</span>
+            <h3>Instalacao do agente em todas as maquinas</h3>
+            <ul>
+              <li>Validar prerequisitos, conectividade e credenciais</li>
+              <li>
+                Executar rollout por ondas (piloto -> operacao -> filiais)
+              </li>
+              <li>Confirmar status healthy e check-in no console</li>
+              <li>Registrar evidencias de sucesso/falha por ativo</li>
+            </ul>
+            <p class="list-title">Criterio de aceite</p>
+            <ul>
+              <li>Check-in em ate 30 min apos instalacao</li>
+              <li>
+                Dados minimos completos (hostname, serial, unidade, setor,
+                owner)
+              </li>
+              <li>Sem alertas criticos de comunicacao</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">8) KPIs</span>
+            <h3>Indicadores de controle</h3>
+            <ul>
+              <li>Cobertura do agente Acronis (%)</li>
+              <li>Taxa de sucesso em primeira tentativa (%)</li>
+              <li>Tempo medio de onboarding de maquina</li>
+              <li>% de compras com aprovacao tecnica previa</li>
+              <li>% de ativos com owner/setor preenchidos</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">9) Riscos e mitigacoes</span>
+            <h3>Principais riscos do Plano #01</h3>
+            <ul>
+              <li>Maquinas offline durante deploy -> janela de repescagem</li>
+              <li>Compra sem gate TI -> bloqueio processual em Compras</li>
+              <li>
+                Dados incompletos RH/setor -> campo obrigatorio no handoff
+              </li>
+              <li>Fornecedor fora de padrao -> lista homologada obrigatoria</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">10) Criterio de conclusao</span>
+            <h3>Quando a acao #01 encerra</h3>
+            <ul>
+              <li>100% da base elegivel com cobertura Acronis</li>
+              <li>100% das novas aquisicoes com aprovacao tecnica TI</li>
+              <li>POPs publicados e em uso operacional</li>
+              <li>Completude minima de 98% nos campos obrigatorios</li>
+            </ul>
+          </article>
+
+          <article class="card wide">
+            <span class="tag">11) Entregaveis e downloads</span>
+            <h3>Arquivos de implantacao do Plano #01</h3>
+            <div class="download-grid">
+              <div class="download-box">
+                <h4>Plano e indices</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/plano_acao_01_inventario_com_acronis.md"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Plano #01 (markdown)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/00_INDICE_Entregaveis.md"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Indice de entregaveis (md)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/00_INDICE_Entregaveis_DOCX.md"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Indice de entregaveis (docx)</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="download-box">
+                <h4>POPs e runbook (.docx)</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RUN-GTI-01_Instalacao_Agente_Acronis.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >RUN - Instalacao do agente</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Novas_Maquinas_RH_Compras_TI.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >POP - Novas maquinas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Homologacao_Compras_e_Fornecedores.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >POP - Homologacao de compras</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Software_Nao_Homologado.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >POP - Software nao homologado</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="download-box">
+                <h4>Modelos e formularios (.docx)</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-01_Notificacao_Software_Nao_Homologado.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Modelo - Notificacao</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-02_Termo_Responsabilidade_Software_Nao_Homologado.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Modelo - Termo de responsabilidade</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-04_Controle_Software_Nao_Homologado.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Formulario - Controle software nao homologado</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-06_Painel_Executivo_Indicadores.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Formulario - Painel executivo</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="download-box">
+                <h4>Apoio de implantacao</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/PLN-GTI-01_Plano_de_Implantacao_por_Ondas.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Plano de implantacao por ondas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RACI-GTI-01_Matriz_RACI.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Matriz RACI</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-02_Relatorio_de_Cobertura_Acronis.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Relatorio de cobertura</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-03_Falhas_de_Instalacao_e_Tratativas.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Falhas e tratativas</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="plan" id="plan-p03">
+        <div class="kicker">Plano de Acao #03</div>
+        <h2>Implantar ciclo de vida + etiquetagem fisica</h2>
+        <p class="sub">
+          Plano detalhado para rastreabilidade patrimonial, etiquetagem de
+          ativos, auditoria de conformidade e consolidacao da governanca fisico
+          x inventario logico.
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta">
+            <div class="m-k">Codigo</div>
+            <div class="m-v">#03</div>
+          </div>
+          <div class="meta">
+            <div class="m-k">Dependencia</div>
+            <div class="m-v">#02 concluida</div>
+          </div>
+          <div class="meta">
+            <div class="m-k">Data-alvo</div>
+            <div class="m-v">13/07/2026</div>
+          </div>
+          <div class="meta">
+            <div class="m-k">Aprovacao</div>
+            <div class="m-v">Kedymma / Fabio</div>
+          </div>
+        </div>
+
+        <div class="section-grid">
+          <article class="card">
+            <span class="tag">1) Objetivo</span>
+            <h3>Rastreabilidade total do ativo</h3>
+            <p>
+              Garantir 100% dos ativos elegiveis com etiqueta fisica permanente
+              e ciclo de vida atualizado no inventario: aquisicao, uso,
+              movimentacao, manutencao e descarte.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="tag">2) ITIL aplicado</span>
+            <h3>Base metodologica</h3>
+            <ul>
+              <li>ITAM para ciclo de vida completo</li>
+              <li>SACM para integridade fisico x logico</li>
+              <li>Change Enablement para atualizacoes obrigatorias</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">3) Escopo</span>
+            <h3>Implementacao e limites</h3>
+            <p class="list-title">Inclui</p>
+            <ul>
+              <li>Status oficiais: Em uso, Em manutencao, Reserva, Descarte</li>
+              <li>Padrao de etiqueta de aluminio com codigo unico</li>
+              <li>Mutirao por ondas: Matriz -> Vitoria -> Vila Velha</li>
+              <li>Auditoria por amostragem e acao corretiva em 5 dias uteis</li>
+            </ul>
+            <p class="list-title">Nao inclui</p>
+            <ul>
+              <li>Discovery automatico (fora do horizonte imediato)</li>
+              <li>Regularizacao de licencas (#05)</li>
+              <li>Tratamento completo de Shadow IT (#19 e #24)</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">4) DMAIC</span>
+            <h3>Ciclo de controle</h3>
+            <ul>
+              <li>
+                <strong>D:</strong> ativos sem identificacao fisica padrao.
+              </li>
+              <li>
+                <strong>M:</strong> baseline de ativos sem etiqueta e
+                divergencias.
+              </li>
+              <li>
+                <strong>A:</strong> causas em movimentacao sem registro formal.
+              </li>
+              <li>
+                <strong>I:</strong> padrao de etiqueta + POP + mutirao por
+                unidade.
+              </li>
+              <li>
+                <strong>C:</strong> auditoria mensal, indicadores e revisao
+                trimestral.
+              </li>
+            </ul>
+          </article>
+
+          <article class="card wide">
+            <span class="tag">5) 5W2H</span>
+            <h3>Matriz do Plano #03</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Elemento</th>
+                  <th>Definicao</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>What</td>
+                  <td>Implantar ciclo de vida com etiquetagem padronizada.</td>
+                </tr>
+                <tr>
+                  <td>Why</td>
+                  <td>Garantir conformidade e evidencia auditavel.</td>
+                </tr>
+                <tr>
+                  <td>Where</td>
+                  <td>Todas as unidades e filiais com ativos de TI.</td>
+                </tr>
+                <tr>
+                  <td>When</td>
+                  <td>Inicio imediato com estabilizacao antes da auditoria.</td>
+                </tr>
+                <tr>
+                  <td>Who</td>
+                  <td>Marcone, equipe TI, gestores locais e diretoria.</td>
+                </tr>
+                <tr>
+                  <td>How</td>
+                  <td>
+                    POP + padrao de etiqueta + conciliacao fisico/logico +
+                    controle mensal.
+                  </td>
+                </tr>
+                <tr>
+                  <td>How much</td>
+                  <td>Etiquetas de aluminio, insumos e horas de execucao.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="card">
+            <span class="tag">6) Fluxos do plano</span>
+            <h3>Fluxos previstos</h3>
+            <ul>
+              <li>Fluxo operacional de etiquetagem e reconciliacao</li>
+              <li>Fluxo de implantacao por ondas</li>
+              <li>Fluxo de criacao e aprovacao documental</li>
+              <li>Fluxo de comunicacao e adocao setorial</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">7) KPIs e criterios</span>
+            <h3>Controle de conformidade</h3>
+            <ul>
+              <li>Cobertura de etiquetagem (%)</li>
+              <li>Acuracia do inventario (%)</li>
+              <li>Tempo de atualizacao de movimentacao (horas)</li>
+              <li>Taxa de reincidencia de divergencia por unidade</li>
+            </ul>
+            <p class="list-title">Conclusao da acao #03</p>
+            <ul>
+              <li>100% dos ativos elegiveis etiquetados</li>
+              <li>Acuracia minima de 98% na amostragem</li>
+              <li>Procedimento publicado, em uso e com evidencia mensal</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">8) Riscos e mitigacoes</span>
+            <h3>Riscos principais</h3>
+            <ul>
+              <li>
+                Etiqueta danificada/removida -> material resistente e inspeção
+              </li>
+              <li>Movimentacao sem atualizacao -> checklist obrigatorio</li>
+              <li>
+                Baixa adesao setorial -> comunicacao formal + validação de
+                gestor
+              </li>
+            </ul>
+          </article>
+
+          <article class="card wide">
+            <span class="tag">9) Entregaveis e downloads</span>
+            <h3>Arquivos de implantacao do Plano #03</h3>
+            <div class="download-grid">
+              <div class="download-box">
+                <h4>Plano e indice</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/plano_acao_03_ciclo_de_vida_etiquetagem.md"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Plano #03 (markdown)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/00_INDICE_Entregaveis.md"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Indice de entregaveis</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="download-box">
+                <h4>Documentos centrais (.docx)</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/POP-GTI-03_Ciclo_de_Vida_de_Ativos.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >POP do ciclo de vida</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/NRM-GTI-03_Padrao_de_Etiquetagem.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Padrao de etiquetagem</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/IT-GTI-03_Instrucao_Etiquetagem_Fisica.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Instrucao de etiquetagem</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/PLN-GTI-03_Plano_de_Implantacao_por_Ondas.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Plano de ondas</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="download-box">
+                <h4>Governanca e controle</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/CRN-GTI-03_Cronograma_Executivo.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Cronograma executivo</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/RACI-GTI-03_Matriz_RACI.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Matriz RACI</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/COM-GTI-03_Kit_de_Comunicacao.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Kit de comunicacao</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="download-box">
+                <h4>Formularios de campo</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-01_Checklist_Movimentacao.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Checklist de movimentacao</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-02_Conciliacao_Fisico_x_Inventario.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Conciliacao fisico x inventario</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-03_Nao_Conformidades_Acoes_Corretivas.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Nao conformidades e acoes corretivas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-13_Painel_de_Indicadores.docx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Painel de indicadores</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        Dica de implantacao: comece pelo indice de entregaveis de cada plano,
+        siga os POPs em ordem e use os formularios de evidencia para auditoria.
+      </footer>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll(".tab-btn");
+      const plans = {
+        p01: document.getElementById("plan-p01"),
+        p03: document.getElementById("plan-p03"),
+      };
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          Object.values(plans).forEach((panel) =>
+            panel.classList.remove("active"),
+          );
+          const key = btn.getAttribute("data-tab");
+          plans[key].classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

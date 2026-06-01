@@ -4,18 +4,18 @@
 
 ## 1) Identificação do Plano
 
-| Campo                    | Valor                                                              |
-| ------------------------ | ------------------------------------------------------------------ |
-| Código da ação           | #03                                                                |
-| Frente                   | Ativos & Conformidade                                              |
-| Base metodológica        | ITIL 4 · ITAM / SACM / Change Enablement + DMAIC + 5W2H           |
-| Responsável primário     | Marcone                                                            |
-| Aprovação                | Kedymma / Fábio                                                    |
-| Dependência obrigatória  | #02 — inventário com código definitivo concluído                   |
-| Dependência secundária   | #01 — varredura Acronis consolidada (fonte de dados de entrada)    |
-| Prioridade               | Alta — base estrutural da rastreabilidade de ativos para auditoria |
-| Início previsto          | Imediatamente após conclusão de #02                                |
-| Data-alvo                | 13/07/2026                                                         |
+| Campo                   | Valor                                                              |
+| ----------------------- | ------------------------------------------------------------------ |
+| Código da ação          | #03                                                                |
+| Frente                  | Ativos & Conformidade                                              |
+| Base metodológica       | ITIL 4 · ITAM / SACM / Change Enablement + DMAIC + 5W2H            |
+| Responsável primário    | Marcone                                                            |
+| Aprovação               | Kedymma / Fábio                                                    |
+| Dependência obrigatória | #02 — inventário com código definitivo concluído                   |
+| Dependência secundária  | #01 — varredura Acronis consolidada (fonte de dados de entrada)    |
+| Prioridade              | Alta — base estrutural da rastreabilidade de ativos para auditoria |
+| Início previsto         | Imediatamente após conclusão de #02                                |
+| Data-alvo               | 13/07/2026                                                         |
 
 ## 2) Objetivo do Plano
 
@@ -212,6 +212,17 @@ flowchart TD
 - Termo de homologação de adoção por setor (go-live do processo local).
 - Dashboard de indicadores de adoção (cobertura, acurácia, pendências e reincidência).
 - Relatório de lições aprendidas do piloto e ajustes incorporados ao roll-out.
+
+## 8.1) Entregáveis para download e implantação
+
+- Índice geral de entregáveis: [00_INDICE_Entregaveis.md](./Entregaveis/00_INDICE_Entregaveis.md)
+- POP principal do ciclo de vida: [POP-GTI-03_Ciclo_de_Vida_de_Ativos.docx](./Entregaveis/POP-GTI-03_Ciclo_de_Vida_de_Ativos.docx)
+- Padrão de etiquetagem: [NRM-GTI-03_Padrao_de_Etiquetagem.docx](./Entregaveis/NRM-GTI-03_Padrao_de_Etiquetagem.docx)
+- Instrução de etiquetagem física: [IT-GTI-03_Instrucao_Etiquetagem_Fisica.docx](./Entregaveis/IT-GTI-03_Instrucao_Etiquetagem_Fisica.docx)
+- Plano de implantação por ondas: [PLN-GTI-03_Plano_de_Implantacao_por_Ondas.docx](./Entregaveis/PLN-GTI-03_Plano_de_Implantacao_por_Ondas.docx)
+- Cronograma executivo: [CRN-GTI-03_Cronograma_Executivo.docx](./Entregaveis/CRN-GTI-03_Cronograma_Executivo.docx)
+- Matriz RACI: [RACI-GTI-03_Matriz_RACI.docx](./Entregaveis/RACI-GTI-03_Matriz_RACI.docx)
+- Kit de comunicação: [COM-GTI-03_Kit_de_Comunicacao.docx](./Entregaveis/COM-GTI-03_Kit_de_Comunicacao.docx)
 
 ## 9) KPIs de Controle
 
