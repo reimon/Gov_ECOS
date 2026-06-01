@@ -1130,94 +1130,285 @@
         border-top: 2px solid var(--ink);
       }
       .team-group-head {
-        display: flex; align-items: baseline; gap: 14px;
-        padding: 12px 0 14px; border-bottom: 1px solid var(--rule);
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        padding: 12px 0 14px;
+        border-bottom: 1px solid var(--rule);
       }
       .tg-num {
-        font-family: 'Fraunces', serif; font-size: 26px;
-        color: var(--accent); line-height: 1;
+        font-family: "Fraunces", serif;
+        font-size: 26px;
+        color: var(--accent);
+        line-height: 1;
       }
       .tg-name {
-        font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500;
+        font-family: "Fraunces", serif;
+        font-size: 21px;
+        font-weight: 500;
       }
       .tg-count {
-        font-size: 12px; color: var(--muted); font-style: italic; margin-left: auto;
+        font-size: 12px;
+        color: var(--muted);
+        font-style: italic;
+        margin-left: auto;
       }
 
       .team-grid {
-        display: grid; grid-template-columns: repeat(3, 1fr);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
       }
       .member-card {
         padding: 22px 24px;
         border-right: 1px solid var(--rule);
         border-bottom: 1px solid var(--rule);
       }
-      .member-card:nth-child(3n) { border-right: none; }
+      .member-card:nth-child(3n) {
+        border-right: none;
+      }
       .member-card.add-card {
-        display: flex; flex-direction: column; align-items: center;
-        justify-content: center; min-height: 200px;
-        border-style: dashed; border-color: var(--rule-soft);
-        background: transparent; cursor: default;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        border-style: dashed;
+        border-color: var(--rule-soft);
+        background: transparent;
+        cursor: default;
       }
       .add-icon {
-        font-size: 30px; color: var(--rule); margin-bottom: 10px; line-height: 1;
+        font-size: 30px;
+        color: var(--rule);
+        margin-bottom: 10px;
+        line-height: 1;
       }
       .add-label {
-        font-family: 'JetBrains Mono', monospace; font-size: 9px;
-        letter-spacing: 0.14em; text-transform: uppercase; color: var(--rule);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--rule);
       }
 
       .member-mono {
-        width: 48px; height: 48px;
-        display: flex; align-items: center; justify-content: center;
-        font-family: 'Fraunces', serif; font-size: 19px; font-weight: 400;
-        letter-spacing: -0.02em; margin-bottom: 16px; flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-size: 19px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        flex-shrink: 0;
       }
-      .member-mono.ink    { background: var(--ink); color: var(--paper); }
-      .member-mono.accent { background: var(--accent); color: var(--paper); }
-      .member-mono.warm   { background: var(--accent-2); color: var(--paper); }
-      .member-mono.soft   { background: var(--paper-2); color: var(--ink); border: 1px solid var(--rule); }
+      .member-mono.ink {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .member-mono.accent {
+        background: var(--accent);
+        color: var(--paper);
+      }
+      .member-mono.warm {
+        background: var(--accent-2);
+        color: var(--paper);
+      }
+      .member-mono.soft {
+        background: var(--paper-2);
+        color: var(--ink);
+        border: 1px solid var(--rule);
+      }
 
       .member-name {
-        font-family: 'Fraunces', serif; font-size: 23px; font-weight: 500;
-        line-height: 1.05; margin-bottom: 3px;
+        font-family: "Fraunces", serif;
+        font-size: 23px;
+        font-weight: 500;
+        line-height: 1.05;
+        margin-bottom: 3px;
       }
       .member-role {
-        font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
-        letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-        margin-bottom: 10px; display: block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+        display: block;
       }
       .member-badge {
-        display: inline-block; font-family: 'JetBrains Mono', monospace;
-        font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
-        padding: 2px 8px; border: 1px solid; margin-bottom: 14px;
+        display: inline-block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 2px 8px;
+        border: 1px solid;
+        margin-bottom: 14px;
       }
-      .badge-ti       { color: var(--accent);    border-color: var(--accent);    background: rgba(184,73,44,0.07); }
-      .badge-lider    { color: var(--accent-2);  border-color: var(--accent-2);  background: rgba(138,106,42,0.07); }
-      .badge-dir      { color: var(--ink);       border-color: var(--ink); }
-      .badge-area     { color: var(--ink-soft);  border-color: var(--rule); }
+      .badge-ti {
+        color: var(--accent);
+        border-color: var(--accent);
+        background: rgba(184, 73, 44, 0.07);
+      }
+      .badge-lider {
+        color: var(--accent-2);
+        border-color: var(--accent-2);
+        background: rgba(138, 106, 42, 0.07);
+      }
+      .badge-dir {
+        color: var(--ink);
+        border-color: var(--ink);
+      }
+      .badge-area {
+        color: var(--ink-soft);
+        border-color: var(--rule);
+      }
 
       .member-desc {
-        font-size: 12.5px; color: var(--ink-soft); line-height: 1.58; margin-bottom: 14px;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        line-height: 1.58;
+        margin-bottom: 14px;
       }
       .member-items-label {
-        font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
-        text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 7px;
       }
-      .member-items { display: flex; flex-wrap: wrap; gap: 5px; }
+      .member-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
       .member-item {
-        font-family: 'JetBrains Mono', monospace; font-size: 9px;
-        padding: 2px 7px; border: 1px solid var(--rule-soft); color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        padding: 2px 7px;
+        border: 1px solid var(--rule-soft);
+        color: var(--muted);
       }
 
       @media (max-width: 860px) {
-        .team-grid { grid-template-columns: 1fr 1fr; }
-        .member-card:nth-child(3n) { border-right: 1px solid var(--rule); }
-        .member-card:nth-child(2n) { border-right: none; }
+        .team-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .member-card:nth-child(3n) {
+          border-right: 1px solid var(--rule);
+        }
+        .member-card:nth-child(2n) {
+          border-right: none;
+        }
       }
       @media (max-width: 540px) {
-        .team-grid { grid-template-columns: 1fr; }
-        .member-card { border-right: none; }
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .member-card {
+          border-right: none;
+        }
+      }
+
+      /* ====== CHECK LIST ISO 9001 VIEW ====== */
+      .cl-banner {
+        border-left: 3px solid var(--accent);
+        background: var(--paper-2);
+        padding: 14px 22px;
+        margin-bottom: 32px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.58;
+      }
+      .cl-banner strong {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .cl-group {
+        margin-bottom: 26px;
+        border-top: 2px solid var(--ink);
+      }
+      .cl-head {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 16px;
+        align-items: start;
+        padding: 13px 0 14px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .cl-pri {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border: 1px solid;
+        white-space: nowrap;
+        align-self: center;
+      }
+      .cl-pri.alta {
+        color: var(--accent);
+        border-color: var(--accent);
+        background: rgba(184, 73, 44, 0.07);
+        font-weight: 600;
+      }
+      .cl-pri.media {
+        color: var(--accent-2);
+        border-color: var(--accent-2);
+        background: rgba(138, 106, 42, 0.07);
+      }
+      .cl-pri.importante {
+        color: var(--ink-soft);
+        border-color: var(--rule);
+      }
+
+      .cl-name {
+        font-family: "Fraunces", serif;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.1;
+        margin-bottom: 4px;
+      }
+      .cl-entrega {
+        font-size: 12px;
+        color: var(--muted);
+        font-style: italic;
+        line-height: 1.45;
+      }
+      .cl-right {
+        text-align: right;
+      }
+      .cl-prazo {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+      }
+      .cl-count {
+        font-size: 11px;
+        color: var(--muted);
+        font-style: italic;
+        margin-top: 4px;
+      }
+
+      @media (max-width: 860px) {
+        .cl-head {
+          grid-template-columns: auto 1fr;
+        }
+        .cl-right {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -1289,8 +1480,9 @@
         <button data-view="itil">
           <span class="n">04</span> O que é o ITIL
         </button>
-        <button data-view="equipe">
-          <span class="n">05</span> Equipe
+        <button data-view="equipe"><span class="n">05</span> Equipe</button>
+        <button data-view="checklist">
+          <span class="n">06</span> Check List ISO
         </button>
       </nav>
 
@@ -1687,11 +1879,13 @@
             <div>
               <div class="t-name">
                 Converter inventário provisório (Drive) em código definitivo
+                (etapa 1 da #03)
               </div>
               <div class="t-owner">Marcone · antes de ir a Vitória</div>
               <div class="t-conn">
                 <span class="conn depends">depende ← #01</span
-                ><span class="conn enables">habilita → #03 #04 #05 #24</span>
+                ><span class="conn enables">compõe → #03</span
+                ><span class="conn enables">habilita → #04 #05 #24</span>
               </div>
             </div>
             <div class="t-sev"><span class="sev critica">Crítica</span></div>
@@ -1704,7 +1898,7 @@
               </div>
               <div class="t-owner">Marcone</div>
               <div class="t-conn">
-                <span class="conn depends">depende ← #02</span>
+                <span class="conn depends">inclui #02 como etapa inicial</span>
               </div>
             </div>
             <div class="t-sev"><span class="sev media">Média</span></div>
@@ -2130,6 +2324,7 @@
               </div>
               <div class="pi">
                 <span class="pi-id">#02</span> Inventário em código definitivo
+                (etapa da #03)
                 <span class="pi-sev"
                   ><span class="sev critica">Crítica</span></span
                 >
@@ -2980,9 +3175,14 @@
 
       <!-- ===================== VIEW 5 — EQUIPE ===================== -->
       <section class="view" id="view-equipe">
-        <div class="section-kicker">Página 05 · As pessoas por trás do plano</div>
+        <div class="section-kicker">
+          Página 05 · As pessoas por trás do plano
+        </div>
         <h2 class="section-title">Equipe</h2>
-        <p class="section-lead">Quem conduz, quem executa e quem precisa estar alinhado para a governança sair do papel antes de 13/07/2026.</p>
+        <p class="section-lead">
+          Quem conduz, quem executa e quem precisa estar alinhado para a
+          governança sair do papel antes de 13/07/2026.
+        </p>
 
         <!-- Grupo 1: Diretoria & Liderança -->
         <div class="team-group">
@@ -2992,13 +3192,17 @@
             <span class="tg-count">3 pessoas · decisão e patrocínio</span>
           </div>
           <div class="team-grid">
-
             <div class="member-card">
               <div class="member-mono ink">Ed</div>
               <div class="member-name">Edson</div>
               <span class="member-role">Diretor</span>
               <span class="member-badge badge-dir">Diretoria</span>
-              <div class="member-desc">Tomador de decisão sobre investimentos críticos de TI. Responsável por aprovar ou assumir formalmente os riscos de continuidade operacional — incluindo o servidor antigo com controladora queimada.</div>
+              <div class="member-desc">
+                Tomador de decisão sobre investimentos críticos de TI.
+                Responsável por aprovar ou assumir formalmente os riscos de
+                continuidade operacional — incluindo o servidor antigo com
+                controladora queimada.
+              </div>
               <div class="member-items-label">Decisões-chave</div>
               <div class="member-items">
                 <span class="member-item">#06 Matriz de risco</span>
@@ -3013,7 +3217,12 @@
               <div class="member-name">Kedymma</div>
               <span class="member-role">Gestora do Projeto · Contrato</span>
               <span class="member-badge badge-lider">Liderança</span>
-              <div class="member-desc">Dona do projeto junto com Fábio — a ser formalizada pela diretoria antes do início da Fase 3. Responsável pela adesão da liderança de área, pelas reuniões presenciais com gestores e pelo alinhamento do Service Desk.</div>
+              <div class="member-desc">
+                Dona do projeto junto com Fábio — a ser formalizada pela
+                diretoria antes do início da Fase 3. Responsável pela adesão da
+                liderança de área, pelas reuniões presenciais com gestores e
+                pelo alinhamento do Service Desk.
+              </div>
               <div class="member-items-label">Itens sob sua liderança</div>
               <div class="member-items">
                 <span class="member-item">#12 Eliminar bypass</span>
@@ -3027,14 +3236,18 @@
               <div class="member-name">Fábio</div>
               <span class="member-role">Gestor do Projeto · Contrato</span>
               <span class="member-badge badge-lider">Liderança</span>
-              <div class="member-desc">Co-líder do projeto ao lado de Kedymma. A formalização dupla garante que a governança tenha patrocínio executivo de dois lados, aumentando a adesão das áreas e o peso das políticas publicadas.</div>
+              <div class="member-desc">
+                Co-líder do projeto ao lado de Kedymma. A formalização dupla
+                garante que a governança tenha patrocínio executivo de dois
+                lados, aumentando a adesão das áreas e o peso das políticas
+                publicadas.
+              </div>
               <div class="member-items-label">Itens sob sua liderança</div>
               <div class="member-items">
                 <span class="member-item">#23 Formalização</span>
                 <span class="member-item">#28 Reuniões c/ gestores</span>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -3046,13 +3259,19 @@
             <span class="tg-count">2 pessoas · execução e arquitetura</span>
           </div>
           <div class="team-grid">
-
             <div class="member-card">
               <div class="member-mono accent">Ma</div>
               <div class="member-name">Marcone</div>
-              <span class="member-role">Analista de TI · Software &amp; Infraestrutura</span>
+              <span class="member-role"
+                >Analista de TI · Software &amp; Infraestrutura</span
+              >
               <span class="member-badge badge-ti">TI</span>
-              <div class="member-desc">Principal executor técnico do plano. Responsável direto pelo inventário definitivo, pela PSI, pela etiquetagem física dos ativos e pelo mapeamento braçal de shadow IT — incluindo o contato direto com os gestores de área.</div>
+              <div class="member-desc">
+                Principal executor técnico do plano. Responsável direto pelo
+                inventário definitivo, pela PSI, pela etiquetagem física dos
+                ativos e pelo mapeamento braçal de shadow IT — incluindo o
+                contato direto com os gestores de área.
+              </div>
               <div class="member-items-label">Itens sob sua execução</div>
               <div class="member-items">
                 <span class="member-item">#01 Inventário HW/SW</span>
@@ -3068,7 +3287,12 @@
               <div class="member-name">Reimon</div>
               <span class="member-role">Coordenador de Governança de TI</span>
               <span class="member-badge badge-ti">TI</span>
-              <div class="member-desc">Arquiteto do plano de governança. Responsável pela estruturação das trilhas críticas, pelo diagnóstico das dores em campo e pela condução das reuniões presenciais com a liderança de área para apresentar a nova TI.</div>
+              <div class="member-desc">
+                Arquiteto do plano de governança. Responsável pela estruturação
+                das trilhas críticas, pelo diagnóstico das dores em campo e pela
+                condução das reuniões presenciais com a liderança de área para
+                apresentar a nova TI.
+              </div>
               <div class="member-items-label">Participação direta</div>
               <div class="member-items">
                 <span class="member-item">#28 Reuniões c/ gestores</span>
@@ -3079,7 +3303,6 @@
               <div class="add-icon">+</div>
               <div class="add-label">Adicionar membro</div>
             </div>
-
           </div>
         </div>
 
@@ -3091,13 +3314,16 @@
             <span class="tg-count">5 pessoas · alinhamento e adesão</span>
           </div>
           <div class="team-grid">
-
             <div class="member-card">
               <div class="member-mono soft">Da</div>
               <div class="member-name">Daniel</div>
               <span class="member-role">Gestor de Área</span>
               <span class="member-badge badge-area">Área</span>
-              <div class="member-desc">Stakeholder-chave no processo de eliminação do bypass informal de chamados. O alinhamento com Daniel é condição para que o Service Desk funcione como ponto único de contato real.</div>
+              <div class="member-desc">
+                Stakeholder-chave no processo de eliminação do bypass informal
+                de chamados. O alinhamento com Daniel é condição para que o
+                Service Desk funcione como ponto único de contato real.
+              </div>
               <div class="member-items-label">Envolvimento</div>
               <div class="member-items">
                 <span class="member-item">#12 Alinhamento bypass</span>
@@ -3109,7 +3335,12 @@
               <div class="member-name">Marlon</div>
               <span class="member-role">Gestor de Área</span>
               <span class="member-badge badge-area">Área</span>
-              <div class="member-desc">Contato direto de Marcone no mapeamento braçal de shadow IT. Responsável por declarar os sistemas, dispositivos e softwares não homologados em uso na sua área antes da aplicação da política de quarentena.</div>
+              <div class="member-desc">
+                Contato direto de Marcone no mapeamento braçal de shadow IT.
+                Responsável por declarar os sistemas, dispositivos e softwares
+                não homologados em uso na sua área antes da aplicação da
+                política de quarentena.
+              </div>
               <div class="member-items-label">Envolvimento</div>
               <div class="member-items">
                 <span class="member-item">#24 Mapeamento shadow IT</span>
@@ -3121,7 +3352,12 @@
               <div class="member-name">Miguel</div>
               <span class="member-role">Gestor de Área</span>
               <span class="member-badge badge-area">Área</span>
-              <div class="member-desc">Contato direto de Marcone no mapeamento braçal de shadow IT. Responsável por declarar os sistemas, dispositivos e softwares não homologados em uso na sua área antes da aplicação da política de quarentena.</div>
+              <div class="member-desc">
+                Contato direto de Marcone no mapeamento braçal de shadow IT.
+                Responsável por declarar os sistemas, dispositivos e softwares
+                não homologados em uso na sua área antes da aplicação da
+                política de quarentena.
+              </div>
               <div class="member-items-label">Envolvimento</div>
               <div class="member-items">
                 <span class="member-item">#24 Mapeamento shadow IT</span>
@@ -3133,7 +3369,12 @@
               <div class="member-name">Manu</div>
               <span class="member-role">Gestora de Área</span>
               <span class="member-badge badge-area">Área</span>
-              <div class="member-desc">Contato direto de Marcone no mapeamento braçal de shadow IT. Responsável por declarar os sistemas, dispositivos e softwares não homologados em uso na sua área antes da aplicação da política de quarentena.</div>
+              <div class="member-desc">
+                Contato direto de Marcone no mapeamento braçal de shadow IT.
+                Responsável por declarar os sistemas, dispositivos e softwares
+                não homologados em uso na sua área antes da aplicação da
+                política de quarentena.
+              </div>
               <div class="member-items-label">Envolvimento</div>
               <div class="member-items">
                 <span class="member-item">#24 Mapeamento shadow IT</span>
@@ -3145,7 +3386,12 @@
               <div class="member-name">Jéssica</div>
               <span class="member-role">Gestora de Área</span>
               <span class="member-badge badge-area">Área</span>
-              <div class="member-desc">Contato direto de Marcone no mapeamento braçal de shadow IT. Responsável por declarar os sistemas, dispositivos e softwares não homologados em uso na sua área antes da aplicação da política de quarentena.</div>
+              <div class="member-desc">
+                Contato direto de Marcone no mapeamento braçal de shadow IT.
+                Responsável por declarar os sistemas, dispositivos e softwares
+                não homologados em uso na sua área antes da aplicação da
+                política de quarentena.
+              </div>
               <div class="member-items-label">Envolvimento</div>
               <div class="member-items">
                 <span class="member-item">#24 Mapeamento shadow IT</span>
@@ -3156,10 +3402,481 @@
               <div class="add-icon">+</div>
               <div class="add-label">Adicionar membro</div>
             </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- ===================== VIEW 6 — CHECK LIST ISO 9001 ===================== -->
+      <section class="view" id="view-checklist">
+        <div class="section-kicker">
+          Página 06 · Visão por Requisito da Auditoria
+        </div>
+        <h2 class="section-title">Check List ISO 9001</h2>
+        <p class="section-lead">
+          Os 28 itens do backlog reorganizados pelos 9 requisitos do Check List
+          e Plano de Entregas de TI — a lente que o auditor vai usar.
+        </p>
+
+        <div class="cl-banner">
+          <strong>Referência · Check List e Plano de Entregas – TI</strong>
+          Este agrupamento usa os 9 itens do check list original de preparação
+          para auditoria ISO 9001 como estrutura. Cada grupo mostra quais ações
+          do backlog cobrem aquele requisito — e quem é responsável por
+          entregá-lo.
+        </div>
+
+        <!-- ── ALTA ─────────────────────────────────────────── -->
+
+        <!-- 1. Inventário de TI -->
+        <div class="cl-group">
+          <div class="cl-head">
+            <span class="cl-pri alta">Alta</span>
+            <div class="cl-meta">
+              <div class="cl-name">Inventário de TI</div>
+              <div class="cl-entrega">
+                Inventário atualizado de equipamentos, softwares e licenças com
+                identificação, localização, usuário e status.
+              </div>
+            </div>
+            <div class="cl-right">
+              <div class="cl-prazo">Prazo original · 25/mar</div>
+              <div class="cl-count">4 ações</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="t-id">#01</span>
+            <div>
+              <div class="t-name">
+                Unificar inventário de HW/SW — Acronis (varredura)
+              </div>
+              <div class="t-owner">Marcone · Software</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#02</span>
+            <div>
+              <div class="t-name">
+                Converter inventário provisório (Drive) em código definitivo
+                (etapa 1 da #03)
+              </div>
+              <div class="t-owner">Marcone · antes de ir a Vitória</div>
+            </div>
+            <div class="t-sev"><span class="sev critica">Crítica</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#03</span>
+            <div>
+              <div class="t-name">
+                Implantar ciclo de vida + etiquetagem física (alumínio)
+              </div>
+              <div class="t-owner">Marcone</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#05</span>
+            <div>
+              <div class="t-name">
+                Regularizar licenças Windows / Office (compliance interno)
+              </div>
+              <div class="t-owner">TI · prioridade zero</div>
+            </div>
+            <div class="t-sev"><span class="sev critica">Crítica</span></div>
           </div>
         </div>
 
+        <!-- 2. Documentação do ambiente -->
+        <div class="cl-group">
+          <div class="cl-head">
+            <span class="cl-pri alta">Alta</span>
+            <div class="cl-meta">
+              <div class="cl-name">Documentação do Ambiente de TI</div>
+              <div class="cl-entrega">
+                Documentação básica da infraestrutura, acessos, backups e
+                configurações principais.
+              </div>
+            </div>
+            <div class="cl-right">
+              <div class="cl-prazo">Prazo original · 31/mar</div>
+              <div class="cl-count">4 ações</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="t-id">#04</span>
+            <div>
+              <div class="t-name">Homologar todos os sistemas ativos</div>
+              <div class="t-owner">TI</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#10</span>
+            <div>
+              <div class="t-name">
+                Desenhar fluxo de Onboarding (RH aciona TI com antecedência)
+              </div>
+              <div class="t-owner">TI · RH</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#11</span>
+            <div>
+              <div class="t-name">
+                Desenhar fluxo de Offboarding (revogação imediata + recolhimento
+                de ativos)
+              </div>
+              <div class="t-owner">TI · RH</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#14</span>
+            <div>
+              <div class="t-name">
+                Desenhar catálogo de infra padrão p/ filiais (Vitória, Vila
+                Velha)
+              </div>
+              <div class="t-owner">TI</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+        </div>
+
+        <!-- 3. Política de TI e Segurança -->
+        <div class="cl-group">
+          <div class="cl-head">
+            <span class="cl-pri alta">Alta</span>
+            <div class="cl-meta">
+              <div class="cl-name">
+                Política de TI e Segurança da Informação
+              </div>
+              <div class="cl-entrega">
+                Elaboração da Política de TI e Segurança da Informação.
+              </div>
+            </div>
+            <div class="cl-right">
+              <div class="cl-prazo">Prazo original · 05/abr</div>
+              <div class="cl-count">6 ações</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="t-id">#17</span>
+            <div>
+              <div class="t-name">
+                Escrever a Política de Segurança da Informação (PSI) + DLP
+              </div>
+              <div class="t-owner">Marcone</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#15</span>
+            <div>
+              <div class="t-name">
+                Definir acesso restrito p/ migração Comercial → Spalla via API
+                (home office)
+              </div>
+              <div class="t-owner">TI · Segurança</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#16</span>
+            <div>
+              <div class="t-name">
+                Procedimento de varredura/monitoramento de mídias em Vitória
+                (USB aberta)
+              </div>
+              <div class="t-owner">TI</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#20</span>
+            <div>
+              <div class="t-name">
+                Validar Termo de Responsabilidade de Equipamentos com o Jurídico
+              </div>
+              <div class="t-owner">TI · Jurídico</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#21</span>
+            <div>
+              <div class="t-name">
+                Procedimento p/ Wi-Fi público (usar internet do celular
+                corporativo)
+              </div>
+              <div class="t-owner">TI</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#22</span>
+            <div>
+              <div class="t-name">
+                Aplicar bloqueio DNS em Vitória (risco primeiro, exceção via
+                chamado)
+              </div>
+              <div class="t-owner">TI</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+        </div>
+
+        <!-- 4+5. Operação & Métricas (fusão: Relatório mensal + Indicadores de TI) -->
+        <div class="cl-group">
+          <div class="cl-head">
+            <span class="cl-pri alta">Alta</span>
+            <div class="cl-meta">
+              <div class="cl-name">Operação &amp; Métricas</div>
+              <div class="cl-entrega">
+                Relatório mensal de atendimentos, incidentes e recomendações ·
+                Indicadores de desempenho da área de TI.
+              </div>
+            </div>
+            <div class="cl-right">
+              <div class="cl-prazo">Prazo original · 10/abr</div>
+              <div class="cl-count">2 ações</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="t-id">#12</span>
+            <div>
+              <div class="t-name">
+                Acabar com o "bypass" — tudo passa pelo 1º nível do Service Desk
+              </div>
+              <div class="t-owner">TI · alinhar Daniel &amp; Kedymma</div>
+              <div class="t-conn">
+                <span class="conn" style="color: var(--muted)"
+                  >O registro unificado de chamados é a fonte do relatório
+                  mensal de atendimentos e incidentes.</span
+                >
+              </div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#13</span>
+            <div>
+              <div class="t-name">
+                Definir e publicar SLAs por criticidade (produção parada = P1)
+              </div>
+              <div class="t-owner">TI</div>
+              <div class="t-conn">
+                <span class="conn" style="color: var(--muted)"
+                  >SLAs são os KPIs primários: tempo de resposta e resolução por
+                  criticidade são os indicadores de desempenho da TI.</span
+                >
+              </div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+        </div>
+
+        <!-- ── MÉDIA ─────────────────────────────────────────── -->
+
+        <!-- 6. Mapeamento de riscos -->
+        <div class="cl-group">
+          <div class="cl-head">
+            <span class="cl-pri media">Média</span>
+            <div class="cl-meta">
+              <div class="cl-name">Mapeamento de Riscos de TI</div>
+              <div class="cl-entrega">
+                Identificação de riscos básicos (backup, acesso, segurança,
+                continuidade).
+              </div>
+            </div>
+            <div class="cl-right">
+              <div class="cl-prazo">Prazo original · 15/abr</div>
+              <div class="cl-count">4 ações</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="t-id">#06</span>
+            <div>
+              <div class="t-name">
+                Mapear risco do servidor novo (Matriz de Impacto) e definir quem
+                decide
+              </div>
+              <div class="t-owner">TI · Diretoria</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#07</span>
+            <div>
+              <div class="t-name">
+                Formalizar risco do servidor antigo (controladora queimada) em
+                planilha p/ Edson
+              </div>
+              <div class="t-owner">TI → Diretoria</div>
+            </div>
+            <div class="t-sev"><span class="sev critica">Crítica</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#08</span>
+            <div>
+              <div class="t-name">
+                Cotar manutenção especializada da controladora de energia
+              </div>
+              <div class="t-owner">TI · Suprimentos</div>
+            </div>
+            <div class="t-sev"><span class="sev critica">Crítica</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#09</span>
+            <div>
+              <div class="t-name">
+                Emitir Termo de Assunção de Risco (se investimento recusado)
+              </div>
+              <div class="t-owner">TI · Jurídico</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+        </div>
+
+        <!-- 7. Revisão técnica -->
+        <div class="cl-group">
+          <div class="cl-head">
+            <span class="cl-pri media">Média</span>
+            <div class="cl-meta">
+              <div class="cl-name">Revisão Técnica do Ambiente</div>
+              <div class="cl-entrega">
+                Avaliação do ambiente de TI com análise de obsolescência e
+                melhorias.
+              </div>
+            </div>
+            <div class="cl-right">
+              <div class="cl-prazo">Prazo original · 20/abr</div>
+              <div class="cl-count">3 ações</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="t-id">#18</span>
+            <div>
+              <div class="t-name">
+                Criar processo de aquisição homologada (crivo da TI antes da
+                compra)
+              </div>
+              <div class="t-owner">TI · Suprimentos</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#19</span>
+            <div>
+              <div class="t-name">
+                Definir tratamento de Shadow IT (isolamento/quarentena em rede)
+              </div>
+              <div class="t-owner">TI</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#24</span>
+            <div>
+              <div class="t-name">
+                Mapeamento "braçal" de Shadow IT (Marcone liga p/ Marlon,
+                Miguel, Manu, Jéssica)
+              </div>
+              <div class="t-owner">Marcone</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+        </div>
+
+        <!-- ── IMPORTANTE ─────────────────────────────────────── -->
+
+        <!-- 8. Treinamento de usuários -->
+        <div class="cl-group">
+          <div class="cl-head">
+            <span class="cl-pri importante">Importante</span>
+            <div class="cl-meta">
+              <div class="cl-name">Treinamento de Usuários</div>
+              <div class="cl-entrega">
+                Orientação aos usuários sobre boas práticas e segurança da
+                informação.
+              </div>
+            </div>
+            <div class="cl-right">
+              <div class="cl-prazo">Prazo original · 25/abr</div>
+              <div class="cl-count">2 ações</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="t-id">#25</span>
+            <div>
+              <div class="t-name">
+                Gravar vídeo básico de PSI p/ onboarding remoto (dia 1)
+              </div>
+              <div class="t-owner">TI</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#26</span>
+            <div>
+              <div class="t-name">
+                Treinar equipe de TI em pensamento sistêmico
+              </div>
+              <div class="t-owner">Liderança TI</div>
+            </div>
+            <div class="t-sev"><span class="sev baixa">Baixa</span></div>
+          </div>
+        </div>
+
+        <!-- 9. Evidência de conscientização -->
+        <div class="cl-group">
+          <div class="cl-head">
+            <span class="cl-pri importante">Importante</span>
+            <div class="cl-meta">
+              <div class="cl-name">Evidência de Conscientização</div>
+              <div class="cl-entrega">
+                Registro formal de comunicação ou treinamento sobre uso seguro
+                de TI.
+              </div>
+            </div>
+            <div class="cl-right">
+              <div class="cl-prazo">Prazo original · 30/abr</div>
+              <div class="cl-count">3 ações</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="t-id">#23</span>
+            <div>
+              <div class="t-name">
+                Formalizar Kedymma e Fábio como gestores do projeto/contrato
+              </div>
+              <div class="t-owner">Diretoria</div>
+            </div>
+            <div class="t-sev"><span class="sev alta">Alta</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#27</span>
+            <div>
+              <div class="t-name">
+                Distribuir fluxos/procedimentos digitalmente a todos os usuários
+              </div>
+              <div class="t-owner">TI</div>
+            </div>
+            <div class="t-sev"><span class="sev baixa">Baixa</span></div>
+          </div>
+          <div class="task">
+            <span class="t-id">#28</span>
+            <div>
+              <div class="t-name">
+                Reuniões presenciais com gestores de área p/ apresentar a nova
+                TI
+              </div>
+              <div class="t-owner">Kedymma · Fábio · Reimon</div>
+            </div>
+            <div class="t-sev"><span class="sev media">Média</span></div>
+          </div>
+        </div>
       </section>
 
       <footer>
