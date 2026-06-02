@@ -1,1021 +1,1113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projetos de Governanca de TI</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --paper: #f4efe6;
-        --paper-2: #ece5d7;
-        --paper-3: #e6ddcb;
-        --ink: #161b2e;
-        --ink-soft: #2c3450;
-        --muted: #6b6960;
-        --rule: #c8c0ae;
-        --rule-soft: #d8d0be;
-        --accent: #b8492c;
-        --green: #3f6b47;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        background: var(--paper);
-        color: var(--ink);
-        font-family: "Manrope", system-ui, sans-serif;
-        line-height: 1.5;
-        padding: 34px 20px 60px;
-      }
-      .wrap {
-        max-width: 1240px;
-        margin: 0 auto;
-      }
-      .mast {
-        border-top: 3px double var(--ink);
-        border-bottom: 1px solid var(--ink);
-        padding: 14px 0;
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-      h1 {
-        font-family: "Fraunces", serif;
-        font-weight: 500;
-        font-size: clamp(34px, 5vw, 56px);
-        margin: 24px 0 12px;
-        line-height: 0.98;
-      }
-      .lead {
-        max-width: 980px;
-        color: var(--ink-soft);
-        margin-bottom: 22px;
-      }
-      .actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-bottom: 24px;
-      }
-      .btn {
-        text-decoration: none;
-        border: 1px solid var(--ink);
-        padding: 8px 12px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--ink);
-        background: var(--paper);
-      }
-      .btn:hover {
-        background: var(--ink);
-        color: var(--paper);
-      }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos de Governança de TI — Agile Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #f4efe6;
+    --paper-2:  #ece5d7;
+    --paper-3:  #e6ddcb;
+    --ink:      #161b2e;
+    --ink-soft: #2c3450;
+    --muted:    #6b6960;
+    --rule:     #c8c0ae;
+    --rule-soft:#d8d0be;
+    --accent:   #b8492c;
+    --accent-2: #8a6a2a;
+    --green:    #3f6b47;
+    --blue:     #2a4e7a;
+    --dark-red: #8b1a1a;
 
-      .tabs {
-        display: flex;
-        flex-wrap: wrap;
-        border: 1px solid var(--ink);
-        width: fit-content;
-        margin-bottom: 20px;
-      }
-      .tab-btn {
-        border: none;
-        border-right: 1px solid var(--rule);
-        background: var(--paper);
-        color: var(--ink);
-        padding: 10px 14px;
-        cursor: pointer;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-      .tab-btn:last-child {
-        border-right: none;
-      }
-      .tab-btn.active {
-        background: var(--ink);
-        color: var(--paper);
-      }
+    --ea: #b8492c;  /* Epic A — Inventário */
+    --eb: #161b2e;  /* Epic B — Continuidade */
+    --ec: #8b1a1a;  /* Epic C — Segurança */
+    --ed: #2a4e7a;  /* Epic D — Processos */
+    --ee: #8a6a2a;  /* Epic E — Cultura */
+  }
 
-      .plan {
-        display: none;
-        border-top: 2px solid var(--ink);
-        padding-top: 16px;
-      }
-      .plan.active {
-        display: block;
-      }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 80px;
+  }
 
-      .kicker {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 6px;
-      }
-      .plan h2 {
-        font-family: "Fraunces", serif;
-        font-size: clamp(26px, 3.2vw, 40px);
-        line-height: 1;
-        margin: 0 0 8px;
-      }
-      .sub {
-        color: var(--ink-soft);
-        margin: 0 0 18px;
-      }
+  /* ── Masthead ─── */
+  .masthead {
+    border-top: 4px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 32px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px; flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-soft);
+    position: sticky; top: 0; background: var(--paper); z-index: 100;
+  }
+  .masthead .edition { color: var(--accent); font-weight: 600; }
+  .mast-back {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    text-decoration: none; border: 1px solid var(--rule); padding: 3px 10px;
+    transition: all 0.15s;
+  }
+  .mast-back:hover { background: var(--paper-2); color: var(--ink); }
 
-      .meta-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        border: 1px solid var(--rule);
-        margin-bottom: 18px;
-      }
-      .meta {
-        padding: 12px;
-        border-right: 1px solid var(--rule);
-        background: var(--paper-2);
-      }
-      .meta:last-child {
-        border-right: none;
-      }
-      .meta .m-k {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 9px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .meta .m-v {
-        font-family: "Fraunces", serif;
-        font-size: 22px;
-        line-height: 1.05;
-      }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 28px; }
 
-      .section-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
-      .card {
-        border: 1px solid var(--rule-soft);
-        background: var(--paper-2);
-        padding: 14px;
-      }
-      .card h3 {
-        margin: 0 0 8px;
-        font-family: "Fraunces", serif;
-        font-size: 24px;
-        line-height: 1;
-      }
-      .tag {
-        display: inline-block;
-        margin-bottom: 8px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 9px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--accent);
-      }
-      .card p {
-        margin: 0 0 10px;
-        color: var(--ink-soft);
-      }
+  /* ── Title ─── */
+  .title-block {
+    padding: 24px 0 20px; border-bottom: 1px solid var(--rule);
+    margin-bottom: 24px;
+    display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: end;
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(32px, 4vw, 52px); line-height: 0.95;
+    letter-spacing: -0.025em; font-variation-settings: "opsz" 144;
+  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .deck {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 15px; line-height: 1.45; color: var(--ink-soft); font-weight: 300;
+  }
+  .deck strong { font-style: normal; font-weight: 500; color: var(--ink); }
 
-      .list-title {
-        margin: 8px 0 6px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--green);
-      }
-      ul {
-        margin: 0;
-        padding-left: 18px;
-      }
-      li {
-        margin-bottom: 5px;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13px;
-      }
-      th,
-      td {
-        border: 1px solid var(--rule);
-        padding: 8px;
-        vertical-align: top;
-      }
-      th {
-        background: var(--paper-3);
-        text-align: left;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-      .wide {
-        grid-column: 1 / -1;
-      }
-      a {
-        color: var(--ink);
-      }
-      .download-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-      .download-box {
-        border: 1px solid var(--rule-soft);
-        background: var(--paper);
-        padding: 10px 12px;
-      }
-      .download-box h4 {
-        margin: 0 0 6px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
+  /* ── Stats bar ─── */
+  .stats {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border: 1px solid var(--rule); margin-bottom: 24px;
+  }
+  .stat { padding: 12px 16px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat .s-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  }
+  .stat .s-val {
+    font-family: 'Fraunces', serif; font-size: 24px; font-weight: 400; line-height: 1.05;
+  }
+  .stat .s-val.crit { color: var(--accent); }
+  .stat .s-sub { font-size: 11px; color: var(--muted); margin-top: 3px; font-style: italic; }
 
-      footer {
-        margin-top: 20px;
-        border-top: 1px solid var(--rule);
-        padding-top: 12px;
-        color: var(--muted);
-        font-size: 12px;
-      }
+  /* ── Tab nav ─── */
+  .tab-nav {
+    display: flex; border: 1px solid var(--ink);
+    width: fit-content; margin-bottom: 28px; flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 9px 18px; font-size: 12px; background: transparent; border: none;
+    border-right: 1px solid var(--rule); cursor: pointer;
+    font-family: 'Manrope', sans-serif; color: var(--ink); letter-spacing: 0.02em;
+    transition: all 0.15s; display: flex; align-items: baseline; gap: 7px;
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn:hover { background: var(--paper-2); }
+  .tab-btn.active { background: var(--ink); color: var(--paper); }
+  .tab-btn .tn { font-family: 'JetBrains Mono', monospace; font-size: 9px; opacity: 0.6; }
+  .tab-btn .badge {
+    background: var(--accent); color: var(--paper);
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    padding: 1px 5px; border-radius: 0; min-width: 16px; text-align: center;
+  }
 
-      @media (max-width: 980px) {
-        .meta-grid,
-        .section-grid,
-        .download-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="mast">
-        <span>Governanca de TI</span>
-        <span>Projetos e Entregaveis de Implantacao</span>
+  /* ── Views ─── */
+  .view { display: none; animation: fadein 0.25s ease; }
+  .view.active { display: block; }
+  @keyframes fadein { from { opacity:0; transform: translateY(5px); } to { opacity:1; transform:none; } }
+
+  /* ────────────────────────────────────────
+     BOARD (KANBAN)
+  ──────────────────────────────────────── */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink);
+    min-height: 560px;
+  }
+  .board-col {
+    border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column;
+  }
+  .board-col:last-child { border-right: none; }
+  .col-head {
+    padding: 10px 14px; border-bottom: 2px solid var(--ink);
+    background: var(--paper-3);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .col-head .col-name {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .col-head .col-count {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--paper); background: var(--muted);
+    padding: 1px 7px; min-width: 22px; text-align: center;
+  }
+  .col-head .col-count.active-count { background: var(--accent); }
+  .col-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+
+  /* Story card */
+  .sc {
+    background: var(--paper); border: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--muted);
+    padding: 10px 12px; cursor: default; transition: box-shadow 0.15s;
+  }
+  .sc:hover { box-shadow: 2px 2px 0 var(--rule); }
+  .sc.ea { border-left-color: var(--ea); }
+  .sc.eb { border-left-color: var(--eb); }
+  .sc.ec { border-left-color: var(--ec); }
+  .sc.ed { border-left-color: var(--ed); }
+  .sc.ee { border-left-color: var(--ee); }
+  .sc.done { opacity: 0.65; }
+
+  .sc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; margin-bottom: 6px; }
+  .sc-id { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.06em; }
+  .sc-pts {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    background: var(--paper-2); border: 1px solid var(--rule);
+    padding: 1px 5px; white-space: nowrap; color: var(--ink-soft); flex-shrink: 0;
+  }
+  .sc-title { font-size: 12.5px; font-weight: 500; color: var(--ink); line-height: 1.35; margin-bottom: 8px; }
+  .sc-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+  .sc-epic {
+    font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 1px 6px; border: 1px solid;
+  }
+  .sc-epic.ea { color: var(--ea); border-color: var(--ea); }
+  .sc-epic.eb { color: var(--eb); border-color: var(--eb); }
+  .sc-epic.ec { color: var(--ec); border-color: var(--ec); }
+  .sc-epic.ed { color: var(--ed); border-color: var(--ed); }
+  .sc-epic.ee { color: var(--ee); border-color: var(--ee); }
+  .sc-who { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.04em; }
+  .sc-done-mark { font-size: 11px; color: var(--green); }
+
+  .col-more {
+    padding: 8px 12px; font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); border-top: 1px dashed var(--rule-soft);
+    text-align: center; margin-top: auto;
+  }
+
+  /* ────────────────────────────────────────
+     SPRINT TAB
+  ──────────────────────────────────────── */
+  .sprint-header {
+    border-top: 2px solid var(--ink); padding: 16px 0 14px;
+    display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;
+    margin-bottom: 22px;
+  }
+  .sprint-name { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; line-height: 1; }
+  .sprint-dates { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 5px; }
+  .sprint-goal {
+    border-left: 3px solid var(--accent); background: var(--paper-2);
+    padding: 10px 16px; font-size: 13px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .sprint-goal strong { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; }
+
+  .sprint-body { display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; margin-top: 20px; }
+
+  /* Progress */
+  .sprint-progress-wrap { }
+  .prog-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .prog-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; }
+  .prog-nums { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .prog-bar-bg { height: 8px; background: var(--paper-3); border: 1px solid var(--rule); margin-bottom: 16px; }
+  .prog-bar-fill { height: 100%; background: var(--accent); transition: width 0.4s; }
+
+  /* Sprint stories table */
+  .sprint-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .sprint-table th {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); padding: 7px 10px;
+    border-bottom: 2px solid var(--ink); text-align: left; font-weight: 400;
+    background: var(--paper-2);
+  }
+  .sprint-table td { padding: 9px 10px; border-bottom: 1px solid var(--rule-soft); vertical-align: middle; }
+  .sprint-table tr:hover td { background: var(--paper-2); }
+  .sprint-table .st-id { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+  .sprint-table .st-pts { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; text-align: right; }
+
+  .status-badge {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 7px; border: 1px solid; white-space: nowrap;
+  }
+  .st-done   { color: var(--green);  border-color: var(--green);  background: rgba(63,107,71,0.08); }
+  .st-prog   { color: var(--accent); border-color: var(--accent); background: rgba(184,73,44,0.08); }
+  .st-rev    { color: var(--accent-2); border-color: var(--accent-2); }
+  .st-todo   { color: var(--muted);  border-color: var(--rule); }
+
+  /* Sprint timeline */
+  .sprint-timeline { }
+  .tl-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .tl-item { display: flex; align-items: stretch; gap: 12px; margin-bottom: 10px; }
+  .tl-bar { width: 5px; flex-shrink: 0; background: var(--rule); }
+  .tl-bar.current { background: var(--accent); }
+  .tl-bar.done    { background: var(--green); }
+  .tl-bar.audit   { background: var(--dark-red); }
+  .tl-content { padding: 6px 0; }
+  .tl-label { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; line-height: 1; margin-bottom: 2px; }
+  .tl-date  { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--muted); letter-spacing: 0.06em; }
+  .tl-sub   { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 3px; }
+
+  /* DoD */
+  .dod-box { border: 1px solid var(--rule); background: var(--paper-2); padding: 16px 18px; margin-top: 20px; }
+  .dod-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+  .dod-item { display: flex; gap: 10px; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 7px; align-items: flex-start; }
+  .dod-item:last-child { margin-bottom: 0; }
+  .dod-check { color: var(--green); flex-shrink: 0; margin-top: 1px; }
+
+  /* ────────────────────────────────────────
+     BACKLOG TAB
+  ──────────────────────────────────────── */
+  .backlog-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .backlog-table th {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); padding: 8px 12px;
+    border-bottom: 2px solid var(--ink); text-align: left; font-weight: 400;
+  }
+  .backlog-table td { padding: 9px 12px; border-bottom: 1px solid var(--rule-soft); vertical-align: middle; }
+  .backlog-table tr:hover td { background: var(--paper-2); }
+  .bl-id { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); white-space: nowrap; }
+  .bl-pts { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; text-align: right; }
+  .bl-sprint { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); white-space: nowrap; }
+  .bl-owner { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); white-space: nowrap; }
+  .epic-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; flex-shrink: 0; }
+  .pri-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 1px 6px; border: 1px solid; white-space: nowrap;
+  }
+  .pri-critica { color: var(--accent); border-color: var(--accent); background: rgba(184,73,44,0.07); font-weight: 600; }
+  .pri-alta    { color: var(--accent-2); border-color: var(--accent-2); }
+  .pri-media   { color: var(--muted); border-color: var(--rule); }
+  .pri-baixa   { color: var(--rule); border-color: var(--rule-soft); }
+
+  .backlog-total td {
+    border-top: 2px solid var(--ink); border-bottom: none;
+    font-weight: 600; background: var(--paper-2);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ────────────────────────────────────────
+     ÉPICOS TAB
+  ──────────────────────────────────────── */
+  .epic-section { border-top: 2px solid var(--ink); margin-bottom: 36px; }
+  .epic-head {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: start;
+    padding: 14px 0;
+  }
+  .epic-stripe { width: 6px; align-self: stretch; flex-shrink: 0; }
+  .epic-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .epic-desc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
+  .epic-meta { text-align: right; flex-shrink: 0; }
+  .epic-pts { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 400; line-height: 1; }
+  .epic-pts-sub { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px; }
+
+  .epic-prog-bg { height: 4px; background: var(--paper-3); border: 1px solid var(--rule); margin: 12px 0 20px; }
+  .epic-prog-fill { height: 100%; transition: width 0.3s; }
+
+  .epic-body { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-bottom: 8px; }
+  .epic-card { border: 1px solid var(--rule-soft); background: var(--paper-2); padding: 14px 16px; }
+  .epic-card-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .epic-card ul { padding-left: 16px; }
+  .epic-card li { margin-bottom: 5px; font-size: 12.5px; color: var(--ink-soft); }
+  .epic-card a { color: var(--ink-soft); text-decoration: none; }
+  .epic-card a:hover { color: var(--accent); text-decoration: underline; }
+  .epic-stories-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .epic-story-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    padding: 2px 7px; border: 1px solid var(--rule); color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ────────────────────────────────────────
+     MÉTRICAS TAB
+  ──────────────────────────────────────── */
+  .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .metric-block { border-top: 2px solid var(--ink); padding-top: 14px; }
+  .metric-block-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; margin-bottom: 14px; }
+
+  .sprint-sum-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .sprint-sum-table th {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted); padding: 7px 10px;
+    border-bottom: 1px solid var(--ink); text-align: left; font-weight: 400;
+  }
+  .sprint-sum-table td { padding: 9px 10px; border-bottom: 1px solid var(--rule-soft); }
+  .sprint-sum-table .current-row td { background: rgba(184,73,44,0.05); font-weight: 600; }
+
+  .epic-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .epic-bar-name { font-size: 12px; color: var(--ink-soft); min-width: 80px; }
+  .epic-bar-bg { flex: 1; height: 6px; background: var(--paper-3); border: 1px solid var(--rule); }
+  .epic-bar-fill { height: 100%; }
+  .epic-bar-pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); min-width: 36px; text-align: right; }
+
+  .health-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--rule-soft); font-size: 13px; color: var(--ink-soft); }
+  .health-row:last-child { border-bottom: none; }
+  .health-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .health-val.warn { color: var(--accent); }
+
+  /* ── Footer ─── */
+  footer {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--ink);
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 20px; flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  }
+  footer .disc {
+    font-family: 'Fraunces', serif; font-style: italic; text-transform: none;
+    letter-spacing: 0; font-size: 12px; color: var(--ink-soft); line-height: 1.5;
+  }
+
+  /* ── Responsive ─── */
+  @media (max-width: 1100px) { .board { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 800px) {
+    .wrap { padding: 0 16px; }
+    .masthead { padding: 12px 16px; }
+    .title-block { grid-template-columns: 1fr; gap: 14px; }
+    .stats { grid-template-columns: repeat(3, 1fr); }
+    .board { grid-template-columns: 1fr; }
+    .sprint-body { grid-template-columns: 1fr; }
+    .epic-body { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr; }
+    .epic-head { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <span>Governança de TI · Indústria de Cosméticos</span>
+  <span class="edition">Agile Board · Sprint 1 · 2026</span>
+  <span>Auditoria ISO 9001 em <strong id="days-count">—</strong> dias</span>
+  <a href="plano_governanca_ti.html" class="mast-back">← Plano de Governança</a>
+</div>
+
+<div class="wrap">
+
+  <div class="title-block">
+    <div>
+      <h1>Projetos de <em>Governança de TI</em></h1>
+    </div>
+    <div class="deck">
+      Framework <strong>Agile + ITIL 4</strong>. 28 user stories em 3 sprints — deadline fixo: auditoria ISO 9001 de 13/07/2026.
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="s-label">Sprint Atual</div>
+      <div class="s-val">Sprint 1</div>
+      <div class="s-sub">Jun 1–14 · Blindagem</div>
+    </div>
+    <div class="stat">
+      <div class="s-label">Total Stories</div>
+      <div class="s-val">28</div>
+      <div class="s-sub">em 5 épicos</div>
+    </div>
+    <div class="stat">
+      <div class="s-label">Concluídas</div>
+      <div class="s-val crit">2</div>
+      <div class="s-sub">7 pts entregues</div>
+    </div>
+    <div class="stat">
+      <div class="s-label">Total Pontos</div>
+      <div class="s-val">128</div>
+      <div class="s-sub">story points</div>
+    </div>
+    <div class="stat">
+      <div class="s-label">Dias p/ Auditoria</div>
+      <div class="s-val crit" id="stat-days">42</div>
+      <div class="s-sub">13/07/2026</div>
+    </div>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="board"><span class="tn">01</span> Board</button>
+    <button class="tab-btn" data-tab="sprint"><span class="tn">02</span> Sprint Atual</button>
+    <button class="tab-btn" data-tab="backlog"><span class="tn">03</span> Backlog <span class="badge">28</span></button>
+    <button class="tab-btn" data-tab="epicos"><span class="tn">04</span> Épicos</button>
+    <button class="tab-btn" data-tab="metricas"><span class="tn">05</span> Métricas</button>
+  </nav>
+
+  <!-- ═══════════ BOARD ═══════════ -->
+  <div class="view active" id="view-board">
+
+    <div class="board">
+
+      <!-- BACKLOG -->
+      <div class="board-col">
+        <div class="col-head">
+          <span class="col-name">Backlog</span>
+          <span class="col-count">21</span>
+        </div>
+        <div class="col-body">
+          <div class="sc ec">
+            <div class="sc-top"><span class="sc-id">US-017</span><span class="sc-pts">13 pts</span></div>
+            <div class="sc-title">Escrever PSI + DLP (Política de Segurança da Informação)</div>
+            <div class="sc-foot"><span class="sc-epic ec">Segurança</span><span class="sc-who">Marcone · Sprint 2</span></div>
+          </div>
+          <div class="sc ed">
+            <div class="sc-top"><span class="sc-id">US-012</span><span class="sc-pts">8 pts</span></div>
+            <div class="sc-title">Acabar com o bypass — tudo pelo 1º nível do Service Desk</div>
+            <div class="sc-foot"><span class="sc-epic ed">Processos</span><span class="sc-who">TI · Daniel · Sprint 3</span></div>
+          </div>
+          <div class="sc ee">
+            <div class="sc-top"><span class="sc-id">US-024</span><span class="sc-pts">8 pts</span></div>
+            <div class="sc-title">Mapeamento braçal de Shadow IT com gestores de área</div>
+            <div class="sc-foot"><span class="sc-epic ee">Cultura</span><span class="sc-who">Marcone · Sprint 3</span></div>
+          </div>
+          <div class="sc ed">
+            <div class="sc-top"><span class="sc-id">US-011</span><span class="sc-pts">5 pts</span></div>
+            <div class="sc-title">Fluxo de Offboarding — revogação imediata + recolhimento de ativos</div>
+            <div class="sc-foot"><span class="sc-epic ed">Processos</span><span class="sc-who">TI · RH · Sprint 2</span></div>
+          </div>
+          <div class="sc ed">
+            <div class="sc-top"><span class="sc-id">US-010</span><span class="sc-pts">5 pts</span></div>
+            <div class="sc-title">Fluxo de Onboarding — RH aciona TI com antecedência</div>
+            <div class="sc-foot"><span class="sc-epic ed">Processos</span><span class="sc-who">TI · RH · Sprint 2</span></div>
+          </div>
+          <div class="sc ee">
+            <div class="sc-top"><span class="sc-id">US-028</span><span class="sc-pts">5 pts</span></div>
+            <div class="sc-title">Reuniões presenciais com gestores de área</div>
+            <div class="sc-foot"><span class="sc-epic ee">Cultura</span><span class="sc-who">Kedymma · Fábio · Reimon</span></div>
+          </div>
+        </div>
+        <div class="col-more">+ 15 stories no Product Backlog completo</div>
       </div>
 
-      <h1>Portal de Projetos de Governanca</h1>
-      <p class="lead">
-        Esta pagina foi estruturada por abas para detalhar os planos ja
-        aprovados. Cada aba traz o conteudo operacional do plano, a estrutura
-        metodologica (ITIL + DMAIC + 5W2H), criterios de aceite, riscos,
-        indicadores e links diretos para os entregaveis de implantacao.
-      </p>
-
-      <div class="actions">
-        <a class="btn" href="plano_governanca_ti.html"
-          >Voltar para Plano de Governanca</a
-        >
+      <!-- EM PROGRESSO -->
+      <div class="board-col">
+        <div class="col-head">
+          <span class="col-name">Em Progresso</span>
+          <span class="col-count active-count">4</span>
+        </div>
+        <div class="col-body">
+          <div class="sc ea">
+            <div class="sc-top"><span class="sc-id">US-001</span><span class="sc-pts">5 pts</span></div>
+            <div class="sc-title">Unificar inventário de HW/SW via Acronis + Spalla</div>
+            <div class="sc-foot"><span class="sc-epic ea">Inventário</span><span class="sc-who">Marcone</span></div>
+          </div>
+          <div class="sc ea">
+            <div class="sc-top"><span class="sc-id">US-002</span><span class="sc-pts">8 pts</span></div>
+            <div class="sc-title">Converter inventário provisório em código definitivo</div>
+            <div class="sc-foot"><span class="sc-epic ea">Inventário</span><span class="sc-who">Marcone</span></div>
+          </div>
+          <div class="sc ea">
+            <div class="sc-top"><span class="sc-id">US-005</span><span class="sc-pts">8 pts</span></div>
+            <div class="sc-title">Regularizar licenças Windows / Office — compliance interno</div>
+            <div class="sc-foot"><span class="sc-epic ea">Inventário</span><span class="sc-who">TI · prioridade zero</span></div>
+          </div>
+          <div class="sc eb">
+            <div class="sc-top"><span class="sc-id">US-006</span><span class="sc-pts">3 pts</span></div>
+            <div class="sc-title">Mapear risco servidor novo — Matriz de Impacto</div>
+            <div class="sc-foot"><span class="sc-epic eb">Continuidade</span><span class="sc-who">TI · Diretoria</span></div>
+          </div>
+        </div>
       </div>
 
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="p01">
-          Plano #01 - Inventario com Acronis
-        </button>
-        <button class="tab-btn" data-tab="p03">
-          Plano #03 - Ciclo de Vida e Etiquetagem
-        </button>
+      <!-- EM REVISÃO -->
+      <div class="board-col">
+        <div class="col-head">
+          <span class="col-name">Em Revisão</span>
+          <span class="col-count">1</span>
+        </div>
+        <div class="col-body">
+          <div class="sc eb">
+            <div class="sc-top"><span class="sc-id">US-009</span><span class="sc-pts">3 pts</span></div>
+            <div class="sc-title">Emitir Termo de Assunção de Risco (investimento recusado)</div>
+            <div class="sc-foot"><span class="sc-epic eb">Continuidade</span><span class="sc-who">TI · Jurídico</span></div>
+          </div>
+        </div>
       </div>
 
-      <section class="plan active" id="plan-p01">
-        <div class="kicker">Plano de Acao #01</div>
-        <h2>Inventario de HW/SW com Acronis</h2>
-        <p class="sub">
-          Estrutura completa para inventario corporativo, onboarding de ativos,
-          homologacao tecnica com Compras/RH e tratamento de software nao
-          homologado com responsabilizacao formal.
-        </p>
-
-        <div class="meta-grid">
-          <div class="meta">
-            <div class="m-k">Codigo</div>
-            <div class="m-v">#01</div>
+      <!-- CONCLUÍDO -->
+      <div class="board-col">
+        <div class="col-head">
+          <span class="col-name">Concluído</span>
+          <span class="col-count" style="background:var(--green)">2</span>
+        </div>
+        <div class="col-body">
+          <div class="sc eb done">
+            <div class="sc-top"><span class="sc-id">US-007</span><span class="sc-pts">5 pts</span></div>
+            <div class="sc-title">Formalizar risco servidor antigo em planilha p/ Edson</div>
+            <div class="sc-foot"><span class="sc-epic eb">Continuidade</span><span class="sc-done-mark">✓ Concluído</span></div>
           </div>
-          <div class="meta">
-            <div class="m-k">Frente</div>
-            <div class="m-v">Ativos & Conformidade</div>
-          </div>
-          <div class="meta">
-            <div class="m-k">Prioridade</div>
-            <div class="m-v">Alta</div>
-          </div>
-          <div class="meta">
-            <div class="m-k">Responsavel</div>
-            <div class="m-v">Marcone</div>
+          <div class="sc eb done">
+            <div class="sc-top"><span class="sc-id">US-008</span><span class="sc-pts">2 pts</span></div>
+            <div class="sc-title">Cotar manutenção especializada da controladora de energia</div>
+            <div class="sc-foot"><span class="sc-epic eb">Continuidade</span><span class="sc-done-mark">✓ Concluído</span></div>
           </div>
         </div>
+      </div>
 
-        <div class="section-grid">
-          <article class="card">
-            <span class="tag">1) Objetivo</span>
-            <h3>Escopo estrategico do plano</h3>
-            <p>
-              Implantar processo corporativo de inventario com Acronis,
-              garantindo descoberta, cadastro, atualizacao continua e
-              rastreabilidade auditavel em todas as maquinas elegiveis.
-            </p>
-            <p class="list-title">Areas envolvidas</p>
-            <ul>
-              <li>TI (owner tecnico do processo)</li>
-              <li>Compras (execucao de aquisicoes conforme parecer TI)</li>
-              <li>RH (vinculo de setor/usuario)</li>
-              <li>Gestores de area e Financeiro</li>
-            </ul>
-          </article>
+    </div>
+  </div><!-- /board -->
 
-          <article class="card">
-            <span class="tag">2) ITIL aplicado</span>
-            <h3>Praticas e governanca</h3>
-            <ul>
-              <li>ITAM para ciclo de vida e custo do ativo</li>
-              <li>SACM para consistencia fisico x logico</li>
-              <li>Service Request para novas aquisicoes</li>
-              <li>Supplier Management para homologacao de fornecedores</li>
-              <li>Information Security para baseline de endpoint</li>
-            </ul>
-          </article>
+  <!-- ═══════════ SPRINT ═══════════ -->
+  <div class="view" id="view-sprint">
 
-          <article class="card">
-            <span class="tag">3) Escopo</span>
-            <h3>Inclui e nao inclui</h3>
-            <p class="list-title">Inclui</p>
-            <ul>
-              <li>Instalacao do agente Acronis em toda base elegivel</li>
-              <li>Descoberta e consolidacao de inventario HW/SW</li>
-              <li>POP de novas maquinas</li>
-              <li>POP de homologacao de compras</li>
-              <li>Integracao operacional RH + Compras + TI</li>
-            </ul>
-            <p class="list-title">Nao inclui</p>
-            <ul>
-              <li>Regularizacao contratual de licencas (#05)</li>
-              <li>Etiquetagem fisica completa e ciclo de vida (#03)</li>
-              <li>Tratamento integral de Shadow IT (#19 e #24)</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">4) DMAIC</span>
-            <h3>Execucao por melhoria continua</h3>
-            <ul>
-              <li>
-                <strong>D - Define:</strong> inventario incompleto e compras sem
-                gate tecnico.
-              </li>
-              <li>
-                <strong>M - Measure:</strong> baseline de cobertura, falhas e
-                tempo de onboarding.
-              </li>
-              <li>
-                <strong>A - Analyze:</strong> causas-raiz operacionais, tecnicas
-                e de processo.
-              </li>
-              <li>
-                <strong>I - Improve:</strong> ondas de deploy, POPs e governanca
-                interareas.
-              </li>
-              <li>
-                <strong>C - Control:</strong> auditoria mensal, painel de
-                indicadores e bloqueio de bypass.
-              </li>
-            </ul>
-          </article>
-
-          <article class="card wide">
-            <span class="tag">5) 5W2H</span>
-            <h3>Matriz de execucao do Plano #01</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Elemento</th>
-                  <th>Definicao do plano</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>What</td>
-                  <td>
-                    Implantar inventario corporativo de HW/SW com Acronis e
-                    fluxo formal RH + Compras + TI.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Why</td>
-                  <td>
-                    Garantir governanca de ativos e conformidade de auditoria.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Where</td>
-                  <td>Todas as unidades e setores com ativos elegiveis.</td>
-                </tr>
-                <tr>
-                  <td>When</td>
-                  <td>Inicio imediato em ondas semanais.</td>
-                </tr>
-                <tr>
-                  <td>Who</td>
-                  <td>TI, Compras, RH e Gestores locais.</td>
-                </tr>
-                <tr>
-                  <td>How</td>
-                  <td>Deploy de agente + POPs + controle por KPI.</td>
-                </tr>
-                <tr>
-                  <td>How much</td>
-                  <td>
-                    Licenciamento Acronis + horas tecnicas e operacionais.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
-
-          <article class="card">
-            <span class="tag">6) Fluxos</span>
-            <h3>Fluxos operacionais do plano</h3>
-            <ul>
-              <li>Fluxo de implantacao do Acronis por ondas</li>
-              <li>Fluxo de novas maquinas (RH -> Compras -> TI)</li>
-              <li>Fluxo de homologacao de compras com gate tecnico</li>
-            </ul>
-            <p>
-              Para detalhes visuais, utilize o plano markdown completo e os POPs
-              de implantacao vinculados abaixo.
-            </p>
-          </article>
-
-          <article class="card">
-            <span class="tag">7) Passos tecnicos</span>
-            <h3>Instalacao do agente em todas as maquinas</h3>
-            <ul>
-              <li>Validar prerequisitos, conectividade e credenciais</li>
-              <li>
-                Executar rollout por ondas (piloto -> operacao -> filiais)
-              </li>
-              <li>Confirmar status healthy e check-in no console</li>
-              <li>Registrar evidencias de sucesso/falha por ativo</li>
-            </ul>
-            <p class="list-title">Criterio de aceite</p>
-            <ul>
-              <li>Check-in em ate 30 min apos instalacao</li>
-              <li>
-                Dados minimos completos (hostname, serial, unidade, setor,
-                owner)
-              </li>
-              <li>Sem alertas criticos de comunicacao</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">8) KPIs</span>
-            <h3>Indicadores de controle</h3>
-            <ul>
-              <li>Cobertura do agente Acronis (%)</li>
-              <li>Taxa de sucesso em primeira tentativa (%)</li>
-              <li>Tempo medio de onboarding de maquina</li>
-              <li>% de compras com aprovacao tecnica previa</li>
-              <li>% de ativos com owner/setor preenchidos</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">9) Riscos e mitigacoes</span>
-            <h3>Principais riscos do Plano #01</h3>
-            <ul>
-              <li>Maquinas offline durante deploy -> janela de repescagem</li>
-              <li>Compra sem gate TI -> bloqueio processual em Compras</li>
-              <li>
-                Dados incompletos RH/setor -> campo obrigatorio no handoff
-              </li>
-              <li>Fornecedor fora de padrao -> lista homologada obrigatoria</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">10) Criterio de conclusao</span>
-            <h3>Quando a acao #01 encerra</h3>
-            <ul>
-              <li>100% da base elegivel com cobertura Acronis</li>
-              <li>100% das novas aquisicoes com aprovacao tecnica TI</li>
-              <li>POPs publicados e em uso operacional</li>
-              <li>Completude minima de 98% nos campos obrigatorios</li>
-            </ul>
-          </article>
-
-          <article class="card wide">
-            <span class="tag">11) Entregaveis e downloads</span>
-            <h3>Arquivos de implantacao do Plano #01</h3>
-            <div class="download-grid">
-              <div class="download-box">
-                <h4>Plano e indices</h4>
-                <ul>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/plano_acao_01_inventario_com_acronis.md"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Plano #01 (markdown)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/00_INDICE_Entregaveis.md"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Indice de entregaveis (md)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/00_INDICE_Entregaveis_DOCX.md"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Indice de entregaveis (docx)</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="download-box">
-                <h4>POPs e runbook (.docx)</h4>
-                <ul>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RUN-GTI-01_Instalacao_Agente_Acronis.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >RUN - Instalacao do agente</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Novas_Maquinas_RH_Compras_TI.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >POP - Novas maquinas</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Homologacao_Compras_e_Fornecedores.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >POP - Homologacao de compras</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Software_Nao_Homologado.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >POP - Software nao homologado</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="download-box">
-                <h4>Modelos e formularios (.docx)</h4>
-                <ul>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-01_Notificacao_Software_Nao_Homologado.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Modelo - Notificacao</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-02_Termo_Responsabilidade_Software_Nao_Homologado.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Modelo - Termo de responsabilidade</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-04_Controle_Software_Nao_Homologado.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Formulario - Controle software nao homologado</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-06_Painel_Executivo_Indicadores.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Formulario - Painel executivo</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="download-box">
-                <h4>Apoio de implantacao</h4>
-                <ul>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/PLN-GTI-01_Plano_de_Implantacao_por_Ondas.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Plano de implantacao por ondas</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RACI-GTI-01_Matriz_RACI.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Matriz RACI</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-02_Relatorio_de_Cobertura_Acronis.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Relatorio de cobertura</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-03_Falhas_de_Instalacao_e_Tratativas.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Falhas e tratativas</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="plan" id="plan-p03">
-        <div class="kicker">Plano de Acao #03</div>
-        <h2>Implantar ciclo de vida + etiquetagem fisica</h2>
-        <p class="sub">
-          Plano detalhado para rastreabilidade patrimonial, etiquetagem de
-          ativos, auditoria de conformidade e consolidacao da governanca fisico
-          x inventario logico.
-        </p>
-
-        <div class="meta-grid">
-          <div class="meta">
-            <div class="m-k">Codigo</div>
-            <div class="m-v">#03</div>
-          </div>
-          <div class="meta">
-            <div class="m-k">Dependencia</div>
-            <div class="m-v">#02 concluida</div>
-          </div>
-          <div class="meta">
-            <div class="m-k">Data-alvo</div>
-            <div class="m-v">13/07/2026</div>
-          </div>
-          <div class="meta">
-            <div class="m-k">Aprovacao</div>
-            <div class="m-v">Kedymma / Fabio</div>
-          </div>
-        </div>
-
-        <div class="section-grid">
-          <article class="card">
-            <span class="tag">1) Objetivo</span>
-            <h3>Rastreabilidade total do ativo</h3>
-            <p>
-              Garantir 100% dos ativos elegiveis com etiqueta fisica permanente
-              e ciclo de vida atualizado no inventario: aquisicao, uso,
-              movimentacao, manutencao e descarte.
-            </p>
-          </article>
-
-          <article class="card">
-            <span class="tag">2) ITIL aplicado</span>
-            <h3>Base metodologica</h3>
-            <ul>
-              <li>ITAM para ciclo de vida completo</li>
-              <li>SACM para integridade fisico x logico</li>
-              <li>Change Enablement para atualizacoes obrigatorias</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">3) Escopo</span>
-            <h3>Implementacao e limites</h3>
-            <p class="list-title">Inclui</p>
-            <ul>
-              <li>Status oficiais: Em uso, Em manutencao, Reserva, Descarte</li>
-              <li>Padrao de etiqueta de aluminio com codigo unico</li>
-              <li>Mutirao por ondas: Matriz -> Vitoria -> Vila Velha</li>
-              <li>Auditoria por amostragem e acao corretiva em 5 dias uteis</li>
-            </ul>
-            <p class="list-title">Nao inclui</p>
-            <ul>
-              <li>Discovery automatico (fora do horizonte imediato)</li>
-              <li>Regularizacao de licencas (#05)</li>
-              <li>Tratamento completo de Shadow IT (#19 e #24)</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">4) DMAIC</span>
-            <h3>Ciclo de controle</h3>
-            <ul>
-              <li>
-                <strong>D:</strong> ativos sem identificacao fisica padrao.
-              </li>
-              <li>
-                <strong>M:</strong> baseline de ativos sem etiqueta e
-                divergencias.
-              </li>
-              <li>
-                <strong>A:</strong> causas em movimentacao sem registro formal.
-              </li>
-              <li>
-                <strong>I:</strong> padrao de etiqueta + POP + mutirao por
-                unidade.
-              </li>
-              <li>
-                <strong>C:</strong> auditoria mensal, indicadores e revisao
-                trimestral.
-              </li>
-            </ul>
-          </article>
-
-          <article class="card wide">
-            <span class="tag">5) 5W2H</span>
-            <h3>Matriz do Plano #03</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Elemento</th>
-                  <th>Definicao</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>What</td>
-                  <td>Implantar ciclo de vida com etiquetagem padronizada.</td>
-                </tr>
-                <tr>
-                  <td>Why</td>
-                  <td>Garantir conformidade e evidencia auditavel.</td>
-                </tr>
-                <tr>
-                  <td>Where</td>
-                  <td>Todas as unidades e filiais com ativos de TI.</td>
-                </tr>
-                <tr>
-                  <td>When</td>
-                  <td>Inicio imediato com estabilizacao antes da auditoria.</td>
-                </tr>
-                <tr>
-                  <td>Who</td>
-                  <td>Marcone, equipe TI, gestores locais e diretoria.</td>
-                </tr>
-                <tr>
-                  <td>How</td>
-                  <td>
-                    POP + padrao de etiqueta + conciliacao fisico/logico +
-                    controle mensal.
-                  </td>
-                </tr>
-                <tr>
-                  <td>How much</td>
-                  <td>Etiquetas de aluminio, insumos e horas de execucao.</td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
-
-          <article class="card">
-            <span class="tag">6) Fluxos do plano</span>
-            <h3>Fluxos previstos</h3>
-            <ul>
-              <li>Fluxo operacional de etiquetagem e reconciliacao</li>
-              <li>Fluxo de implantacao por ondas</li>
-              <li>Fluxo de criacao e aprovacao documental</li>
-              <li>Fluxo de comunicacao e adocao setorial</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">7) KPIs e criterios</span>
-            <h3>Controle de conformidade</h3>
-            <ul>
-              <li>Cobertura de etiquetagem (%)</li>
-              <li>Acuracia do inventario (%)</li>
-              <li>Tempo de atualizacao de movimentacao (horas)</li>
-              <li>Taxa de reincidencia de divergencia por unidade</li>
-            </ul>
-            <p class="list-title">Conclusao da acao #03</p>
-            <ul>
-              <li>100% dos ativos elegiveis etiquetados</li>
-              <li>Acuracia minima de 98% na amostragem</li>
-              <li>Procedimento publicado, em uso e com evidencia mensal</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">8) Riscos e mitigacoes</span>
-            <h3>Riscos principais</h3>
-            <ul>
-              <li>
-                Etiqueta danificada/removida -> material resistente e inspeção
-              </li>
-              <li>Movimentacao sem atualizacao -> checklist obrigatorio</li>
-              <li>
-                Baixa adesao setorial -> comunicacao formal + validação de
-                gestor
-              </li>
-            </ul>
-          </article>
-
-          <article class="card wide">
-            <span class="tag">9) Entregaveis e downloads</span>
-            <h3>Arquivos de implantacao do Plano #03</h3>
-            <div class="download-grid">
-              <div class="download-box">
-                <h4>Plano e indice</h4>
-                <ul>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/plano_acao_03_ciclo_de_vida_etiquetagem.md"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Plano #03 (markdown)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/00_INDICE_Entregaveis.md"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Indice de entregaveis</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="download-box">
-                <h4>Documentos centrais (.docx)</h4>
-                <ul>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/POP-GTI-03_Ciclo_de_Vida_de_Ativos.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >POP do ciclo de vida</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/NRM-GTI-03_Padrao_de_Etiquetagem.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Padrao de etiquetagem</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/IT-GTI-03_Instrucao_Etiquetagem_Fisica.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Instrucao de etiquetagem</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/PLN-GTI-03_Plano_de_Implantacao_por_Ondas.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Plano de ondas</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="download-box">
-                <h4>Governanca e controle</h4>
-                <ul>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/CRN-GTI-03_Cronograma_Executivo.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Cronograma executivo</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/RACI-GTI-03_Matriz_RACI.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Matriz RACI</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/COM-GTI-03_Kit_de_Comunicacao.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Kit de comunicacao</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="download-box">
-                <h4>Formularios de campo</h4>
-                <ul>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-01_Checklist_Movimentacao.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Checklist de movimentacao</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-02_Conciliacao_Fisico_x_Inventario.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Conciliacao fisico x inventario</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-03_Nao_Conformidades_Acoes_Corretivas.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Nao conformidades e acoes corretivas</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-13_Painel_de_Indicadores.docx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Painel de indicadores</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <footer>
-        Dica de implantacao: comece pelo indice de entregaveis de cada plano,
-        siga os POPs em ordem e use os formularios de evidencia para auditoria.
-      </footer>
+    <div class="sprint-header">
+      <div>
+        <div class="sprint-name">Sprint 1 — Blindagem Imediata</div>
+        <div class="sprint-dates">01/06/2026 → 14/06/2026 · 14 dias · Capacidade: 31 pts</div>
+      </div>
     </div>
 
-    <script>
-      const buttons = document.querySelectorAll(".tab-btn");
-      const plans = {
-        p01: document.getElementById("plan-p01"),
-        p03: document.getElementById("plan-p03"),
-      };
+    <div class="sprint-goal">
+      <strong>Sprint Goal</strong>
+      Blindar a operação e a TI: formalizar todos os riscos de continuidade para a diretoria, regularizar as licenças e fechar o inventário em código definitivo — sem esses três pilares, as fases seguintes não têm base.
+    </div>
 
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          buttons.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
+    <div class="sprint-body">
 
-          Object.values(plans).forEach((panel) =>
-            panel.classList.remove("active"),
-          );
-          const key = btn.getAttribute("data-tab");
-          plans[key].classList.add("active");
-        });
-      });
-    </script>
-  </body>
+      <div>
+        <div class="prog-head">
+          <span class="prog-title">Progresso do Sprint</span>
+          <span class="prog-nums">7 / 31 pts concluídos</span>
+        </div>
+        <div class="prog-bar-bg"><div class="prog-bar-fill" style="width:23%"></div></div>
+
+        <table class="sprint-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User Story</th>
+              <th style="text-align:right">Pts</th>
+              <th>Responsável</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="st-id">US-001</td>
+              <td>Unificar inventário HW/SW — Acronis + Spalla</td>
+              <td class="st-pts">5</td>
+              <td class="bl-owner">Marcone</td>
+              <td><span class="status-badge st-prog">Em Progresso</span></td>
+            </tr>
+            <tr>
+              <td class="st-id">US-002</td>
+              <td>Converter inventário provisório em código definitivo</td>
+              <td class="st-pts">8</td>
+              <td class="bl-owner">Marcone</td>
+              <td><span class="status-badge st-prog">Em Progresso</span></td>
+            </tr>
+            <tr>
+              <td class="st-id">US-005</td>
+              <td>Regularizar licenças Windows / Office</td>
+              <td class="st-pts">8</td>
+              <td class="bl-owner">TI</td>
+              <td><span class="status-badge st-prog">Em Progresso</span></td>
+            </tr>
+            <tr>
+              <td class="st-id">US-006</td>
+              <td>Matriz de Impacto do servidor novo</td>
+              <td class="st-pts">3</td>
+              <td class="bl-owner">TI · Diretoria</td>
+              <td><span class="status-badge st-prog">Em Progresso</span></td>
+            </tr>
+            <tr>
+              <td class="st-id">US-007</td>
+              <td>Formalizar risco servidor antigo p/ Edson</td>
+              <td class="st-pts">5</td>
+              <td class="bl-owner">TI → Diretoria</td>
+              <td><span class="status-badge st-done">Concluído</span></td>
+            </tr>
+            <tr>
+              <td class="st-id">US-008</td>
+              <td>Cotar manutenção da controladora de energia</td>
+              <td class="st-pts">2</td>
+              <td class="bl-owner">TI · Suprimentos</td>
+              <td><span class="status-badge st-done">Concluído</span></td>
+            </tr>
+            <tr>
+              <td class="st-id">US-009</td>
+              <td>Emitir Termo de Assunção de Risco</td>
+              <td class="st-pts">3</td>
+              <td class="bl-owner">TI · Jurídico</td>
+              <td><span class="status-badge st-rev">Em Revisão</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="tl-title">Roadmap de Sprints · Auditoria 13/07</div>
+        <div class="tl-item">
+          <div class="tl-bar current"></div>
+          <div class="tl-content">
+            <div class="tl-label">Sprint 1 · Atual</div>
+            <div class="tl-date">01/06 → 14/06/2026</div>
+            <div class="tl-sub">Blindagem Imediata — riscos, licenças, inventário</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-bar"></div>
+          <div class="tl-content">
+            <div class="tl-label">Sprint 2</div>
+            <div class="tl-date">15/06 → 28/06/2026</div>
+            <div class="tl-sub">Fundação Documental — PSI, SLAs, fluxos RH, termos</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-bar"></div>
+          <div class="tl-content">
+            <div class="tl-label">Sprint 3</div>
+            <div class="tl-date">29/06 → 12/07/2026</div>
+            <div class="tl-sub">Operação & Cultura — Service Desk, shadow IT, gestores</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-bar audit"></div>
+          <div class="tl-content">
+            <div class="tl-label" style="color:var(--dark-red)">Auditoria ISO 9001</div>
+            <div class="tl-date" style="color:var(--dark-red)">13/07/2026</div>
+            <div class="tl-sub">Auditor adversarial — evidências obrigatórias</div>
+          </div>
+        </div>
+
+        <div class="dod-box">
+          <div class="dod-title">Definition of Done (DoD)</div>
+          <div class="dod-item"><span class="dod-check">✓</span>Entregável documentado e publicado formalmente</div>
+          <div class="dod-item"><span class="dod-check">✓</span>Evidência gerada e arquivada para auditoria</div>
+          <div class="dod-item"><span class="dod-check">✓</span>Responsável identificado e confirmado na entrega</div>
+          <div class="dod-item"><span class="dod-check">✓</span>Revisão aprovada por Kedymma ou Fábio</div>
+          <div class="dod-item"><span class="dod-check">✓</span>Sem bloqueadores abertos na story</div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /sprint -->
+
+  <!-- ═══════════ BACKLOG ═══════════ -->
+  <div class="view" id="view-backlog">
+
+    <table class="backlog-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Épico</th>
+          <th>User Story</th>
+          <th>Sprint</th>
+          <th style="text-align:right">Pts</th>
+          <th>Responsável</th>
+          <th>Prioridade</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- EPIC A -->
+        <tr><td class="bl-id">US-001</td><td><span class="epic-dot" style="background:var(--ea)"></span>A</td><td>Unificar inventário de HW/SW via Acronis + Spalla</td><td class="bl-sprint">Sprint 1</td><td class="bl-pts">5</td><td class="bl-owner">Marcone</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-prog">Em Progresso</span></td></tr>
+        <tr><td class="bl-id">US-002</td><td><span class="epic-dot" style="background:var(--ea)"></span>A</td><td>Converter inventário provisório em código definitivo</td><td class="bl-sprint">Sprint 1</td><td class="bl-pts">8</td><td class="bl-owner">Marcone</td><td><span class="pri-badge pri-critica">Crítica</span></td><td><span class="status-badge st-prog">Em Progresso</span></td></tr>
+        <tr><td class="bl-id">US-003</td><td><span class="epic-dot" style="background:var(--ea)"></span>A</td><td>Implantar ciclo de vida + etiquetagem física (alumínio)</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">5</td><td class="bl-owner">Marcone</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-004</td><td><span class="epic-dot" style="background:var(--ea)"></span>A</td><td>Homologar todos os sistemas ativos</td><td class="bl-sprint">Sprint 2</td><td class="bl-pts">3</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-005</td><td><span class="epic-dot" style="background:var(--ea)"></span>A</td><td>Regularizar licenças Windows / Office</td><td class="bl-sprint">Sprint 1</td><td class="bl-pts">8</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-critica">Crítica</span></td><td><span class="status-badge st-prog">Em Progresso</span></td></tr>
+        <!-- EPIC B -->
+        <tr><td class="bl-id">US-006</td><td><span class="epic-dot" style="background:var(--eb)"></span>B</td><td>Mapear risco do servidor novo — Matriz de Impacto</td><td class="bl-sprint">Sprint 1</td><td class="bl-pts">3</td><td class="bl-owner">TI · Diretoria</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-prog">Em Progresso</span></td></tr>
+        <tr><td class="bl-id">US-007</td><td><span class="epic-dot" style="background:var(--eb)"></span>B</td><td>Formalizar risco servidor antigo p/ Edson</td><td class="bl-sprint">Sprint 1</td><td class="bl-pts">5</td><td class="bl-owner">TI → Diretoria</td><td><span class="pri-badge pri-critica">Crítica</span></td><td><span class="status-badge st-done">Concluído</span></td></tr>
+        <tr><td class="bl-id">US-008</td><td><span class="epic-dot" style="background:var(--eb)"></span>B</td><td>Cotar manutenção da controladora de energia</td><td class="bl-sprint">Sprint 1</td><td class="bl-pts">2</td><td class="bl-owner">TI · Suprimentos</td><td><span class="pri-badge pri-critica">Crítica</span></td><td><span class="status-badge st-done">Concluído</span></td></tr>
+        <tr><td class="bl-id">US-009</td><td><span class="epic-dot" style="background:var(--eb)"></span>B</td><td>Emitir Termo de Assunção de Risco</td><td class="bl-sprint">Sprint 1</td><td class="bl-pts">3</td><td class="bl-owner">TI · Jurídico</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-rev">Em Revisão</span></td></tr>
+        <!-- EPIC C -->
+        <tr><td class="bl-id">US-015</td><td><span class="epic-dot" style="background:var(--ec)"></span>C</td><td>Acesso restrito Spalla API (home office)</td><td class="bl-sprint">Sprint 2</td><td class="bl-pts">5</td><td class="bl-owner">TI · Segurança</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-016</td><td><span class="epic-dot" style="background:var(--ec)"></span>C</td><td>Procedimento de varredura de mídias em Vitória (USB)</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">2</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-017</td><td><span class="epic-dot" style="background:var(--ec)"></span>C</td><td>Escrever PSI + DLP (Política de Segurança da Informação)</td><td class="bl-sprint">Sprint 2</td><td class="bl-pts">13</td><td class="bl-owner">Marcone</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-018</td><td><span class="epic-dot" style="background:var(--ec)"></span>C</td><td>Processo de aquisição homologada pela TI</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">5</td><td class="bl-owner">TI · Suprimentos</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-019</td><td><span class="epic-dot" style="background:var(--ec)"></span>C</td><td>Tratamento de Shadow IT (quarentena em rede)</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">5</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-020</td><td><span class="epic-dot" style="background:var(--ec)"></span>C</td><td>Validar Termo de Responsabilidade de Equipamentos</td><td class="bl-sprint">Sprint 2</td><td class="bl-pts">3</td><td class="bl-owner">TI · Jurídico</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-021</td><td><span class="epic-dot" style="background:var(--ec)"></span>C</td><td>Procedimento p/ Wi-Fi público (celular corporativo)</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">2</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-022</td><td><span class="epic-dot" style="background:var(--ec)"></span>C</td><td>Bloqueio DNS em Vitória (risco primeiro, exceção via chamado)</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">2</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <!-- EPIC D -->
+        <tr><td class="bl-id">US-010</td><td><span class="epic-dot" style="background:var(--ed)"></span>D</td><td>Fluxo de Onboarding — RH aciona TI com antecedência</td><td class="bl-sprint">Sprint 2</td><td class="bl-pts">5</td><td class="bl-owner">TI · RH</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-011</td><td><span class="epic-dot" style="background:var(--ed)"></span>D</td><td>Fluxo de Offboarding — revogação imediata + recolhimento</td><td class="bl-sprint">Sprint 2</td><td class="bl-pts">5</td><td class="bl-owner">TI · RH</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-012</td><td><span class="epic-dot" style="background:var(--ed)"></span>D</td><td>Acabar com o bypass — tudo pelo 1º nível do Service Desk</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">8</td><td class="bl-owner">TI · Daniel · Kedymma</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-013</td><td><span class="epic-dot" style="background:var(--ed)"></span>D</td><td>Definir e publicar SLAs por criticidade (P1 = produção parada)</td><td class="bl-sprint">Sprint 2</td><td class="bl-pts">3</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-014</td><td><span class="epic-dot" style="background:var(--ed)"></span>D</td><td>Catálogo de infra padrão para filiais (Vitória, Vila Velha)</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">5</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <!-- EPIC E -->
+        <tr><td class="bl-id">US-023</td><td><span class="epic-dot" style="background:var(--ee)"></span>E</td><td>Formalizar Kedymma e Fábio como gestores do projeto</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">2</td><td class="bl-owner">Diretoria</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-024</td><td><span class="epic-dot" style="background:var(--ee)"></span>E</td><td>Mapeamento braçal de Shadow IT com gestores de área</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">8</td><td class="bl-owner">Marcone</td><td><span class="pri-badge pri-alta">Alta</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-025</td><td><span class="epic-dot" style="background:var(--ee)"></span>E</td><td>Vídeo básico de PSI para onboarding remoto (dia 1)</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">3</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-026</td><td><span class="epic-dot" style="background:var(--ee)"></span>E</td><td>Treinar equipe TI em pensamento sistêmico</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">5</td><td class="bl-owner">Liderança TI</td><td><span class="pri-badge pri-baixa">Baixa</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-027</td><td><span class="epic-dot" style="background:var(--ee)"></span>E</td><td>Distribuir fluxos/procedimentos digitalmente a todos</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">2</td><td class="bl-owner">TI</td><td><span class="pri-badge pri-baixa">Baixa</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+        <tr><td class="bl-id">US-028</td><td><span class="epic-dot" style="background:var(--ee)"></span>E</td><td>Reuniões presenciais com gestores de área</td><td class="bl-sprint">Sprint 3</td><td class="bl-pts">5</td><td class="bl-owner">Kedymma · Fábio · Reimon</td><td><span class="pri-badge pri-media">Média</span></td><td><span class="status-badge st-todo">A Fazer</span></td></tr>
+      </tbody>
+      <tfoot>
+        <tr class="backlog-total">
+          <td colspan="4">Total · 28 stories · 5 épicos · 3 sprints</td>
+          <td class="bl-pts">128</td>
+          <td colspan="3">story points</td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div><!-- /backlog -->
+
+  <!-- ═══════════ ÉPICOS ═══════════ -->
+  <div class="view" id="view-epicos">
+
+    <!-- ÉPICO A -->
+    <div class="epic-section">
+      <div class="epic-head">
+        <div class="epic-stripe" style="background:var(--ea)"></div>
+        <div>
+          <div class="epic-title">Épico A — Inventário &amp; Conformidade</div>
+          <div class="epic-desc">Base estrutural de toda a governança. Sem inventário atualizado e licenças regulares, nenhuma outra frente avança. Corresponde aos Planos #01 e #03.</div>
+        </div>
+        <div class="epic-meta">
+          <div class="epic-pts" style="color:var(--ea)">29</div>
+          <div class="epic-pts-sub">pts · 5 stories</div>
+        </div>
+      </div>
+      <div class="epic-prog-bg"><div class="epic-prog-fill" style="width:0%;background:var(--ea)"></div></div>
+      <div style="margin-bottom:12px;"><div class="epic-stories-grid"><span class="epic-story-tag">US-001</span><span class="epic-story-tag">US-002</span><span class="epic-story-tag">US-003</span><span class="epic-story-tag">US-004</span><span class="epic-story-tag">US-005</span></div></div>
+      <div class="epic-body">
+        <div class="epic-card">
+          <div class="epic-card-title">Plano #01 · Inventário com Acronis</div>
+          <ul>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/plano_acao_01_inventario_com_acronis.md" target="_blank">Plano #01 (markdown)</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/00_INDICE_Entregaveis.md" target="_blank">Índice de entregáveis</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RUN-GTI-01_Instalacao_Agente_Acronis.docx" target="_blank">RUN — Instalação do agente Acronis</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Novas_Maquinas_RH_Compras_TI.docx" target="_blank">POP — Novas máquinas</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Homologacao_Compras_e_Fornecedores.docx" target="_blank">POP — Homologação de compras</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Software_Nao_Homologado.docx" target="_blank">POP — Software não homologado</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-01_Notificacao_Software_Nao_Homologado.docx" target="_blank">Modelo — Notificação</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-02_Termo_Responsabilidade_Software_Nao_Homologado.docx" target="_blank">Modelo — Termo de responsabilidade</a></li>
+          </ul>
+        </div>
+        <div class="epic-card">
+          <div class="epic-card-title">Plano #03 · Ciclo de Vida e Etiquetagem</div>
+          <ul>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/plano_acao_03_ciclo_de_vida_etiquetagem.md" target="_blank">Plano #03 (markdown)</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/00_INDICE_Entregaveis.md" target="_blank">Índice de entregáveis</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/POP-GTI-03_Ciclo_de_Vida_de_Ativos.docx" target="_blank">POP — Ciclo de vida</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/NRM-GTI-03_Padrao_de_Etiquetagem.docx" target="_blank">Padrão de etiquetagem</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/IT-GTI-03_Instrucao_Etiquetagem_Fisica.docx" target="_blank">Instrução de etiquetagem física</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/PLN-GTI-03_Plano_de_Implantacao_por_Ondas.docx" target="_blank">Plano de ondas</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/RACI-GTI-03_Matriz_RACI.docx" target="_blank">Matriz RACI</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-01_Checklist_Movimentacao.docx" target="_blank">Checklist de movimentação</a></li>
+          </ul>
+        </div>
+        <div class="epic-card">
+          <div class="epic-card-title">Apoio — Plano #01</div>
+          <ul>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-04_Controle_Software_Nao_Homologado.docx" target="_blank">Formulário — Controle software não homologado</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-06_Painel_Executivo_Indicadores.docx" target="_blank">Painel executivo de indicadores</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/PLN-GTI-01_Plano_de_Implantacao_por_Ondas.docx" target="_blank">Plano de implantação por ondas</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RACI-GTI-01_Matriz_RACI.docx" target="_blank">Matriz RACI</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-02_Relatorio_de_Cobertura_Acronis.docx" target="_blank">Relatório de cobertura</a></li>
+            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-03_Falhas_de_Instalacao_e_Tratativas.docx" target="_blank">Falhas e tratativas</a></li>
+          </ul>
+        </div>
+        <div class="epic-card">
+          <div class="epic-card-title">Apoio — Plano #03</div>
+          <ul>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/CRN-GTI-03_Cronograma_Executivo.docx" target="_blank">Cronograma executivo</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/COM-GTI-03_Kit_de_Comunicacao.docx" target="_blank">Kit de comunicação</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-02_Conciliacao_Fisico_x_Inventario.docx" target="_blank">Conciliação físico × inventário</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-03_Nao_Conformidades_Acoes_Corretivas.docx" target="_blank">Não conformidades e ações corretivas</a></li>
+            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-13_Painel_de_Indicadores.docx" target="_blank">Painel de indicadores</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉPICO B -->
+    <div class="epic-section">
+      <div class="epic-head">
+        <div class="epic-stripe" style="background:var(--eb)"></div>
+        <div>
+          <div class="epic-title">Épico B — Continuidade &amp; Risco</div>
+          <div class="epic-desc">Proteger a operação fabril e a TI juridicamente. A parada do servidor pode imobilizar a fábrica por até 30 dias — risco P1 que precisa estar formalizado antes de qualquer outra ação.</div>
+        </div>
+        <div class="epic-meta">
+          <div class="epic-pts">13</div>
+          <div class="epic-pts-sub">pts · 4 stories</div>
+        </div>
+      </div>
+      <div class="epic-prog-bg"><div class="epic-prog-fill" style="width:54%;background:var(--eb)"></div></div>
+      <div style="margin-bottom:12px;font-size:12px;color:var(--muted);font-style:italic">7 / 13 pts entregues</div>
+      <div class="epic-body">
+        <div class="epic-card">
+          <div class="epic-card-title">Stories do Épico</div>
+          <ul>
+            <li><strong>US-006</strong> — Matriz de Impacto servidor novo · 3pts · Em Progresso</li>
+            <li><strong>US-007</strong> — Formalizar risco servidor antigo p/ Edson · 5pts · ✓ Concluído</li>
+            <li><strong>US-008</strong> — Cotar manutenção controladora · 2pts · ✓ Concluído</li>
+            <li><strong>US-009</strong> — Termo de Assunção de Risco · 3pts · Em Revisão</li>
+          </ul>
+        </div>
+        <div class="epic-card">
+          <div class="epic-card-title">Critério de conclusão</div>
+          <ul>
+            <li>Risco do servidor antigo formalizado e assinado pela diretoria</li>
+            <li>Cotação de manutenção em mãos com 2+ fornecedores</li>
+            <li>Termo de Assunção de Risco emitido e arquivado (se investimento negado)</li>
+            <li>Matriz de Impacto do servidor novo aprovada</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉPICO C -->
+    <div class="epic-section">
+      <div class="epic-head">
+        <div class="epic-stripe" style="background:var(--ec)"></div>
+        <div>
+          <div class="epic-title">Épico C — Segurança da Informação</div>
+          <div class="epic-desc">A PSI é a mãe de todos os controles. Nenhuma das outras 7 stories deste épico pode ser implementada sem que a Política de Segurança exista — ela é a dependência estrutural desta frente.</div>
+        </div>
+        <div class="epic-meta">
+          <div class="epic-pts" style="color:var(--ec)">37</div>
+          <div class="epic-pts-sub">pts · 8 stories</div>
+        </div>
+      </div>
+      <div class="epic-prog-bg"><div class="epic-prog-fill" style="width:0%;background:var(--ec)"></div></div>
+      <div class="epic-body">
+        <div class="epic-card">
+          <div class="epic-card-title">Stories do Épico</div>
+          <ul>
+            <li><strong>US-017</strong> — PSI + DLP · 13pts · Sprint 2 · <em>dependência central</em></li>
+            <li><strong>US-015</strong> — Acesso restrito Spalla API · 5pts · Sprint 2</li>
+            <li><strong>US-020</strong> — Termo de Responsabilidade de Equipamentos · 3pts · Sprint 2</li>
+            <li><strong>US-018</strong> — Aquisição homologada · 5pts · Sprint 3</li>
+            <li><strong>US-019</strong> — Shadow IT quarentena · 5pts · Sprint 3</li>
+            <li><strong>US-016</strong> — Varredura USB Vitória · 2pts · Sprint 3</li>
+            <li><strong>US-022</strong> — Bloqueio DNS Vitória · 2pts · Sprint 3</li>
+            <li><strong>US-021</strong> — Procedimento Wi-Fi público · 2pts · Sprint 3</li>
+          </ul>
+        </div>
+        <div class="epic-card">
+          <div class="epic-card-title">Trilha crítica do épico</div>
+          <ul>
+            <li>PSI publicada (#17) → todas as demais stories dependem dela</li>
+            <li>PSI → acesso API Spalla (#15) → home office seguro</li>
+            <li>PSI → varredura USB (#16) → DNS Vitória (#22)</li>
+            <li>PSI → Wi-Fi público (#21) → política de endpoints remotos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉPICO D -->
+    <div class="epic-section">
+      <div class="epic-head">
+        <div class="epic-stripe" style="background:var(--ed)"></div>
+        <div>
+          <div class="epic-title">Épico D — Processos &amp; Operação</div>
+          <div class="epic-desc">Fluxos de ponta a ponta que eliminam o bypass informal, formalizam o Service Desk como ponto único e padronizam a operação nas filiais em crescimento.</div>
+        </div>
+        <div class="epic-meta">
+          <div class="epic-pts" style="color:var(--ed)">26</div>
+          <div class="epic-pts-sub">pts · 5 stories</div>
+        </div>
+      </div>
+      <div class="epic-prog-bg"><div class="epic-prog-fill" style="width:0%;background:var(--ed)"></div></div>
+      <div class="epic-body">
+        <div class="epic-card">
+          <div class="epic-card-title">Stories do Épico</div>
+          <ul>
+            <li><strong>US-013</strong> — SLAs por criticidade · 3pts · Sprint 2</li>
+            <li><strong>US-011</strong> — Fluxo de Offboarding · 5pts · Sprint 2</li>
+            <li><strong>US-010</strong> — Fluxo de Onboarding · 5pts · Sprint 2</li>
+            <li><strong>US-014</strong> — Catálogo infra filiais · 5pts · Sprint 3</li>
+            <li><strong>US-012</strong> — Acabar com o bypass · 8pts · Sprint 3</li>
+          </ul>
+        </div>
+        <div class="epic-card">
+          <div class="epic-card-title">Dependências do épico</div>
+          <ul>
+            <li>SLAs (#13) devem existir antes de exigir o Service Desk sem bypass (#12)</li>
+            <li>PSI (#17, Épico C) alimenta os fluxos de Onboarding/Offboarding</li>
+            <li>Inventário (#02, Épico A) é base para o recolhimento no Offboarding (#11)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉPICO E -->
+    <div class="epic-section">
+      <div class="epic-head">
+        <div class="epic-stripe" style="background:var(--ee)"></div>
+        <div>
+          <div class="epic-title">Épico E — Mudança Cultural</div>
+          <div class="epic-desc">A governança só sobrevive se a liderança comprar. Esta frente garante patrocínio executivo, adesão das áreas, comunicação formal e evidências de conscientização para o auditor.</div>
+        </div>
+        <div class="epic-meta">
+          <div class="epic-pts" style="color:var(--ee)">25</div>
+          <div class="epic-pts-sub">pts · 6 stories</div>
+        </div>
+      </div>
+      <div class="epic-prog-bg"><div class="epic-prog-fill" style="width:0%;background:var(--ee)"></div></div>
+      <div class="epic-body">
+        <div class="epic-card">
+          <div class="epic-card-title">Stories do Épico</div>
+          <ul>
+            <li><strong>US-023</strong> — Formalizar Kedymma/Fábio como gestores · 2pts · Sprint 3</li>
+            <li><strong>US-024</strong> — Mapeamento braçal de Shadow IT · 8pts · Sprint 3</li>
+            <li><strong>US-028</strong> — Reuniões presenciais com gestores · 5pts · Sprint 3</li>
+            <li><strong>US-026</strong> — Treinar TI em pensamento sistêmico · 5pts · Sprint 3</li>
+            <li><strong>US-025</strong> — Vídeo PSI para onboarding remoto · 3pts · Sprint 3</li>
+            <li><strong>US-027</strong> — Distribuir fluxos digitalmente · 2pts · Sprint 3</li>
+          </ul>
+        </div>
+        <div class="epic-card">
+          <div class="epic-card-title">Critério de conclusão</div>
+          <ul>
+            <li>Kedymma e Fábio formalizados com assinatura da diretoria (#23)</li>
+            <li>Shadow IT mapeado em todas as áreas com declaração formal (#24)</li>
+            <li>Todas as reuniões com gestores realizadas com ata registrada (#28)</li>
+            <li>Vídeo de PSI gravado e disponibilizado no onboarding (#25)</li>
+            <li>Evidência de comunicação arquivada para auditoria (#27)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /epicos -->
+
+  <!-- ═══════════ MÉTRICAS ═══════════ -->
+  <div class="view" id="view-metricas">
+
+    <div class="metrics-grid">
+
+      <div class="metric-block">
+        <div class="metric-block-title">Resumo por Sprint</div>
+        <table class="sprint-sum-table">
+          <thead>
+            <tr>
+              <th>Sprint</th>
+              <th>Período</th>
+              <th>Planejado</th>
+              <th>Entregue</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="current-row">
+              <td>Sprint 1</td>
+              <td class="bl-sprint">Jun 1–14</td>
+              <td>31 pts</td>
+              <td>7 pts*</td>
+              <td><span class="status-badge st-prog">Em curso</span></td>
+            </tr>
+            <tr>
+              <td>Sprint 2</td>
+              <td class="bl-sprint">Jun 15–28</td>
+              <td>37 pts</td>
+              <td>—</td>
+              <td><span class="status-badge st-todo">Planejado</span></td>
+            </tr>
+            <tr>
+              <td>Sprint 3</td>
+              <td class="bl-sprint">Jun 29–Jul 12</td>
+              <td>60 pts</td>
+              <td>—</td>
+              <td><span class="status-badge st-todo">Planejado</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;font-style:italic">* 7 concluídos · 24 em progresso · meta: 31 pts até 14/06</div>
+      </div>
+
+      <div class="metric-block">
+        <div class="metric-block-title">Progresso por Épico</div>
+        <div class="epic-bar-row">
+          <span class="epic-bar-name" style="color:var(--ea)">A · Inventário</span>
+          <div class="epic-bar-bg"><div class="epic-bar-fill" style="width:0%;background:var(--ea)"></div></div>
+          <span class="epic-bar-pct">0 / 29</span>
+        </div>
+        <div class="epic-bar-row">
+          <span class="epic-bar-name" style="color:var(--eb)">B · Continuidade</span>
+          <div class="epic-bar-bg"><div class="epic-bar-fill" style="width:54%;background:var(--eb)"></div></div>
+          <span class="epic-bar-pct">7 / 13</span>
+        </div>
+        <div class="epic-bar-row">
+          <span class="epic-bar-name" style="color:var(--ec)">C · Segurança</span>
+          <div class="epic-bar-bg"><div class="epic-bar-fill" style="width:0%;background:var(--ec)"></div></div>
+          <span class="epic-bar-pct">0 / 37</span>
+        </div>
+        <div class="epic-bar-row">
+          <span class="epic-bar-name" style="color:var(--ed)">D · Processos</span>
+          <div class="epic-bar-bg"><div class="epic-bar-fill" style="width:0%;background:var(--ed)"></div></div>
+          <span class="epic-bar-pct">0 / 26</span>
+        </div>
+        <div class="epic-bar-row">
+          <span class="epic-bar-name" style="color:var(--ee)">E · Cultura</span>
+          <div class="epic-bar-bg"><div class="epic-bar-fill" style="width:0%;background:var(--ee)"></div></div>
+          <span class="epic-bar-pct">0 / 25</span>
+        </div>
+      </div>
+
+      <div class="metric-block">
+        <div class="metric-block-title">Saúde do Backlog</div>
+        <div class="health-row"><span>Total de stories</span><span class="health-val">28</span></div>
+        <div class="health-row"><span>Stories pontuadas</span><span class="health-val">28 (100%)</span></div>
+        <div class="health-row"><span>Concluídas</span><span class="health-val">2 (7%)</span></div>
+        <div class="health-row"><span>Em Progresso</span><span class="health-val">4 (14%)</span></div>
+        <div class="health-row"><span>Em Revisão</span><span class="health-val">1 (4%)</span></div>
+        <div class="health-row"><span>A Fazer</span><span class="health-val warn">21 (75%)</span></div>
+        <div class="health-row"><span>Dias até auditoria</span><span class="health-val warn" id="metric-days">42</span></div>
+        <div class="health-row"><span>Sprints restantes</span><span class="health-val">3</span></div>
+      </div>
+
+      <div class="metric-block">
+        <div class="metric-block-title">Meta de Velocidade</div>
+        <div class="health-row"><span>Total de pontos</span><span class="health-val">128 pts</span></div>
+        <div class="health-row"><span>Dias disponíveis</span><span class="health-val">42</span></div>
+        <div class="health-row"><span>Sprints disponíveis</span><span class="health-val">3</span></div>
+        <div class="health-row"><span>Velocidade necessária</span><span class="health-val warn">≥ 43 pts/sprint</span></div>
+        <div class="health-row"><span>Sprint 1 planejado</span><span class="health-val">31 pts</span></div>
+        <div class="health-row"><span>Sprint 2 planejado</span><span class="health-val">37 pts</span></div>
+        <div class="health-row"><span>Sprint 3 planejado</span><span class="health-val warn">60 pts</span></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;font-style:italic">O Sprint 3 é denso por concentrar Épicos C, D e E. Paralelismo de execução (diferentes responsáveis) viabiliza a entrega dentro do prazo.</div>
+      </div>
+
+    </div>
+  </div><!-- /metricas -->
+
+  <footer>
+    <span>Projetos de Governança de TI · Agile Board · 2026</span>
+    <span class="disc">Framework: Agile + Scrum + ITIL 4. Sprints de 14 dias. Deadline fixo: auditoria ISO 9001 de 13/07/2026. Story points em escala Fibonacci.</span>
+    <span>28 stories · 128 pts</span>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  // Tab switching
+  const tabs = document.querySelectorAll('.tab-btn');
+  const views = document.querySelectorAll('.view');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      views.forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('view-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Days countdown
+  const audit = new Date('2026-07-13T00:00:00');
+  const today = new Date();
+  const diff = Math.max(0, Math.ceil((audit - today) / (1000*60*60*24)));
+  document.getElementById('days-count').textContent = diff;
+  document.getElementById('stat-days').textContent = diff;
+  if (document.getElementById('metric-days')) document.getElementById('metric-days').textContent = diff;
+</script>
+</body>
 </html>
