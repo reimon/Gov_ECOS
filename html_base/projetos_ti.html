@@ -333,6 +333,33 @@
     white-space: nowrap;
   }
 
+  /* Plan sub-sections inside epics */
+  .plan-sub { margin-bottom: 18px; }
+  .plan-sub-head {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 9px 14px 9px 12px;
+    background: var(--paper-3);
+    border-left: 4px solid var(--accent);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 10px;
+  }
+  .plan-sub-head .ps-code {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .plan-sub-head .ps-title {
+    font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; line-height: 1;
+  }
+  .plan-sub-head .ps-meta {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--muted); letter-spacing: 0.06em; margin-left: auto; white-space: nowrap;
+  }
+  .plan-sub-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  @media (max-width: 800px) { .plan-sub-grid { grid-template-columns: 1fr; } }
+
   /* ────────────────────────────────────────
      MÉTRICAS TAB
   ──────────────────────────────────────── */
@@ -774,55 +801,75 @@
       </div>
       <div class="epic-prog-bg"><div class="epic-prog-fill" style="width:0%;background:var(--ea)"></div></div>
       <div style="margin-bottom:12px;"><div class="epic-stories-grid"><span class="epic-story-tag">US-001</span><span class="epic-story-tag">US-002</span><span class="epic-story-tag">US-003</span><span class="epic-story-tag">US-004</span><span class="epic-story-tag">US-005</span></div></div>
-      <div class="epic-body">
-        <div class="epic-card">
-          <div class="epic-card-title">Plano #01 · Inventário com Acronis</div>
-          <ul>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/plano_acao_01_inventario_com_acronis.md" target="_blank">Plano #01 (markdown)</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/00_INDICE_Entregaveis.md" target="_blank">Índice de entregáveis</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RUN-GTI-01_Instalacao_Agente_Acronis.docx" target="_blank">RUN — Instalação do agente Acronis</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Novas_Maquinas_RH_Compras_TI.docx" target="_blank">POP — Novas máquinas</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Homologacao_Compras_e_Fornecedores.docx" target="_blank">POP — Homologação de compras</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Software_Nao_Homologado.docx" target="_blank">POP — Software não homologado</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-01_Notificacao_Software_Nao_Homologado.docx" target="_blank">Modelo — Notificação</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-02_Termo_Responsabilidade_Software_Nao_Homologado.docx" target="_blank">Modelo — Termo de responsabilidade</a></li>
-          </ul>
+      <!-- Plano #01 -->
+      <div class="plan-sub">
+        <div class="plan-sub-head">
+          <span class="ps-code">Plano #01</span>
+          <span class="ps-title">Inventário de HW/SW com Acronis</span>
+          <span class="ps-meta">US-001 · US-002 · US-004 · US-005</span>
         </div>
-        <div class="epic-card">
-          <div class="epic-card-title">Plano #03 · Ciclo de Vida e Etiquetagem</div>
-          <ul>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/plano_acao_03_ciclo_de_vida_etiquetagem.md" target="_blank">Plano #03 (markdown)</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/00_INDICE_Entregaveis.md" target="_blank">Índice de entregáveis</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/POP-GTI-03_Ciclo_de_Vida_de_Ativos.docx" target="_blank">POP — Ciclo de vida</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/NRM-GTI-03_Padrao_de_Etiquetagem.docx" target="_blank">Padrão de etiquetagem</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/IT-GTI-03_Instrucao_Etiquetagem_Fisica.docx" target="_blank">Instrução de etiquetagem física</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/PLN-GTI-03_Plano_de_Implantacao_por_Ondas.docx" target="_blank">Plano de ondas</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/RACI-GTI-03_Matriz_RACI.docx" target="_blank">Matriz RACI</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-01_Checklist_Movimentacao.docx" target="_blank">Checklist de movimentação</a></li>
-          </ul>
-        </div>
-        <div class="epic-card">
-          <div class="epic-card-title">Apoio — Plano #01</div>
-          <ul>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-04_Controle_Software_Nao_Homologado.docx" target="_blank">Formulário — Controle software não homologado</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-06_Painel_Executivo_Indicadores.docx" target="_blank">Painel executivo de indicadores</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/PLN-GTI-01_Plano_de_Implantacao_por_Ondas.docx" target="_blank">Plano de implantação por ondas</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RACI-GTI-01_Matriz_RACI.docx" target="_blank">Matriz RACI</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-02_Relatorio_de_Cobertura_Acronis.docx" target="_blank">Relatório de cobertura</a></li>
-            <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-03_Falhas_de_Instalacao_e_Tratativas.docx" target="_blank">Falhas e tratativas</a></li>
-          </ul>
-        </div>
-        <div class="epic-card">
-          <div class="epic-card-title">Apoio — Plano #03</div>
-          <ul>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/CRN-GTI-03_Cronograma_Executivo.docx" target="_blank">Cronograma executivo</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/COM-GTI-03_Kit_de_Comunicacao.docx" target="_blank">Kit de comunicação</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-02_Conciliacao_Fisico_x_Inventario.docx" target="_blank">Conciliação físico × inventário</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-03_Nao_Conformidades_Acoes_Corretivas.docx" target="_blank">Não conformidades e ações corretivas</a></li>
-            <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-13_Painel_de_Indicadores.docx" target="_blank">Painel de indicadores</a></li>
-          </ul>
+        <div class="plan-sub-grid">
+          <div class="epic-card">
+            <div class="epic-card-title">Documentação central</div>
+            <ul>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/plano_acao_01_inventario_com_acronis.md" target="_blank">Plano #01 (markdown completo)</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/00_INDICE_Entregaveis.md" target="_blank">Índice de entregáveis</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RUN-GTI-01_Instalacao_Agente_Acronis.docx" target="_blank">RUN — Instalação do agente Acronis</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Novas_Maquinas_RH_Compras_TI.docx" target="_blank">POP — Novas máquinas (RH → Compras → TI)</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Homologacao_Compras_e_Fornecedores.docx" target="_blank">POP — Homologação de compras e fornecedores</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/POP-GTI-01_Software_Nao_Homologado.docx" target="_blank">POP — Software não homologado</a></li>
+            </ul>
+          </div>
+          <div class="epic-card">
+            <div class="epic-card-title">Modelos, formulários e apoio</div>
+            <ul>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-01_Notificacao_Software_Nao_Homologado.docx" target="_blank">Modelo — Notificação de software</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/MOD-GTI-01-02_Termo_Responsabilidade_Software_Nao_Homologado.docx" target="_blank">Modelo — Termo de responsabilidade</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-04_Controle_Software_Nao_Homologado.docx" target="_blank">Formulário — Controle de software</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-06_Painel_Executivo_Indicadores.docx" target="_blank">Painel executivo de indicadores</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/PLN-GTI-01_Plano_de_Implantacao_por_Ondas.docx" target="_blank">Plano de implantação por ondas</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/RACI-GTI-01_Matriz_RACI.docx" target="_blank">Matriz RACI</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-02_Relatorio_de_Cobertura_Acronis.docx" target="_blank">Relatório de cobertura</a></li>
+              <li><a href="../Planos/01%20-%20Inventario%20com%20Acronis/Entregaveis/FOR-GTI-01-03_Falhas_de_Instalacao_e_Tratativas.docx" target="_blank">Falhas e tratativas</a></li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <!-- Plano #03 -->
+      <div class="plan-sub">
+        <div class="plan-sub-head">
+          <span class="ps-code">Plano #03</span>
+          <span class="ps-title">Ciclo de Vida e Etiquetagem Física</span>
+          <span class="ps-meta">US-003 · depende de #02</span>
+        </div>
+        <div class="plan-sub-grid">
+          <div class="epic-card">
+            <div class="epic-card-title">Documentação central</div>
+            <ul>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/plano_acao_03_ciclo_de_vida_etiquetagem.md" target="_blank">Plano #03 (markdown completo)</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/00_INDICE_Entregaveis.md" target="_blank">Índice de entregáveis</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/POP-GTI-03_Ciclo_de_Vida_de_Ativos.docx" target="_blank">POP — Ciclo de vida de ativos</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/NRM-GTI-03_Padrao_de_Etiquetagem.docx" target="_blank">Norma — Padrão de etiquetagem</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/IT-GTI-03_Instrucao_Etiquetagem_Fisica.docx" target="_blank">Instrução — Etiquetagem física</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/PLN-GTI-03_Plano_de_Implantacao_por_Ondas.docx" target="_blank">Plano de implantação por ondas</a></li>
+            </ul>
+          </div>
+          <div class="epic-card">
+            <div class="epic-card-title">Governança, controle e comunicação</div>
+            <ul>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/CRN-GTI-03_Cronograma_Executivo.docx" target="_blank">Cronograma executivo</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/RACI-GTI-03_Matriz_RACI.docx" target="_blank">Matriz RACI</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/COM-GTI-03_Kit_de_Comunicacao.docx" target="_blank">Kit de comunicação</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-01_Checklist_Movimentacao.docx" target="_blank">Checklist de movimentação</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-02_Conciliacao_Fisico_x_Inventario.docx" target="_blank">Conciliação físico × inventário</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-03_Nao_Conformidades_Acoes_Corretivas.docx" target="_blank">Não conformidades e ações corretivas</a></li>
+              <li><a href="../Planos/03%20-%20Ciclo%20de%20vida%20e%20etiquetagem/Entregaveis/FOR-GTI-03-13_Painel_de_Indicadores.docx" target="_blank">Painel de indicadores</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- ÉPICO B -->
